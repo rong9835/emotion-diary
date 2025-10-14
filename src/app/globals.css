@@ -101,7 +101,12 @@
 
   /* Gradients */
   --color-gradient-primary: linear-gradient(135deg, #6da5fa 0%, #92eaf5 100%);
-  --color-gradient-skeleton: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 48.5%, transparent 100%);
+  --color-gradient-skeleton: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.6) 48.5%,
+    transparent 100%
+  );
 
   /* Legacy Variables */
   --background: var(--color-bg-primary);
@@ -144,7 +149,12 @@
     --color-state-focus: var(--color-blue-90);
 
     /* Gradients for Dark Mode */
-    --color-gradient-skeleton: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 48.5%, transparent 100%);
+    --color-gradient-skeleton: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 48.5%,
+      transparent 100%
+    );
 
     /* Legacy Variables */
     --background: var(--color-bg-primary);

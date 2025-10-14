@@ -1,7 +1,7 @@
 /**
  * Color Design Tokens
  * 다크모드를 포함한 프로젝트 전체 컬러 시스템
- * 
+ *
  * Figma Foundation 기반으로 구현됨
  * - 모든 컬러는 CSS 변수로 정의되어 다크모드를 자동 지원
  * - 기본 팔레트와 시맨틱 토큰으로 구성
@@ -11,7 +11,7 @@ export const COLOR_TOKENS = {
   // ========================================
   // Base Palette Colors
   // ========================================
-  
+
   // Blue - Primary Color Scale
   blue: {
     '05': 'var(--color-blue-05)',
@@ -154,7 +154,7 @@ export type ColorToken = typeof COLOR_TOKENS;
  * 컬러 토큰 헬퍼 함수
  * @param path - 점(.)으로 구분된 토큰 경로 (예: 'text.primary', 'blue.60')
  * @returns CSS 변수 문자열
- * 
+ *
  * @example
  * getColorToken('text.primary') // 'var(--color-text-primary)'
  * getColorToken('blue.60') // 'var(--color-blue-60)'
@@ -189,12 +189,14 @@ export const isDarkMode = (): boolean => {
  * @param callback - 다크모드 변경 시 호출될 콜백
  * @returns cleanup 함수
  */
-export const onDarkModeChange = (callback: (isDark: boolean) => void): (() => void) => {
+export const onDarkModeChange = (
+  callback: (isDark: boolean) => void
+): (() => void) => {
   if (typeof window === 'undefined') return () => {};
-  
+
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const handler = (e: MediaQueryListEvent) => callback(e.matches);
-  
+
   mediaQuery.addEventListener('change', handler);
   return () => mediaQuery.removeEventListener('change', handler);
 };
