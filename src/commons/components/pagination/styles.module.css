@@ -1,0 +1,418 @@
+/* ========================================
+ * Pagination Component Styles
+ * Figma 디자인 기반 구현
+ * ======================================== */
+
+/* ========================================
+ * Base Pagination Container
+ * ======================================== */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-family-primary);
+}
+
+.pagination.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ========================================
+ * Page Numbers Container
+ * ======================================== */
+
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ========================================
+ * Page Button Base Styles
+ * ======================================== */
+
+.pageButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: none;
+  outline: none;
+}
+
+.pageButton:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.pageButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ========================================
+ * Current Page Styles (Selected State)
+ * ======================================== */
+
+.currentPage {
+  background-color: #f2f2f2;
+  color: #000000;
+  font-weight: 500; /* Medium */
+}
+
+.currentPage:hover:not(:disabled) {
+  background-color: #e8e8e8;
+}
+
+.currentPage:active:not(:disabled) {
+  background-color: #d4d4d4;
+}
+
+/* ========================================
+ * Other Page Styles (Unselected State)
+ * ======================================== */
+
+.otherPage {
+  background-color: #ffffff;
+  color: #777777;
+  font-weight: 400; /* Regular */
+}
+
+.otherPage:hover:not(:disabled) {
+  background-color: #f9f9f9;
+  color: #555555;
+}
+
+.otherPage:active:not(:disabled) {
+  background-color: #f0f0f0;
+  color: #333333;
+}
+
+/* ========================================
+ * Arrow Button Styles
+ * ======================================== */
+
+.arrowButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #5f6368;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.arrowButton:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.arrowButton:hover:not(:disabled) {
+  color: #333333;
+}
+
+.arrowButton:active:not(:disabled) {
+  color: #000000;
+}
+
+.arrowButton:disabled,
+.arrowDisabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+.arrowIcon {
+  width: 24px;
+  height: 24px;
+}
+
+/* ========================================
+ * Variant Styles
+ * ======================================== */
+
+/* Primary Variant (기본) */
+.variant-primary .currentPage {
+  background-color: #f2f2f2;
+  color: #000000;
+}
+
+.variant-primary .otherPage {
+  background-color: #ffffff;
+  color: #777777;
+}
+
+/* Secondary Variant */
+.variant-secondary .currentPage {
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+}
+
+.variant-secondary .otherPage {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-secondary);
+}
+
+.variant-secondary .otherPage:hover:not(:disabled) {
+  background-color: var(--color-state-hover);
+}
+
+/* Tertiary Variant (비활성화) */
+.variant-tertiary .pageButton {
+  background-color: var(--color-state-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.variant-tertiary .arrowButton {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* ========================================
+ * Size Variants
+ * ======================================== */
+
+/* Small Size */
+.size-small .pageButton {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 6px;
+}
+
+.size-small .pageNumbers {
+  gap: 8px;
+}
+
+.size-small .arrowButton {
+  width: 20px;
+  height: 20px;
+}
+
+.size-small .arrowIcon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Medium Size (기본) */
+.size-medium .pageButton {
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 24px;
+  border-radius: 8px;
+}
+
+.size-medium .pageNumbers {
+  gap: 16px;
+}
+
+.size-medium .arrowButton {
+  width: 24px;
+  height: 24px;
+}
+
+.size-medium .arrowIcon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Large Size */
+.size-large .pageButton {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  line-height: 28px;
+  border-radius: 10px;
+}
+
+.size-large .pageNumbers {
+  gap: 20px;
+}
+
+.size-large .arrowButton {
+  width: 28px;
+  height: 28px;
+}
+
+.size-large .arrowIcon {
+  width: 28px;
+  height: 28px;
+}
+
+/* ========================================
+ * Theme Variants
+ * ======================================== */
+
+/* Light Theme (기본) */
+.theme-light .currentPage {
+  background-color: #f2f2f2;
+  color: #000000;
+}
+
+.theme-light .otherPage {
+  background-color: #ffffff;
+  color: #777777;
+}
+
+.theme-light .arrowButton {
+  color: #5f6368;
+}
+
+/* Dark Theme */
+.theme-dark .currentPage {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.theme-dark .otherPage {
+  background-color: #1a1a1a;
+  color: #cccccc;
+}
+
+.theme-dark .arrowButton {
+  color: #cccccc;
+}
+
+.theme-dark .otherPage:hover:not(:disabled) {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+.theme-dark .currentPage:hover:not(:disabled) {
+  background-color: #404040;
+}
+
+.theme-dark .arrowButton:hover:not(:disabled) {
+  color: #ffffff;
+}
+
+/* ========================================
+ * Pagination Info Styles
+ * ======================================== */
+
+.paginationInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-secondary);
+  margin-top: 8px;
+}
+
+/* ========================================
+ * Responsive Design
+ * ======================================== */
+
+@media (max-width: 768px) {
+  .pagination {
+    gap: 4px;
+  }
+  
+  .pageNumbers {
+    gap: 8px;
+  }
+  
+  .pageButton {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  .arrowButton {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .arrowIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination {
+    gap: 2px;
+  }
+  
+  .pageNumbers {
+    gap: 4px;
+  }
+  
+  .pageButton {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  
+  .arrowButton {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .arrowIcon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ========================================
+ * Accessibility Enhancements
+ * ======================================== */
+
+.pagination button:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pageButton,
+  .arrowButton {
+    transition: none;
+  }
+}
+
+/* ========================================
+ * High Contrast Mode Support
+ * ======================================== */
+
+@media (prefers-contrast: high) {
+  .currentPage {
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+  }
+  
+  .otherPage {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+  }
+  
+  .arrowButton {
+    color: #000000;
+  }
+}
