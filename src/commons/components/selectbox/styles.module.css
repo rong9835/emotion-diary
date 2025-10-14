@@ -393,13 +393,13 @@
   .selectBox {
     width: 100%;
   }
-  
+
   .size-small,
   .size-medium,
   .size-large {
     width: 100%;
   }
-  
+
   .dropdown {
     left: 0;
     right: 0;
@@ -431,7 +431,7 @@
   .trigger {
     border-width: 2px;
   }
-  
+
   .option.selected {
     outline: 2px solid currentColor;
     outline-offset: -2px;

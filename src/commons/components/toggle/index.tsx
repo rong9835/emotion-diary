@@ -207,11 +207,12 @@ export const Toggle: React.FC<ToggleProps> = ({
       </div>
 
       {/* 오른쪽 라벨 */}
-      {labelRight && (labelPosition === 'right' || labelPosition === 'both') && (
-        <label htmlFor={id} className={styles.labelRight}>
-          {labelRight}
-        </label>
-      )}
+      {labelRight &&
+        (labelPosition === 'right' || labelPosition === 'both') && (
+          <label htmlFor={id} className={styles.labelRight}>
+            {labelRight}
+          </label>
+        )}
     </div>
   );
 };
@@ -279,7 +280,9 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
   return (
     <div className={groupClasses} role="group" aria-label={label}>
       {label && <div className={styles.groupLabel}>{label}</div>}
-      {description && <div className={styles.groupDescription}>{description}</div>}
+      {description && (
+        <div className={styles.groupDescription}>{description}</div>
+      )}
       <div className={styles.groupContent}>{children}</div>
     </div>
   );

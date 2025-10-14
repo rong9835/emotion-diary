@@ -10,12 +10,12 @@ export interface SelectOption {
    * 옵션의 고유 값
    */
   value: string;
-  
+
   /**
    * 화면에 표시될 라벨
    */
   label: string;
-  
+
   /**
    * 옵션 비활성화 여부
    */
@@ -130,27 +130,35 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
 }) => {
   // 상태 관리
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(value || defaultValue || '');
+  const [selectedValue, setSelectedValue] = useState(
+    value || defaultValue || ''
+  );
   const [searchTerm, setSearchTerm] = useState('');
-  
+
   // 참조
   const selectRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   // 선택된 옵션 찾기
-  const selectedOption = options.find(option => option.value === selectedValue);
+  const selectedOption = options.find(
+    (option) => option.value === selectedValue
+  );
 
   // 필터링된 옵션들
-  const filteredOptions = searchable && searchTerm
-    ? options.filter(option => 
-        option.label.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    : options;
+  const filteredOptions =
+    searchable && searchTerm
+      ? options.filter((option) =>
+          option.label.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      : options;
 
   // 외부 클릭 감지
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
         setSearchTerm('');
       }
@@ -199,8 +207,8 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
   // 옵션 선택 처리
   const handleOptionSelect = (optionValue: string) => {
     if (disabled) return;
-    
-    const option = options.find(opt => opt.value === optionValue);
+
+    const option = options.find((opt) => opt.value === optionValue);
     if (option && !option.disabled) {
       setSelectedValue(optionValue);
       onChange?.(optionValue);
@@ -242,7 +250,7 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
     .join(' ');
 
   return (
-    <div 
+    <div
       ref={selectRef}
       className={selectClasses}
       onKeyDown={handleKeyDown}
@@ -253,7 +261,7 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
       aria-disabled={disabled}
     >
       {/* 선택된 값 표시 영역 */}
-      <div 
+      <div
         className={styles.trigger}
         onClick={handleToggle}
         role="button"
@@ -262,19 +270,20 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
         <span className={styles.value}>
           {selectedOption ? selectedOption.label : placeholder}
         </span>
-        <span className={`${styles.arrow} ${isOpen ? styles.arrowUp : styles.arrowDown}`}>
+        <span
+          className={`${styles.arrow} ${
+            isOpen ? styles.arrowUp : styles.arrowDown
+          }`}
+        >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path 
-              d="M7 10L12 15L17 10H7Z" 
-              fill="currentColor"
-            />
+            <path d="M7 10L12 15L17 10H7Z" fill="currentColor" />
           </svg>
         </span>
       </div>
 
       {/* 드롭다운 옵션 목록 */}
       {isOpen && (
-        <div 
+        <div
           className={dropdownClasses}
           style={{ maxHeight: `${maxHeight}px` }}
           role="listbox"
