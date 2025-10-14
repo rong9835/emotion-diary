@@ -1,0 +1,439 @@
+/* ========================================
+   SelectBox Component Styles
+   ======================================== */
+
+.selectBox {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-family-primary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.selectBox:focus {
+  outline: none;
+}
+
+.selectBox.fullWidth {
+  width: 100%;
+}
+
+.selectBox.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ========================================
+   Trigger (선택된 값 표시 영역)
+   ======================================== */
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+.value {
+  flex: 1;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  transition: transform 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+.arrowUp {
+  transform: rotate(180deg);
+}
+
+.arrowDown {
+  transform: rotate(0deg);
+}
+
+/* ========================================
+   Dropdown (옵션 목록)
+   ======================================== */
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid;
+  background-color: var(--color-bg-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease-in-out;
+}
+
+.dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.searchContainer {
+  padding: 8px;
+  border-bottom: 1px solid var(--color-border-secondary);
+}
+
+.searchInput {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border-secondary);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: var(--font-family-primary);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.searchInput:focus {
+  border-color: var(--color-border-focus);
+}
+
+.optionsList {
+  max-height: inherit;
+  overflow-y: auto;
+}
+
+.option {
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  border-bottom: 1px solid var(--color-border-secondary);
+}
+
+.option:last-child {
+  border-bottom: none;
+}
+
+.option:hover {
+  background-color: var(--color-state-hover);
+}
+
+.option.selected {
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+  font-weight: 500;
+}
+
+.option.optionDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.option.optionDisabled:hover {
+  background-color: transparent;
+}
+
+.noOptions {
+  padding: 16px;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* ========================================
+   Size Variants
+   ======================================== */
+
+.size-small {
+  width: 80px;
+}
+
+.size-small .trigger {
+  padding: 8px 12px;
+  min-height: 36px;
+}
+
+.size-small .value {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.size-small .arrow {
+  width: 20px;
+  height: 20px;
+}
+
+.size-medium {
+  width: 120px;
+}
+
+.size-large {
+  width: 200px;
+}
+
+.size-large .trigger {
+  padding: 16px 20px;
+  min-height: 56px;
+}
+
+.size-large .value {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+/* ========================================
+   Variant Styles - Light Theme
+   ======================================== */
+
+/* Primary Variant - Light */
+.variant-primary.theme-light .trigger {
+  background-color: #ffffff;
+  border-color: #c7c7c7;
+  color: #1c1c1c;
+}
+
+.variant-primary.theme-light:hover .trigger {
+  border-color: #a0a0a0;
+}
+
+.variant-primary.theme-light.open .trigger {
+  border-color: var(--color-brand-primary);
+}
+
+.variant-primary.theme-light.error .trigger {
+  border-color: var(--color-semantic-error);
+}
+
+.variant-primary.theme-light .dropdown {
+  border-color: #c7c7c7;
+  background-color: #ffffff;
+}
+
+.variant-primary.theme-light .option {
+  color: #1c1c1c;
+}
+
+/* Secondary Variant - Light */
+.variant-secondary.theme-light .trigger {
+  background-color: #f5f5f5;
+  border-color: #e0e0e0;
+  color: #1c1c1c;
+}
+
+.variant-secondary.theme-light:hover .trigger {
+  background-color: #eeeeee;
+  border-color: #d0d0d0;
+}
+
+.variant-secondary.theme-light.open .trigger {
+  border-color: var(--color-brand-primary);
+}
+
+.variant-secondary.theme-light .dropdown {
+  border-color: #e0e0e0;
+  background-color: #ffffff;
+}
+
+.variant-secondary.theme-light .option {
+  color: #1c1c1c;
+}
+
+/* Tertiary Variant - Light */
+.variant-tertiary.theme-light .trigger {
+  background-color: #f9f9f9;
+  border-color: #e8e8e8;
+  color: #888888;
+}
+
+.variant-tertiary.theme-light .dropdown {
+  border-color: #e8e8e8;
+  background-color: #ffffff;
+}
+
+.variant-tertiary.theme-light .option {
+  color: #888888;
+}
+
+/* ========================================
+   Variant Styles - Dark Theme
+   ======================================== */
+
+/* Primary Variant - Dark */
+.variant-primary.theme-dark .trigger {
+  background-color: #2a2a2a;
+  border-color: #4a4a4a;
+  color: #ffffff;
+}
+
+.variant-primary.theme-dark:hover .trigger {
+  border-color: #6a6a6a;
+}
+
+.variant-primary.theme-dark.open .trigger {
+  border-color: var(--color-brand-primary);
+}
+
+.variant-primary.theme-dark.error .trigger {
+  border-color: var(--color-semantic-error);
+}
+
+.variant-primary.theme-dark .dropdown {
+  border-color: #4a4a4a;
+  background-color: #2a2a2a;
+}
+
+.variant-primary.theme-dark .option {
+  color: #ffffff;
+}
+
+.variant-primary.theme-dark .option:hover {
+  background-color: #3a3a3a;
+}
+
+/* Secondary Variant - Dark */
+.variant-secondary.theme-dark .trigger {
+  background-color: #1a1a1a;
+  border-color: #3a3a3a;
+  color: #ffffff;
+}
+
+.variant-secondary.theme-dark:hover .trigger {
+  background-color: #222222;
+  border-color: #4a4a4a;
+}
+
+.variant-secondary.theme-dark.open .trigger {
+  border-color: var(--color-brand-primary);
+}
+
+.variant-secondary.theme-dark .dropdown {
+  border-color: #3a3a3a;
+  background-color: #2a2a2a;
+}
+
+.variant-secondary.theme-dark .option {
+  color: #ffffff;
+}
+
+.variant-secondary.theme-dark .option:hover {
+  background-color: #3a3a3a;
+}
+
+/* Tertiary Variant - Dark */
+.variant-tertiary.theme-dark .trigger {
+  background-color: #1f1f1f;
+  border-color: #333333;
+  color: #666666;
+}
+
+.variant-tertiary.theme-dark .dropdown {
+  border-color: #333333;
+  background-color: #2a2a2a;
+}
+
+.variant-tertiary.theme-dark .option {
+  color: #666666;
+}
+
+/* ========================================
+   Focus States
+   ======================================== */
+
+.selectBox:focus-visible .trigger {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Disabled States
+   ======================================== */
+
+.selectBox.disabled .trigger {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.selectBox.disabled .arrow {
+  opacity: 0.5;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 768px) {
+  .selectBox {
+    width: 100%;
+  }
+  
+  .size-small,
+  .size-medium,
+  .size-large {
+    width: 100%;
+  }
+  
+  .dropdown {
+    left: 0;
+    right: 0;
+  }
+}
+
+/* ========================================
+   Animation & Transitions
+   ======================================== */
+
+.selectBox * {
+  transition: all 0.2s ease-in-out;
+}
+
+/* ========================================
+   Accessibility
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .selectBox *,
+  .dropdown,
+  .arrow {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .trigger {
+    border-width: 2px;
+  }
+  
+  .option.selected {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+  }
+}
