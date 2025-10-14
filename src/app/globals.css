@@ -3,14 +3,152 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Blue Colors */
+  --color-blue-05: #f0f7ff;
+  --color-blue-10: #dbeeff;
+  --color-blue-20: #bddbff;
+  --color-blue-30: #93beff;
+  --color-blue-40: #6da5fa;
+  --color-blue-50: #497cff;
+  --color-blue-60: #3a5cf3;
+  --color-blue-70: #274ae1;
+  --color-blue-80: #1530a6;
+  --color-blue-90: #0b2184;
+
+  /* Gray Colors */
+  --color-gray-white: #ffffff;
+  --color-gray-05: #f2f2f2;
+  --color-gray-10: #e4e4e4;
+  --color-gray-20: #d4d3d3;
+  --color-gray-30: #c7c7c7;
+  --color-gray-40: #ababab;
+  --color-gray-50: #919191;
+  --color-gray-60: #777777;
+  --color-gray-70: #5f5f5f;
+  --color-gray-80: #333333;
+  --color-gray-90: #1c1c1c;
+  --color-gray-black: #000000;
+
+  /* Red Colors */
+  --color-red-05: #fdd7dc;
+  --color-red-10: #f797a4;
+  --color-red-20: #f4677a;
+  --color-red-30: #f03851;
+  --color-red-40: #e4112e;
+  --color-red-50: #b40e24;
+  --color-red-60: #850a1b;
+
+  /* Green Colors */
+  --color-green-05: #d3f3e0;
+  --color-green-10: #92e6b9;
+  --color-green-20: #15d66f;
+  --color-green-30: #12b75f;
+  --color-green-40: #109c51;
+  --color-green-50: #0e723c;
+  --color-green-60: #084424;
+
+  /* Yellow Colors */
+  --color-yellow-05: #ffe499;
+  --color-yellow-10: #ffd666;
+  --color-yellow-20: #ffc933;
+  --color-yellow-30: #ffb300;
+  --color-yellow-40: #eba500;
+  --color-yellow-50: #d69600;
+  --color-yellow-60: #b27d00;
+
+  /* Cool Gray Colors */
+  --color-cool-gray-01: #f8f8fa;
+  --color-cool-gray-05: #f6f6f9;
+  --color-cool-gray-10: #edeef2;
+  --color-cool-gray-20: #dddfe5;
+  --color-cool-gray-30: #d2d4dd;
+  --color-cool-gray-40: #c7c9d5;
+  --color-cool-gray-50: #bbbecd;
+  --color-cool-gray-60: #b0b3c4;
+
+  /* Semantic Token Mapping - Light Mode */
+  --color-bg-primary: var(--color-gray-white);
+  --color-bg-secondary: var(--color-gray-05);
+  --color-bg-tertiary: var(--color-gray-10);
+  --color-bg-inverse: var(--color-gray-black);
+
+  --color-text-primary: var(--color-gray-black);
+  --color-text-secondary: var(--color-gray-70);
+  --color-text-tertiary: var(--color-gray-60);
+  --color-text-inverse: var(--color-gray-white);
+  --color-text-link: var(--color-blue-60);
+  --color-text-disabled: var(--color-gray-40);
+
+  --color-border-primary: var(--color-gray-20);
+  --color-border-secondary: var(--color-gray-10);
+  --color-border-focus: var(--color-blue-60);
+  --color-border-error: var(--color-red-30);
+
+  --color-brand-primary: var(--color-blue-60);
+  --color-brand-secondary: var(--color-blue-40);
+  --color-brand-hover: var(--color-blue-70);
+  --color-brand-active: var(--color-blue-80);
+
+  --color-semantic-success: var(--color-green-30);
+  --color-semantic-warning: var(--color-yellow-30);
+  --color-semantic-error: var(--color-red-30);
+  --color-semantic-info: var(--color-blue-40);
+
+  --color-state-hover: var(--color-gray-05);
+  --color-state-active: var(--color-gray-10);
+  --color-state-disabled: var(--color-gray-20);
+  --color-state-focus: var(--color-blue-05);
+
+  /* Gradients */
+  --color-gradient-primary: linear-gradient(135deg, #6da5fa 0%, #92eaf5 100%);
+  --color-gradient-skeleton: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 48.5%, transparent 100%);
+
+  /* Legacy Variables */
+  --background: var(--color-bg-primary);
+  --foreground: var(--color-text-primary);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Semantic Token Mapping - Dark Mode */
+    --color-bg-primary: var(--color-gray-black);
+    --color-bg-secondary: var(--color-gray-90);
+    --color-bg-tertiary: var(--color-gray-80);
+    --color-bg-inverse: var(--color-gray-white);
+
+    --color-text-primary: var(--color-gray-white);
+    --color-text-secondary: var(--color-gray-30);
+    --color-text-tertiary: var(--color-gray-40);
+    --color-text-inverse: var(--color-gray-black);
+    --color-text-link: var(--color-blue-40);
+    --color-text-disabled: var(--color-gray-60);
+
+    --color-border-primary: var(--color-gray-70);
+    --color-border-secondary: var(--color-gray-80);
+    --color-border-focus: var(--color-blue-50);
+    --color-border-error: var(--color-red-40);
+
+    --color-brand-primary: var(--color-blue-50);
+    --color-brand-secondary: var(--color-blue-40);
+    --color-brand-hover: var(--color-blue-40);
+    --color-brand-active: var(--color-blue-60);
+
+    --color-semantic-success: var(--color-green-20);
+    --color-semantic-warning: var(--color-yellow-20);
+    --color-semantic-error: var(--color-red-30);
+    --color-semantic-info: var(--color-blue-40);
+
+    --color-state-hover: var(--color-gray-90);
+    --color-state-active: var(--color-gray-80);
+    --color-state-disabled: var(--color-gray-70);
+    --color-state-focus: var(--color-blue-90);
+
+    /* Gradients for Dark Mode */
+    --color-gradient-skeleton: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 48.5%, transparent 100%);
+
+    /* Legacy Variables */
+    --background: var(--color-bg-primary);
+    --foreground: var(--color-text-primary);
   }
 }
 
