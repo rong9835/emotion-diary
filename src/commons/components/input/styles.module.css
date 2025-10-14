@@ -1,0 +1,449 @@
+/* ========================================
+ * Input Component Styles
+ * Figma 디자인 기반 완전한 variant 시스템
+ * ======================================== */
+
+/* ========================================
+ * Container & Layout
+ * ======================================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: auto;
+}
+
+.container--full-width {
+  width: 100%;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid;
+  background-color: var(--color-bg-primary);
+  transition: all 0.2s ease-in-out;
+}
+
+/* ========================================
+ * Input Base Styles
+ * ======================================== */
+
+.input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-family-primary);
+  font-weight: 500;
+  letter-spacing: -0.16px;
+  color: var(--color-text-primary);
+}
+
+.input::placeholder {
+  color: #ababab;
+  font-weight: 500;
+}
+
+.input:focus {
+  outline: none;
+}
+
+/* ========================================
+ * Size Variants
+ * ======================================== */
+
+/* Small Size */
+.wrapper--small {
+  height: 36px;
+  padding: 0 12px;
+}
+
+.input--small {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.wrapper--small.input--with-left-icon {
+  padding-left: 8px;
+}
+
+.wrapper--small.input--with-right-icon {
+  padding-right: 8px;
+}
+
+/* Medium Size (Figma 기준) */
+.wrapper--medium {
+  height: 48px;
+  padding: 0 16px;
+}
+
+.input--medium {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.wrapper--medium.input--with-left-icon {
+  padding-left: 12px;
+}
+
+.wrapper--medium.input--with-right-icon {
+  padding-right: 12px;
+}
+
+/* Large Size */
+.wrapper--large {
+  height: 56px;
+  padding: 0 20px;
+}
+
+.input--large {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.wrapper--large.input--with-left-icon {
+  padding-left: 16px;
+}
+
+.wrapper--large.input--with-right-icon {
+  padding-right: 16px;
+}
+
+/* ========================================
+ * Primary Variant (Figma 기준)
+ * ======================================== */
+
+/* Light Theme */
+.wrapper--primary.wrapper--light {
+  background-color: #ffffff;
+  border-color: #d4d3d3;
+}
+
+.wrapper--primary.wrapper--light:hover {
+  border-color: var(--color-border-primary);
+}
+
+.wrapper--primary.wrapper--light:focus-within {
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 2px var(--color-brand-primary);
+}
+
+.input--primary.input--light {
+  color: var(--color-text-primary);
+}
+
+.input--primary.input--light::placeholder {
+  color: #ababab;
+}
+
+/* Dark Theme */
+.wrapper--primary.wrapper--dark {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border-secondary);
+}
+
+.wrapper--primary.wrapper--dark:hover {
+  border-color: var(--color-border-primary);
+}
+
+.wrapper--primary.wrapper--dark:focus-within {
+  border-color: var(--color-brand-primary);
+  box-shadow: 0 0 0 2px var(--color-brand-primary);
+}
+
+.input--primary.input--dark {
+  color: var(--color-text-inverse);
+}
+
+.input--primary.input--dark::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* ========================================
+ * Secondary Variant
+ * ======================================== */
+
+/* Light Theme */
+.wrapper--secondary.wrapper--light {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border-secondary);
+}
+
+.wrapper--secondary.wrapper--light:hover {
+  border-color: var(--color-border-primary);
+  background-color: var(--color-bg-primary);
+}
+
+.wrapper--secondary.wrapper--light:focus-within {
+  border-color: var(--color-brand-secondary);
+  box-shadow: 0 0 0 2px var(--color-brand-secondary);
+}
+
+.input--secondary.input--light {
+  color: var(--color-text-primary);
+}
+
+.input--secondary.input--light::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* Dark Theme */
+.wrapper--secondary.wrapper--dark {
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--color-border-secondary);
+}
+
+.wrapper--secondary.wrapper--dark:hover {
+  border-color: var(--color-border-primary);
+}
+
+.wrapper--secondary.wrapper--dark:focus-within {
+  border-color: var(--color-brand-secondary);
+  box-shadow: 0 0 0 2px var(--color-brand-secondary);
+}
+
+.input--secondary.input--dark {
+  color: var(--color-text-inverse);
+}
+
+.input--secondary.input--dark::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* ========================================
+ * Tertiary Variant
+ * ======================================== */
+
+/* Light Theme */
+.wrapper--tertiary.wrapper--light {
+  background-color: transparent;
+  border-color: var(--color-border-secondary);
+}
+
+.wrapper--tertiary.wrapper--light:hover {
+  border-color: var(--color-border-primary);
+  background-color: var(--color-bg-secondary);
+}
+
+.wrapper--tertiary.wrapper--light:focus-within {
+  border-color: var(--color-brand-primary);
+  background-color: var(--color-bg-primary);
+  box-shadow: 0 0 0 2px var(--color-brand-primary);
+}
+
+.input--tertiary.input--light {
+  color: var(--color-text-primary);
+}
+
+.input--tertiary.input--light::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* Dark Theme */
+.wrapper--tertiary.wrapper--dark {
+  background-color: transparent;
+  border-color: var(--color-border-secondary);
+}
+
+.wrapper--tertiary.wrapper--dark:hover {
+  border-color: var(--color-border-primary);
+  background-color: var(--color-bg-tertiary);
+}
+
+.wrapper--tertiary.wrapper--dark:focus-within {
+  border-color: var(--color-brand-primary);
+  background-color: var(--color-bg-secondary);
+  box-shadow: 0 0 0 2px var(--color-brand-primary);
+}
+
+.input--tertiary.input--dark {
+  color: var(--color-text-inverse);
+}
+
+.input--tertiary.input--dark::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* ========================================
+ * Error State
+ * ======================================== */
+
+.wrapper--error {
+  border-color: var(--color-semantic-error);
+}
+
+.wrapper--error:hover {
+  border-color: var(--color-semantic-error);
+}
+
+.wrapper--error:focus-within {
+  border-color: var(--color-semantic-error);
+  box-shadow: 0 0 0 2px var(--color-semantic-error);
+}
+
+.input--error {
+  color: var(--color-text-primary);
+}
+
+.input--error::placeholder {
+  color: var(--color-semantic-error);
+}
+
+/* ========================================
+ * Disabled State
+ * ======================================== */
+
+.wrapper--disabled {
+  background-color: var(--color-state-disabled);
+  border-color: var(--color-border-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.wrapper--disabled:hover {
+  border-color: var(--color-border-secondary);
+}
+
+.input--disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.input--disabled::placeholder {
+  color: var(--color-text-disabled);
+}
+
+/* ========================================
+ * Full Width
+ * ======================================== */
+
+.input--full-width {
+  width: 100%;
+}
+
+/* ========================================
+ * Icons
+ * ======================================== */
+
+.leftIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  color: var(--color-text-secondary);
+}
+
+.rightIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  color: var(--color-text-secondary);
+}
+
+.wrapper--disabled .leftIcon,
+.wrapper--disabled .rightIcon {
+  color: var(--color-text-disabled);
+}
+
+/* ========================================
+ * Label
+ * ======================================== */
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.required {
+  color: var(--color-semantic-error);
+  margin-left: 2px;
+}
+
+/* ========================================
+ * Helper Text & Error Message
+ * ======================================== */
+
+.helperText {
+  margin-top: 4px;
+}
+
+.helperTextContent {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-text-secondary);
+}
+
+.errorText {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-semantic-error);
+}
+
+/* ========================================
+ * Responsive Design
+ * ======================================== */
+
+@media (max-width: 767px) {
+  /* Mobile adjustments */
+  .wrapper--small {
+    height: 32px;
+    padding: 0 10px;
+  }
+  
+  .wrapper--medium {
+    height: 44px;
+    padding: 0 14px;
+  }
+  
+  .wrapper--large {
+    height: 52px;
+    padding: 0 18px;
+  }
+  
+  .input--small {
+    font-size: 13px;
+    line-height: 18px;
+  }
+  
+  .input--medium {
+    font-size: 15px;
+    line-height: 22px;
+  }
+  
+  .input--large {
+    font-size: 17px;
+    line-height: 26px;
+  }
+}
+
+/* ========================================
+ * Focus Visible (Accessibility)
+ * ======================================== */
+
+.input:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 2px;
+}
+
+/* ========================================
+ * High Contrast Mode Support
+ * ======================================== */
+
+@media (prefers-contrast: high) {
+  .wrapper {
+    border-width: 2px;
+  }
+  
+  .wrapper:focus-within {
+    border-width: 3px;
+  }
+}
