@@ -1,0 +1,375 @@
+/* ========================================
+ * Button Component Styles
+ * Figma 디자인 기반 구현
+ * ======================================== */
+
+/* ========================================
+ * Base Button Styles
+ * ======================================== */
+
+.button {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  /* Sizing */
+  height: 48px;
+  padding: 0 16px;
+  min-width: 104px;
+
+  /* Typography - Figma 기반 */
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
+  font-weight: 600; /* SemiBold */
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.18px;
+  text-align: center;
+  white-space: nowrap;
+
+  /* Visual */
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  /* Reset */
+  background: none;
+  outline: none;
+  text-decoration: none;
+  user-select: none;
+}
+
+/* ========================================
+ * Size Variants
+ * ======================================== */
+
+.size-small {
+  width: 104px;
+  min-width: 104px;
+}
+
+.size-medium {
+  width: 224px;
+  min-width: 224px;
+}
+
+.size-large {
+  width: 432px;
+  min-width: 432px;
+}
+
+.fullWidth {
+  width: 100% !important;
+  min-width: auto !important;
+}
+
+/* ========================================
+ * Primary Variant (Light Theme)
+ * ======================================== */
+
+.variant-primary.theme-light {
+  background-color: var(--color-gray-05); /* #f2f2f2 */
+  color: var(--color-gray-black); /* #000000 */
+  border-color: transparent;
+}
+
+.variant-primary.theme-light:hover:not(:disabled) {
+  background-color: var(--color-gray-10);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.variant-primary.theme-light:active:not(:disabled) {
+  background-color: var(--color-gray-20);
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.variant-primary.theme-light:focus-visible {
+  outline: 2px solid var(--color-blue-60);
+  outline-offset: 2px;
+}
+
+/* ========================================
+ * Primary Variant (Dark Theme)
+ * ======================================== */
+
+.variant-primary.theme-dark {
+  background-color: var(--color-gray-white); /* #ffffff */
+  color: var(--color-gray-black); /* #000000 */
+  border-color: transparent;
+}
+
+.variant-primary.theme-dark:hover:not(:disabled) {
+  background-color: var(--color-gray-05);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+.variant-primary.theme-dark:active:not(:disabled) {
+  background-color: var(--color-gray-10);
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+ * Secondary Variant (Light Theme)
+ * ======================================== */
+
+.variant-secondary.theme-light {
+  background-color: var(--color-gray-90); /* #1c1c1c */
+  color: var(--color-gray-white); /* #ffffff */
+  border-color: var(--color-gray-70); /* #5f5f5f */
+}
+
+.variant-secondary.theme-light:hover:not(:disabled) {
+  background-color: var(--color-gray-80);
+  border-color: var(--color-gray-60);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.variant-secondary.theme-light:active:not(:disabled) {
+  background-color: var(--color-gray-black);
+  border-color: var(--color-gray-80);
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.variant-secondary.theme-light:focus-visible {
+  outline: 2px solid var(--color-blue-60);
+  outline-offset: 2px;
+}
+
+/* ========================================
+ * Secondary Variant (Dark Theme)
+ * ======================================== */
+
+.variant-secondary.theme-dark {
+  background-color: var(--color-gray-10); /* #e4e4e4 */
+  color: var(--color-gray-black); /* #000000 */
+  border-color: var(--color-gray-30); /* #c7c7c7 */
+}
+
+.variant-secondary.theme-dark:hover:not(:disabled) {
+  background-color: var(--color-gray-white);
+  border-color: var(--color-gray-20);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+.variant-secondary.theme-dark:active:not(:disabled) {
+  background-color: var(--color-gray-05);
+  border-color: var(--color-gray-10);
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================
+ * Tertiary Variant (Light Theme)
+ * ======================================== */
+
+.variant-tertiary.theme-light {
+  background-color: var(--color-gray-80); /* #333333 */
+  color: var(--color-gray-60); /* #777777 */
+  border-color: transparent;
+}
+
+.variant-tertiary.theme-light:hover:not(:disabled) {
+  background-color: var(--color-gray-70);
+  color: var(--color-gray-50);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.variant-tertiary.theme-light:active:not(:disabled) {
+  background-color: var(--color-gray-90);
+  color: var(--color-gray-60);
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.variant-tertiary.theme-light:focus-visible {
+  outline: 2px solid var(--color-blue-60);
+  outline-offset: 2px;
+}
+
+/* ========================================
+ * Tertiary Variant (Dark Theme)
+ * ======================================== */
+
+.variant-tertiary.theme-dark {
+  background-color: var(--color-gray-30); /* #c7c7c7 */
+  color: var(--color-gray-60); /* #777777 */
+  border-color: transparent;
+}
+
+.variant-tertiary.theme-dark:hover:not(:disabled) {
+  background-color: var(--color-gray-20);
+  color: var(--color-gray-50);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
+}
+
+.variant-tertiary.theme-dark:active:not(:disabled) {
+  background-color: var(--color-gray-40);
+  color: var(--color-gray-60);
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================
+ * Disabled State
+ * ======================================== */
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ========================================
+ * Loading State
+ * ======================================== */
+
+.loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+.loadingSpinner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================
+ * Button Group Styles
+ * ======================================== */
+
+.buttonGroup {
+  display: flex;
+  gap: 16px;
+}
+
+/* Direction */
+.direction-horizontal {
+  flex-direction: row;
+}
+
+.direction-vertical {
+  flex-direction: column;
+}
+
+/* Spacing */
+.spacing-small {
+  gap: 8px;
+}
+
+.spacing-medium {
+  gap: 16px;
+}
+
+.spacing-large {
+  gap: 24px;
+}
+
+/* Alignment */
+.align-left {
+  justify-content: flex-start;
+}
+
+.align-center {
+  justify-content: center;
+}
+
+.align-right {
+  justify-content: flex-end;
+}
+
+/* ========================================
+ * Responsive Design
+ * ======================================== */
+
+@media (max-width: 768px) {
+  .button {
+    font-size: 16px;
+    height: 44px;
+  }
+
+  .size-small {
+    width: 96px;
+    min-width: 96px;
+  }
+
+  .size-medium {
+    width: 200px;
+    min-width: 200px;
+  }
+
+  .size-large {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .buttonGroup.direction-horizontal {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .buttonGroup.direction-horizontal .button {
+    width: 100%;
+  }
+}
+
+/* ========================================
+ * Accessibility Improvements
+ * ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .spinner {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .button {
+    border-width: 2px;
+  }
+
+  .variant-primary.theme-light {
+    border-color: var(--color-gray-black);
+  }
+
+  .variant-primary.theme-dark {
+    border-color: var(--color-gray-white);
+  }
+}

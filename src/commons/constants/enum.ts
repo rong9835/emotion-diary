@@ -1,12 +1,12 @@
-/**
- * Emotion Enum Constants
- * 감정 다이어리 프로젝트에서 사용되는 감정 관련 enum 및 데이터
- */
-
 import { COLOR_TOKENS } from './color';
 
+// ========================================
+// Emotion Enum System
+// 프롬프트 룰 기반 감정 시스템 구현
+// ========================================
+
 /**
- * 감정 타입 enum
+ * 감정 타입 정의
  */
 export enum EmotionType {
   HAPPY = 'HAPPY',
@@ -17,144 +17,118 @@ export enum EmotionType {
 }
 
 /**
- * 감정 이미지 크기 타입
+ * 이미지 사이즈 타입
  */
-export enum EmotionImageSize {
+export enum ImageSize {
   MEDIUM = 'M',
   SMALL = 'S',
 }
 
 /**
- * 감정 데이터 인터페이스
+ * 감정별 메타데이터 인터페이스
  */
-export interface EmotionData {
-  type: EmotionType;
+export interface EmotionMetadata {
+  /** 화면에 표시될 텍스트 */
   label: string;
+  /** 색상 토큰 (COLOR_TOKENS 기반) */
   color: string;
-  images: {
-    medium: string;
-    small: string;
-  };
+  /** 이미지 파일명 (확장자 제외) */
+  imageBase: string;
 }
 
 /**
- * 감정별 상세 데이터 맵
+ * 감정별 설정 매핑
+ * 프롬프트 룰에 따른 정확한 매핑:
+ * - Happy: "행복해요", red60, emotion-happy-*.svg
+ * - Sad: "슬퍼요", blue60, emotion-sad-*.svg
+ * - Angry: "화나요", gray60, emotion-angry-*.svg
+ * - Surprise: "놀랐어요", yellow60, emotion-surprise-*.svg
+ * - Etc: "기타", green60, emotion-etc-*.svg
  */
-export const EMOTION_DATA_MAP: Record<EmotionType, EmotionData> = {
+export const EMOTION_CONFIG: Record<EmotionType, EmotionMetadata> = {
   [EmotionType.HAPPY]: {
-    type: EmotionType.HAPPY,
     label: '행복해요',
     color: COLOR_TOKENS.red['60'],
-    images: {
-      medium: '/icons/emotion-happy-m.svg',
-      small: '/icons/emotion-happy-s.svg',
-    },
+    imageBase: 'emotion-happy',
   },
   [EmotionType.SAD]: {
-    type: EmotionType.SAD,
     label: '슬퍼요',
     color: COLOR_TOKENS.blue['60'],
-    images: {
-      medium: '/icons/emotion-sad-m.svg',
-      small: '/icons/emotion-sad-s.svg',
-    },
+    imageBase: 'emotion-sad',
   },
   [EmotionType.ANGRY]: {
-    type: EmotionType.ANGRY,
     label: '화나요',
     color: COLOR_TOKENS.gray['60'],
-    images: {
-      medium: '/icons/emotion-angry-m.svg',
-      small: '/icons/emotion-angry-s.svg',
-    },
+    imageBase: 'emotion-angry',
   },
   [EmotionType.SURPRISE]: {
-    type: EmotionType.SURPRISE,
     label: '놀랐어요',
     color: COLOR_TOKENS.yellow['60'],
-    images: {
-      medium: '/icons/emotion-surprise-m.svg',
-      small: '/icons/emotion-surprise-s.svg',
-    },
+    imageBase: 'emotion-surprise',
   },
   [EmotionType.ETC]: {
-    type: EmotionType.ETC,
     label: '기타',
     color: COLOR_TOKENS.green['60'],
-    images: {
-      medium: '/icons/emotion-etc-m.svg',
-      small: '/icons/emotion-etc-s.svg',
-    },
+    imageBase: 'emotion-etc',
   },
+} as const;
+
+// ========================================
+// Utility Functions
+// ========================================
+
+/**
+ * 감정 타입에 따른 라벨 반환
+ */
+export const getEmotionLabel = (emotion: EmotionType): string => {
+  return EMOTION_CONFIG[emotion].label;
 };
 
 /**
- * 모든 감정 타입 배열
+ * 감정 타입에 따른 색상 반환
  */
-export const ALL_EMOTION_TYPES = Object.values(EmotionType);
-
-/**
- * 모든 감정 데이터 배열
- */
-export const ALL_EMOTION_DATA = Object.values(EMOTION_DATA_MAP);
-
-/**
- * 감정 타입으로 감정 데이터 조회
- * @param emotionType - 감정 타입
- * @returns 감정 데이터
- */
-export const getEmotionData = (emotionType: EmotionType): EmotionData => {
-  return EMOTION_DATA_MAP[emotionType];
+export const getEmotionColor = (emotion: EmotionType): string => {
+  return EMOTION_CONFIG[emotion].color;
 };
 
 /**
- * 감정 타입으로 라벨 조회
- * @param emotionType - 감정 타입
- * @returns 감정 라벨
+ * 감정 타입과 사이즈에 따른 이미지 경로 반환
+ * @param emotion 감정 타입
+ * @param size 이미지 사이즈 (M: medium, S: small)
+ * @param format 이미지 포맷 (기본값: 'svg')
+ * @returns 완전한 이미지 경로
  */
-export const getEmotionLabel = (emotionType: EmotionType): string => {
-  return EMOTION_DATA_MAP[emotionType].label;
-};
-
-/**
- * 감정 타입으로 색상 조회
- * @param emotionType - 감정 타입
- * @returns 감정 색상 (CSS 변수)
- */
-export const getEmotionColor = (emotionType: EmotionType): string => {
-  return EMOTION_DATA_MAP[emotionType].color;
-};
-
-/**
- * 감정 타입과 크기로 이미지 경로 조회
- * @param emotionType - 감정 타입
- * @param size - 이미지 크기
- * @returns 이미지 경로
- */
-export const getEmotionImage = (
-  emotionType: EmotionType,
-  size: EmotionImageSize = EmotionImageSize.MEDIUM
+export const getEmotionImagePath = (
+  emotion: EmotionType,
+  size: ImageSize = ImageSize.MEDIUM,
+  format: 'svg' | 'png' = 'svg'
 ): string => {
-  const emotionData = EMOTION_DATA_MAP[emotionType];
-  return size === EmotionImageSize.MEDIUM
-    ? emotionData.images.medium
-    : emotionData.images.small;
+  const baseImageName = EMOTION_CONFIG[emotion].imageBase;
+  const sizeString = size.toLowerCase();
+
+  if (format === 'svg') {
+    return `/icons/${baseImageName}-${sizeString}.svg`;
+  } else {
+    return `/images/${baseImageName}-${sizeString}.${format}`;
+  }
 };
 
 /**
- * 감정 타입 유효성 검사
- * @param value - 검사할 값
- * @returns 유효한 감정 타입인지 여부
+ * 모든 감정 타입 배열 반환
+ */
+export const getAllEmotionTypes = (): EmotionType[] => {
+  return Object.values(EmotionType);
+};
+
+/**
+ * 감정 타입 검증
  */
 export const isValidEmotionType = (value: string): value is EmotionType => {
   return Object.values(EmotionType).includes(value as EmotionType);
 };
 
-/**
- * 문자열을 감정 타입으로 변환 (안전)
- * @param value - 변환할 문자열
- * @returns 감정 타입 또는 null
- */
-export const parseEmotionType = (value: string): EmotionType | null => {
-  return isValidEmotionType(value) ? (value as EmotionType) : null;
-};
+// ========================================
+// Type Exports
+// ========================================
+
+export { EmotionType as default };

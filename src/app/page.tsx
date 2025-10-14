@@ -1,4 +1,5 @@
-import Image from "next/image";
+import Image from 'next/image';
+import { Button, ButtonGroup } from '../commons/components/button';
 
 export default function Home() {
   return (
@@ -12,41 +13,109 @@ export default function Home() {
           height={38}
           priority
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <div className="flex flex-col gap-8 items-center">
+          <h1 className="text-2xl font-bold">
+            감정 일기장 Button 컴포넌트 테스트
+          </h1>
+
+          {/* Size Variants */}
+          <div className="flex flex-col gap-4 items-center">
+            <h2 className="text-lg font-semibold">크기 변형 (Size Variants)</h2>
+            <ButtonGroup spacing="medium" align="center">
+              <Button variant="primary" size="small">
+                작은 버튼
+              </Button>
+              <Button variant="primary" size="medium">
+                중간 버튼
+              </Button>
+              <Button variant="primary" size="large">
+                큰 버튼
+              </Button>
+            </ButtonGroup>
+          </div>
+
+          {/* Variant Types */}
+          <div className="flex flex-col gap-4 items-center">
+            <h2 className="text-lg font-semibold">
+              스타일 변형 (Style Variants)
+            </h2>
+            <ButtonGroup spacing="medium" align="center">
+              <Button variant="primary" size="medium">
+                등록하기
+              </Button>
+              <Button variant="secondary" size="medium">
+                닫기
+              </Button>
+              <Button variant="tertiary" size="medium">
+                비활성화
+              </Button>
+            </ButtonGroup>
+          </div>
+
+          {/* Theme Variants */}
+          <div className="flex flex-col gap-4 items-center">
+            <h2 className="text-lg font-semibold">
+              테마 변형 (Theme Variants)
+            </h2>
+            <div className="flex flex-col gap-4">
+              <div className="p-4 bg-white rounded-lg">
+                <p className="text-sm text-gray-600 mb-2">라이트 테마</p>
+                <ButtonGroup spacing="medium" align="center">
+                  <Button variant="primary" theme="light" size="small">
+                    확인
+                  </Button>
+                  <Button variant="secondary" theme="light" size="small">
+                    계속 작성
+                  </Button>
+                  <Button variant="tertiary" theme="light" size="small">
+                    등록 취소
+                  </Button>
+                </ButtonGroup>
+              </div>
+
+              <div className="p-4 bg-gray-900 rounded-lg">
+                <p className="text-sm text-gray-300 mb-2">다크 테마</p>
+                <ButtonGroup spacing="medium" align="center">
+                  <Button variant="primary" theme="dark" size="small">
+                    확인
+                  </Button>
+                  <Button variant="secondary" theme="dark" size="small">
+                    계속 작성
+                  </Button>
+                  <Button variant="tertiary" theme="dark" size="small">
+                    등록 취소
+                  </Button>
+                </ButtonGroup>
+              </div>
+            </div>
+          </div>
+
+          {/* States */}
+          <div className="flex flex-col gap-4 items-center">
+            <h2 className="text-lg font-semibold">
+              상태 변형 (State Variants)
+            </h2>
+            <ButtonGroup spacing="medium" align="center">
+              <Button variant="primary" size="medium">
+                일반 상태
+              </Button>
+              <Button variant="primary" size="medium" loading>
+                로딩 상태
+              </Button>
+              <Button variant="primary" size="medium" disabled>
+                비활성화 상태
+              </Button>
+            </ButtonGroup>
+          </div>
+
+          {/* Full Width */}
+          <div className="flex flex-col gap-4 items-center w-full max-w-md">
+            <h2 className="text-lg font-semibold">전체 너비 (Full Width)</h2>
+            <Button variant="primary" fullWidth>
+              전체 너비 버튼
+            </Button>
+          </div>
         </div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
