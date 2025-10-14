@@ -1,0 +1,447 @@
+/* ========================================
+ * Toggle Component Styles
+ * ======================================== */
+
+/* Toggle Container */
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Base Toggle Styles */
+.toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  border-radius: 9999px;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.toggle:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-border-focus);
+}
+
+/* Toggle Sizes */
+.size-small {
+  width: 32px;
+  height: 18px;
+}
+
+.size-medium {
+  width: 44px;
+  height: 24px;
+}
+
+.size-large {
+  width: 56px;
+  height: 30px;
+}
+
+/* Switch Track */
+.switch {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  transition: all 0.2s ease-in-out;
+}
+
+.switch-small {
+  border: 1px solid;
+}
+
+.switch-medium {
+  border: 1.5px solid;
+}
+
+.switch-large {
+  border: 2px solid;
+}
+
+/* Thumb */
+.thumb {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: var(--color-gray-white);
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.thumb-small {
+  width: 14px;
+  height: 14px;
+  left: 2px;
+}
+
+.thumb-medium {
+  width: 18px;
+  height: 18px;
+  left: 2px;
+}
+
+.thumb-large {
+  width: 24px;
+  height: 24px;
+  left: 2px;
+}
+
+/* Checked State Thumb Positions */
+.thumbChecked.thumb-small {
+  left: 16px;
+}
+
+.thumbChecked.thumb-medium {
+  left: 22px;
+}
+
+.thumbChecked.thumb-large {
+  left: 28px;
+}
+
+/* ========================================
+ * Variant Styles - Light Theme
+ * ======================================== */
+
+/* Primary Variant - Light */
+.variant-primary.theme-light .switch {
+  background-color: var(--color-gray-20);
+  border-color: var(--color-gray-30);
+}
+
+.variant-primary.theme-light.checked .switch {
+  background-color: var(--color-blue-60);
+  border-color: var(--color-blue-60);
+}
+
+.variant-primary.theme-light:hover:not(.disabled) .switch {
+  background-color: var(--color-gray-30);
+  border-color: var(--color-gray-40);
+}
+
+.variant-primary.theme-light.checked:hover:not(.disabled) .switch {
+  background-color: var(--color-blue-70);
+  border-color: var(--color-blue-70);
+}
+
+/* Secondary Variant - Light */
+.variant-secondary.theme-light .switch {
+  background-color: var(--color-gray-10);
+  border-color: var(--color-gray-20);
+}
+
+.variant-secondary.theme-light.checked .switch {
+  background-color: var(--color-gray-60);
+  border-color: var(--color-gray-60);
+}
+
+.variant-secondary.theme-light:hover:not(.disabled) .switch {
+  background-color: var(--color-gray-20);
+  border-color: var(--color-gray-30);
+}
+
+.variant-secondary.theme-light.checked:hover:not(.disabled) .switch {
+  background-color: var(--color-gray-70);
+  border-color: var(--color-gray-70);
+}
+
+/* Tertiary Variant - Light */
+.variant-tertiary.theme-light .switch {
+  background-color: var(--color-gray-05);
+  border-color: var(--color-gray-10);
+}
+
+.variant-tertiary.theme-light.checked .switch {
+  background-color: var(--color-gray-40);
+  border-color: var(--color-gray-40);
+}
+
+.variant-tertiary.theme-light:hover:not(.disabled) .switch {
+  background-color: var(--color-gray-10);
+  border-color: var(--color-gray-20);
+}
+
+.variant-tertiary.theme-light.checked:hover:not(.disabled) .switch {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-gray-50);
+}
+
+/* ========================================
+ * Variant Styles - Dark Theme
+ * ======================================== */
+
+/* Primary Variant - Dark */
+.variant-primary.theme-dark .switch {
+  background-color: var(--color-gray-70);
+  border-color: var(--color-gray-60);
+}
+
+.variant-primary.theme-dark.checked .switch {
+  background-color: var(--color-blue-50);
+  border-color: var(--color-blue-50);
+}
+
+.variant-primary.theme-dark:hover:not(.disabled) .switch {
+  background-color: var(--color-gray-60);
+  border-color: var(--color-gray-50);
+}
+
+.variant-primary.theme-dark.checked:hover:not(.disabled) .switch {
+  background-color: var(--color-blue-40);
+  border-color: var(--color-blue-40);
+}
+
+.variant-primary.theme-dark .thumb {
+  background: var(--color-gray-10);
+}
+
+/* Secondary Variant - Dark */
+.variant-secondary.theme-dark .switch {
+  background-color: var(--color-gray-80);
+  border-color: var(--color-gray-70);
+}
+
+.variant-secondary.theme-dark.checked .switch {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-gray-50);
+}
+
+.variant-secondary.theme-dark:hover:not(.disabled) .switch {
+  background-color: var(--color-gray-70);
+  border-color: var(--color-gray-60);
+}
+
+.variant-secondary.theme-dark.checked:hover:not(.disabled) .switch {
+  background-color: var(--color-gray-40);
+  border-color: var(--color-gray-40);
+}
+
+.variant-secondary.theme-dark .thumb {
+  background: var(--color-gray-10);
+}
+
+/* Tertiary Variant - Dark */
+.variant-tertiary.theme-dark .switch {
+  background-color: var(--color-gray-90);
+  border-color: var(--color-gray-80);
+}
+
+.variant-tertiary.theme-dark.checked .switch {
+  background-color: var(--color-gray-60);
+  border-color: var(--color-gray-60);
+}
+
+.variant-tertiary.theme-dark:hover:not(.disabled) .switch {
+  background-color: var(--color-gray-80);
+  border-color: var(--color-gray-70);
+}
+
+.variant-tertiary.theme-dark.checked:hover:not(.disabled) .switch {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-gray-50);
+}
+
+.variant-tertiary.theme-dark .thumb {
+  background: var(--color-gray-20);
+}
+
+/* ========================================
+ * State Styles
+ * ======================================== */
+
+/* Disabled State */
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.disabled .switch {
+  background-color: var(--color-gray-10) !important;
+  border-color: var(--color-gray-20) !important;
+}
+
+.disabled .thumb {
+  background: var(--color-gray-30) !important;
+}
+
+/* Loading State */
+.loading {
+  cursor: wait;
+}
+
+.thumbLoading {
+  background: transparent !important;
+}
+
+/* Loading Spinner */
+.loadingSpinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 60%;
+  height: 60%;
+  border: 1px solid var(--color-gray-30);
+  border-top: 1px solid var(--color-blue-60);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================
+ * Label Styles
+ * ======================================== */
+
+.labelLeft,
+.labelRight {
+  font-size: var(--typography-body-medium-mobile-size);
+  line-height: var(--typography-body-medium-mobile-line-height);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.labelLeft {
+  margin-right: 8px;
+}
+
+.labelRight {
+  margin-left: 8px;
+}
+
+/* ========================================
+ * Toggle Group Styles
+ * ======================================== */
+
+.toggleGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.groupLabel {
+  font-size: var(--typography-title-small-mobile-size);
+  line-height: var(--typography-title-small-mobile-line-height);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.groupDescription {
+  font-size: var(--typography-body-small-mobile-size);
+  line-height: var(--typography-body-small-mobile-line-height);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+}
+
+.groupContent {
+  display: flex;
+}
+
+/* Group Direction */
+.direction-horizontal .groupContent {
+  flex-direction: row;
+}
+
+.direction-vertical .groupContent {
+  flex-direction: column;
+}
+
+/* Group Spacing */
+.spacing-small .groupContent {
+  gap: 8px;
+}
+
+.spacing-medium .groupContent {
+  gap: 12px;
+}
+
+.spacing-large .groupContent {
+  gap: 16px;
+}
+
+/* Group Alignment */
+.align-left .groupContent {
+  justify-content: flex-start;
+}
+
+.align-center .groupContent {
+  justify-content: center;
+}
+
+.align-right .groupContent {
+  justify-content: flex-end;
+}
+
+/* ========================================
+ * Responsive Design
+ * ======================================== */
+
+@media (min-width: 768px) {
+  .labelLeft,
+  .labelRight {
+    font-size: var(--typography-body-medium-desktop-size);
+    line-height: var(--typography-body-medium-desktop-line-height);
+  }
+
+  .groupLabel {
+    font-size: var(--typography-title-small-desktop-size);
+    line-height: var(--typography-title-small-desktop-line-height);
+  }
+
+  .groupDescription {
+    font-size: var(--typography-body-small-desktop-size);
+    line-height: var(--typography-body-small-desktop-line-height);
+  }
+}
+
+/* ========================================
+ * Accessibility
+ * ======================================== */
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .switch {
+    border-width: 2px;
+  }
+
+  .thumb {
+    box-shadow: 0 0 0 1px var(--color-border-primary);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .switch,
+  .thumb,
+  .spinner {
+    transition: none;
+    animation: none;
+  }
+}
