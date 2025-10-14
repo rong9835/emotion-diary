@@ -108,6 +108,148 @@
     transparent 100%
   );
 
+  /* ========================================
+   * Typography Tokens
+   * ======================================== */
+
+  /* Font Family */
+  --font-family-primary: 'SUIT Variable', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-family-mono: 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', Consolas,
+    'Courier New', monospace;
+
+  /* Display Typography - Mobile */
+  --typography-display-large-mobile-size: 3rem; /* 48px */
+  --typography-display-large-mobile-line-height: 3.5rem; /* 56px */
+  --typography-display-large-mobile-letter-spacing: -0.02em;
+
+  --typography-display-medium-mobile-size: 2.5rem; /* 40px */
+  --typography-display-medium-mobile-line-height: 3rem; /* 48px */
+  --typography-display-medium-mobile-letter-spacing: -0.02em;
+
+  --typography-display-small-mobile-size: 2rem; /* 32px */
+  --typography-display-small-mobile-line-height: 2.5rem; /* 40px */
+  --typography-display-small-mobile-letter-spacing: -0.01em;
+
+  /* Display Typography - Desktop */
+  --typography-display-large-desktop-size: 6rem; /* 96px */
+  --typography-display-large-desktop-line-height: 7.5rem; /* 120px */
+  --typography-display-large-desktop-letter-spacing: -0.02em;
+
+  --typography-display-medium-desktop-size: 4.5rem; /* 72px */
+  --typography-display-medium-desktop-line-height: 5.5rem; /* 88px */
+  --typography-display-medium-desktop-letter-spacing: -0.02em;
+
+  --typography-display-small-desktop-size: 3.5rem; /* 56px */
+  --typography-display-small-desktop-line-height: 4.5rem; /* 72px */
+  --typography-display-small-desktop-letter-spacing: -0.01em;
+
+  /* Headline Typography - Mobile */
+  --typography-headline-large-mobile-size: 1.75rem; /* 28px */
+  --typography-headline-large-mobile-line-height: 2.25rem; /* 36px */
+  --typography-headline-large-mobile-letter-spacing: -0.01em;
+
+  --typography-headline-medium-mobile-size: 1.5rem; /* 24px */
+  --typography-headline-medium-mobile-line-height: 2rem; /* 32px */
+  --typography-headline-medium-mobile-letter-spacing: -0.01em;
+
+  --typography-headline-small-mobile-size: 1.25rem; /* 20px */
+  --typography-headline-small-mobile-line-height: 1.75rem; /* 28px */
+  --typography-headline-small-mobile-letter-spacing: 0;
+
+  /* Headline Typography - Desktop */
+  --typography-headline-large-desktop-size: 2.25rem; /* 36px */
+  --typography-headline-large-desktop-line-height: 2.75rem; /* 44px */
+  --typography-headline-large-desktop-letter-spacing: -0.01em;
+
+  --typography-headline-medium-desktop-size: 2rem; /* 32px */
+  --typography-headline-medium-desktop-line-height: 2.5rem; /* 40px */
+  --typography-headline-medium-desktop-letter-spacing: -0.01em;
+
+  --typography-headline-small-desktop-size: 1.5rem; /* 24px */
+  --typography-headline-small-desktop-line-height: 2rem; /* 32px */
+  --typography-headline-small-desktop-letter-spacing: 0;
+
+  /* Title Typography - Mobile */
+  --typography-title-large-mobile-size: 1.125rem; /* 18px */
+  --typography-title-large-mobile-line-height: 1.5rem; /* 24px */
+  --typography-title-large-mobile-letter-spacing: 0;
+
+  --typography-title-medium-mobile-size: 1rem; /* 16px */
+  --typography-title-medium-mobile-line-height: 1.375rem; /* 22px */
+  --typography-title-medium-mobile-letter-spacing: 0;
+
+  --typography-title-small-mobile-size: 0.875rem; /* 14px */
+  --typography-title-small-mobile-line-height: 1.25rem; /* 20px */
+  --typography-title-small-mobile-letter-spacing: 0;
+
+  /* Title Typography - Desktop */
+  --typography-title-large-desktop-size: 1.375rem; /* 22px */
+  --typography-title-large-desktop-line-height: 1.75rem; /* 28px */
+  --typography-title-large-desktop-letter-spacing: 0;
+
+  --typography-title-medium-desktop-size: 1.125rem; /* 18px */
+  --typography-title-medium-desktop-line-height: 1.5rem; /* 24px */
+  --typography-title-medium-desktop-letter-spacing: 0;
+
+  --typography-title-small-desktop-size: 1rem; /* 16px */
+  --typography-title-small-desktop-line-height: 1.375rem; /* 22px */
+  --typography-title-small-desktop-letter-spacing: 0;
+
+  /* Body Typography - Mobile */
+  --typography-body-large-mobile-size: 1rem; /* 16px */
+  --typography-body-large-mobile-line-height: 1.5rem; /* 24px */
+  --typography-body-large-mobile-letter-spacing: 0;
+
+  --typography-body-medium-mobile-size: 0.875rem; /* 14px */
+  --typography-body-medium-mobile-line-height: 1.25rem; /* 20px */
+  --typography-body-medium-mobile-letter-spacing: 0;
+
+  --typography-body-small-mobile-size: 0.75rem; /* 12px */
+  --typography-body-small-mobile-line-height: 1rem; /* 16px */
+  --typography-body-small-mobile-letter-spacing: 0;
+
+  /* Body Typography - Desktop */
+  --typography-body-large-desktop-size: 1.125rem; /* 18px */
+  --typography-body-large-desktop-line-height: 1.75rem; /* 28px */
+  --typography-body-large-desktop-letter-spacing: 0;
+
+  --typography-body-medium-desktop-size: 1rem; /* 16px */
+  --typography-body-medium-desktop-line-height: 1.5rem; /* 24px */
+  --typography-body-medium-desktop-letter-spacing: 0;
+
+  --typography-body-small-desktop-size: 0.875rem; /* 14px */
+  --typography-body-small-desktop-line-height: 1.25rem; /* 20px */
+  --typography-body-small-desktop-letter-spacing: 0;
+
+  /* Label Typography - Mobile */
+  --typography-label-large-mobile-size: 0.875rem; /* 14px */
+  --typography-label-large-mobile-line-height: 1.25rem; /* 20px */
+  --typography-label-large-mobile-letter-spacing: 0.01em;
+
+  --typography-label-medium-mobile-size: 0.75rem; /* 12px */
+  --typography-label-medium-mobile-line-height: 1rem; /* 16px */
+  --typography-label-medium-mobile-letter-spacing: 0.01em;
+
+  --typography-label-small-mobile-size: 0.6875rem; /* 11px */
+  --typography-label-small-mobile-line-height: 0.875rem; /* 14px */
+  --typography-label-small-mobile-letter-spacing: 0.01em;
+
+  /* Label Typography - Desktop */
+  --typography-label-large-desktop-size: 1rem; /* 16px */
+  --typography-label-large-desktop-line-height: 1.375rem; /* 22px */
+  --typography-label-large-desktop-letter-spacing: 0.01em;
+
+  --typography-label-medium-desktop-size: 0.875rem; /* 14px */
+  --typography-label-medium-desktop-line-height: 1.25rem; /* 20px */
+  --typography-label-medium-desktop-letter-spacing: 0.01em;
+
+  --typography-label-small-desktop-size: 0.75rem; /* 12px */
+  --typography-label-small-desktop-line-height: 1rem; /* 16px */
+  --typography-label-small-desktop-letter-spacing: 0.01em;
+
   /* Legacy Variables */
   --background: var(--color-bg-primary);
   --foreground: var(--color-text-primary);
@@ -165,11 +307,233 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-family-primary);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* ========================================
+   * Typography Utility Classes
+   * ======================================== */
+
+  /* Display Typography */
+  .typography-display-large {
+    font-size: var(--typography-display-large-mobile-size);
+    line-height: var(--typography-display-large-mobile-line-height);
+    font-weight: 800;
+    letter-spacing: var(--typography-display-large-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  .typography-display-medium {
+    font-size: var(--typography-display-medium-mobile-size);
+    line-height: var(--typography-display-medium-mobile-line-height);
+    font-weight: 800;
+    letter-spacing: var(--typography-display-medium-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  .typography-display-small {
+    font-size: var(--typography-display-small-mobile-size);
+    line-height: var(--typography-display-small-mobile-line-height);
+    font-weight: 800;
+    letter-spacing: var(--typography-display-small-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  /* Headline Typography */
+  .typography-headline-large {
+    font-size: var(--typography-headline-large-mobile-size);
+    line-height: var(--typography-headline-large-mobile-line-height);
+    font-weight: 700;
+    letter-spacing: var(--typography-headline-large-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  .typography-headline-medium {
+    font-size: var(--typography-headline-medium-mobile-size);
+    line-height: var(--typography-headline-medium-mobile-line-height);
+    font-weight: 700;
+    letter-spacing: var(--typography-headline-medium-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  .typography-headline-small {
+    font-size: var(--typography-headline-small-mobile-size);
+    line-height: var(--typography-headline-small-mobile-line-height);
+    font-weight: 700;
+    letter-spacing: var(--typography-headline-small-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  /* Title Typography */
+  .typography-title-large {
+    font-size: var(--typography-title-large-mobile-size);
+    line-height: var(--typography-title-large-mobile-line-height);
+    font-weight: 600;
+    letter-spacing: var(--typography-title-large-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  .typography-title-medium {
+    font-size: var(--typography-title-medium-mobile-size);
+    line-height: var(--typography-title-medium-mobile-line-height);
+    font-weight: 600;
+    letter-spacing: var(--typography-title-medium-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  .typography-title-small {
+    font-size: var(--typography-title-small-mobile-size);
+    line-height: var(--typography-title-small-mobile-line-height);
+    font-weight: 600;
+    letter-spacing: var(--typography-title-small-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  /* Body Typography */
+  .typography-body-large {
+    font-size: var(--typography-body-large-mobile-size);
+    line-height: var(--typography-body-large-mobile-line-height);
+    font-weight: 400;
+    letter-spacing: var(--typography-body-large-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  .typography-body-medium {
+    font-size: var(--typography-body-medium-mobile-size);
+    line-height: var(--typography-body-medium-mobile-line-height);
+    font-weight: 400;
+    letter-spacing: var(--typography-body-medium-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  .typography-body-small {
+    font-size: var(--typography-body-small-mobile-size);
+    line-height: var(--typography-body-small-mobile-line-height);
+    font-weight: 400;
+    letter-spacing: var(--typography-body-small-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  /* Label Typography */
+  .typography-label-large {
+    font-size: var(--typography-label-large-mobile-size);
+    line-height: var(--typography-label-large-mobile-line-height);
+    font-weight: 500;
+    letter-spacing: var(--typography-label-large-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  .typography-label-medium {
+    font-size: var(--typography-label-medium-mobile-size);
+    line-height: var(--typography-label-medium-mobile-line-height);
+    font-weight: 500;
+    letter-spacing: var(--typography-label-medium-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  .typography-label-small {
+    font-size: var(--typography-label-small-mobile-size);
+    line-height: var(--typography-label-small-mobile-line-height);
+    font-weight: 500;
+    letter-spacing: var(--typography-label-small-mobile-letter-spacing);
+    font-family: var(--font-family-primary);
+  }
+
+  /* Desktop Responsive Typography */
+  @media (min-width: 768px) {
+    .typography-display-large {
+      font-size: var(--typography-display-large-desktop-size);
+      line-height: var(--typography-display-large-desktop-line-height);
+      letter-spacing: var(--typography-display-large-desktop-letter-spacing);
+    }
+
+    .typography-display-medium {
+      font-size: var(--typography-display-medium-desktop-size);
+      line-height: var(--typography-display-medium-desktop-line-height);
+      letter-spacing: var(--typography-display-medium-desktop-letter-spacing);
+    }
+
+    .typography-display-small {
+      font-size: var(--typography-display-small-desktop-size);
+      line-height: var(--typography-display-small-desktop-line-height);
+      letter-spacing: var(--typography-display-small-desktop-letter-spacing);
+    }
+
+    .typography-headline-large {
+      font-size: var(--typography-headline-large-desktop-size);
+      line-height: var(--typography-headline-large-desktop-line-height);
+      letter-spacing: var(--typography-headline-large-desktop-letter-spacing);
+    }
+
+    .typography-headline-medium {
+      font-size: var(--typography-headline-medium-desktop-size);
+      line-height: var(--typography-headline-medium-desktop-line-height);
+      letter-spacing: var(--typography-headline-medium-desktop-letter-spacing);
+    }
+
+    .typography-headline-small {
+      font-size: var(--typography-headline-small-desktop-size);
+      line-height: var(--typography-headline-small-desktop-line-height);
+      letter-spacing: var(--typography-headline-small-desktop-letter-spacing);
+    }
+
+    .typography-title-large {
+      font-size: var(--typography-title-large-desktop-size);
+      line-height: var(--typography-title-large-desktop-line-height);
+      letter-spacing: var(--typography-title-large-desktop-letter-spacing);
+    }
+
+    .typography-title-medium {
+      font-size: var(--typography-title-medium-desktop-size);
+      line-height: var(--typography-title-medium-desktop-line-height);
+      letter-spacing: var(--typography-title-medium-desktop-letter-spacing);
+    }
+
+    .typography-title-small {
+      font-size: var(--typography-title-small-desktop-size);
+      line-height: var(--typography-title-small-desktop-line-height);
+      letter-spacing: var(--typography-title-small-desktop-letter-spacing);
+    }
+
+    .typography-body-large {
+      font-size: var(--typography-body-large-desktop-size);
+      line-height: var(--typography-body-large-desktop-line-height);
+      letter-spacing: var(--typography-body-large-desktop-letter-spacing);
+    }
+
+    .typography-body-medium {
+      font-size: var(--typography-body-medium-desktop-size);
+      line-height: var(--typography-body-medium-desktop-line-height);
+      letter-spacing: var(--typography-body-medium-desktop-letter-spacing);
+    }
+
+    .typography-body-small {
+      font-size: var(--typography-body-small-desktop-size);
+      line-height: var(--typography-body-small-desktop-line-height);
+      letter-spacing: var(--typography-body-small-desktop-letter-spacing);
+    }
+
+    .typography-label-large {
+      font-size: var(--typography-label-large-desktop-size);
+      line-height: var(--typography-label-large-desktop-line-height);
+      letter-spacing: var(--typography-label-large-desktop-letter-spacing);
+    }
+
+    .typography-label-medium {
+      font-size: var(--typography-label-medium-desktop-size);
+      line-height: var(--typography-label-medium-desktop-line-height);
+      letter-spacing: var(--typography-label-medium-desktop-letter-spacing);
+    }
+
+    .typography-label-small {
+      font-size: var(--typography-label-small-desktop-size);
+      line-height: var(--typography-label-small-desktop-line-height);
+      letter-spacing: var(--typography-label-small-desktop-letter-spacing);
+    }
   }
 }
