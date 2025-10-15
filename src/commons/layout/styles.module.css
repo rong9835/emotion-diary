@@ -1,0 +1,50 @@
+/* Layout Container */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+}
+
+/* Header 영역: 1168 * 60 */
+.header {
+  width: 1168px;
+  height: 60px;
+  border: 1px dashed #ccc;
+}
+
+/* Gap 영역: 1168 * 24 */
+.gap {
+  width: 1168px;
+  height: 24px;
+}
+
+/* Banner 영역: 1168 * 240 */
+.banner {
+  width: 1168px;
+  height: 240px;
+  border: 1px dashed #ccc;
+}
+
+/* Navigation 영역: 1168 * 48 */
+.navigation {
+  width: 1168px;
+  height: 48px;
+  border: 1px dashed #ccc;
+}
+
+/* Children 영역: 1168 * auto */
+.children {
+  width: 1168px;
+  flex: 1;
+  min-height: 200px;
+  border: 1px dashed #ccc;
+}
+
+/* Footer 영역: 1168 * 160 */
+.footer {
+  width: 1168px;
+  height: 160px;
+  border: 1px dashed #ccc;
+}
