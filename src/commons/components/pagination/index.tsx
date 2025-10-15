@@ -85,19 +85,19 @@ export const Pagination: React.FC<PaginationProps> = ({
   const getVisiblePages = (): number[] => {
     const pages: number[] = [];
     const halfVisible = Math.floor(maxVisiblePages / 2);
-    
+
     let startPage = Math.max(1, currentPage - halfVisible);
     const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-    
+
     // 끝 페이지가 총 페이지보다 작으면 시작 페이지 조정
     if (endPage - startPage + 1 < maxVisiblePages) {
       startPage = Math.max(1, endPage - maxVisiblePages + 1);
     }
-    
+
     for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
-    
+
     return pages;
   };
 
@@ -147,19 +147,15 @@ export const Pagination: React.FC<PaginationProps> = ({
           disabled={!canGoPrevious}
           aria-label="이전 페이지"
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+          <img
+            src={
+              canGoPrevious
+                ? '/icons/leftenable_outline_light_m.svg'
+                : '/icons/leftdisabled_outline_light_m.svg'
+            }
+            alt=""
             className={styles.arrowIcon}
-          >
-            <path
-              d="M15.41 7.41L14 6L8 12L14 18L15.41 16.59L10.83 12L15.41 7.41Z"
-              fill="currentColor"
-            />
-          </svg>
+          />
         </button>
       )}
 
@@ -191,19 +187,15 @@ export const Pagination: React.FC<PaginationProps> = ({
           disabled={!canGoNext}
           aria-label="다음 페이지"
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+          <img
+            src={
+              canGoNext
+                ? '/icons/rightenable_outline_light_m.svg'
+                : '/icons/rightdisabled_outline_light_m.svg'
+            }
+            alt=""
             className={styles.arrowIcon}
-          >
-            <path
-              d="M8.59 16.59L10 18L16 12L10 6L8.59 7.41L13.17 12L8.59 16.59Z"
-              fill="currentColor"
-            />
-          </svg>
+          />
         </button>
       )}
     </div>

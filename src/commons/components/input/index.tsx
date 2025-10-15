@@ -5,7 +5,8 @@ import styles from './styles.module.css';
 // Types & Interfaces
 // ========================================
 
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface InputProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /** Input variant 스타일 */
   variant?: 'primary' | 'secondary' | 'tertiary';
   /** Input 크기 */
@@ -66,8 +67,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       error && styles['input--error'],
       disabled && styles['input--disabled'],
       fullWidth && styles['input--full-width'],
-      leftIcon && styles['input--with-left-icon'],
-      rightIcon && styles['input--with-right-icon'],
       className,
     ]
       .filter(Boolean)
@@ -87,6 +86,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       styles[`wrapper--${theme}`],
       error && styles['wrapper--error'],
       disabled && styles['wrapper--disabled'],
+      leftIcon && styles['wrapper--with-left-icon'],
+      rightIcon && styles['wrapper--with-right-icon'],
     ]
       .filter(Boolean)
       .join(' ');
@@ -108,11 +109,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {/* Input Wrapper */}
         <div className={wrapperClasses}>
           {/* Left Icon */}
-          {leftIcon && (
-            <div className={styles.leftIcon}>
-              {leftIcon}
-            </div>
-          )}
+          {leftIcon && <div className={styles.leftIcon}>{leftIcon}</div>}
 
           {/* Input Field */}
           <input
@@ -123,11 +120,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
 
           {/* Right Icon */}
-          {rightIcon && (
-            <div className={styles.rightIcon}>
-              {rightIcon}
-            </div>
-          )}
+          {rightIcon && <div className={styles.rightIcon}>{rightIcon}</div>}
         </div>
 
         {/* Helper Text / Error Message */}

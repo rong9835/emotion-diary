@@ -7,11 +7,33 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 320px; /* 피그마 디자인 기준 고정 너비 */
 }
 
 .container--full-width {
   width: 100%;
+}
+
+/* Container Variant Styles */
+.container--primary {
+  /* Primary variant container styles */
+}
+
+.container--secondary {
+  /* Secondary variant container styles */
+}
+
+.container--tertiary {
+  /* Tertiary variant container styles */
+}
+
+/* Container Theme Styles */
+.container--light {
+  /* Light theme container styles */
+}
+
+.container--dark {
+  /* Dark theme container styles */
 }
 
 /* Wrapper */
@@ -19,8 +41,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  border-radius: 8px;
-  border: 1px solid var(--color-border-primary);
+  border-radius: 100px; /* 피그마 디자인과 일치 */
+  border: 1px solid #c7c7c7; /* 피그마 디자인과 일치 */
   background-color: var(--color-bg-primary);
   transition: all 0.2s ease-in-out;
 }
@@ -46,47 +68,49 @@
 
 /* Primary Variant */
 .wrapper--primary {
-  border-color: var(--color-brand-primary);
+  border-color: #c7c7c7;
   background-color: var(--color-bg-primary);
 }
 
 .wrapper--primary:hover {
-  border-color: var(--color-brand-hover);
+  border-color: var(--color-brand-primary);
 }
 
 .wrapper--primary.wrapper--focused {
   border-color: var(--color-brand-primary);
-  box-shadow: 0 0 0 3px var(--color-brand-primary) 20;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
 /* Secondary Variant */
 .wrapper--secondary {
-  border-color: var(--color-border-primary);
+  border-color: #e5e7eb;
   background-color: var(--color-bg-secondary);
 }
 
 .wrapper--secondary:hover {
-  border-color: var(--color-border-focus);
+  border-color: #d1d5db;
 }
 
 .wrapper--secondary.wrapper--focused {
-  border-color: var(--color-brand-secondary);
-  box-shadow: 0 0 0 3px var(--color-brand-secondary) 20;
+  border-color: #9ca3af;
+  box-shadow: 0 0 0 2px rgba(156, 163, 175, 0.2);
 }
 
 /* Tertiary Variant */
 .wrapper--tertiary {
-  border-color: var(--color-border-secondary);
-  background-color: var(--color-bg-tertiary);
+  border-color: transparent;
+  background-color: #f9fafb;
 }
 
 .wrapper--tertiary:hover {
-  border-color: var(--color-border-primary);
+  border-color: #e5e7eb;
+  background-color: #f3f4f6;
 }
 
 .wrapper--tertiary.wrapper--focused {
-  border-color: var(--color-border-focus);
-  box-shadow: 0 0 0 3px var(--color-border-focus) 20;
+  border-color: var(--color-brand-primary);
+  background-color: var(--color-bg-primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
 /* ========================================
@@ -95,38 +119,54 @@
 
 /* Small Size */
 .wrapper--small {
-  height: 36px;
-  padding: 0 12px;
-  gap: 8px;
+  height: 40px;
+  padding: 0 14px;
+  gap: 10px;
+}
+
+.container--small {
+  width: 280px; /* small 사이즈 비례 조정 */
 }
 
 .input--small {
   font-size: 14px;
   line-height: 20px;
+  letter-spacing: -0.14px;
 }
 
 /* Medium Size */
 .wrapper--medium {
-  height: 44px;
+  height: 48px;
   padding: 0 16px;
   gap: 12px;
 }
 
+.container--medium {
+  width: 320px; /* 피그마 디자인 기준 */
+}
+
 .input--medium {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 16px; /* 피그마 디자인과 일치 */
+  line-height: 24px; /* 피그마 디자인과 일치 */
+  letter-spacing: -0.16px; /* 피그마 디자인과 일치 */
+  font-weight: 500; /* 피그마 Medium 폰트 웨이트 */
 }
 
 /* Large Size */
 .wrapper--large {
-  height: 52px;
-  padding: 0 20px;
+  height: 56px;
+  padding: 0 24px;
   gap: 16px;
+}
+
+.container--large {
+  width: 360px; /* large 사이즈 비례 조정 */
 }
 
 .input--large {
   font-size: 18px;
   line-height: 28px;
+  letter-spacing: -0.18px;
 }
 
 /* ========================================
@@ -177,7 +217,7 @@
 }
 
 .input::placeholder {
-  color: var(--color-text-tertiary);
+  color: #ababab; /* 피그마 디자인과 일치 */
   transition: color 0.2s ease-in-out;
 }
 
@@ -211,10 +251,12 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--color-text-secondary);
+  color: #6b7280;
   transition: color 0.2s ease-in-out;
   padding: 0;
   margin: 0;
+  width: 24px;
+  height: 24px;
 }
 
 .searchIcon:hover {
@@ -222,7 +264,7 @@
 }
 
 .searchIcon:disabled {
-  color: var(--color-text-disabled);
+  color: #d1d5db;
   cursor: not-allowed;
 }
 
@@ -234,28 +276,30 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--color-text-secondary);
-  transition: color 0.2s ease-in-out;
+  color: #9ca3af;
+  transition: all 0.2s ease-in-out;
   padding: 4px;
   margin: 0;
-  border-radius: 4px;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
 }
 
 .clearButton:hover {
-  color: var(--color-text-primary);
-  background-color: var(--color-state-hover);
+  color: #374151;
+  background-color: #f3f4f6;
 }
 
 .clearButton:disabled {
-  color: var(--color-text-disabled);
+  color: #d1d5db;
   cursor: not-allowed;
 }
 
 /* Loading Spinner */
 .loadingSpinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--color-border-secondary);
+  width: 24px;
+  height: 24px;
+  border: 2px solid #e5e7eb;
   border-top: 2px solid var(--color-brand-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -442,7 +486,7 @@
 
 .wrapper:focus-within {
   border-color: var(--color-brand-primary);
-  box-shadow: 0 0 0 3px var(--color-brand-primary) 20;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
 /* High contrast mode support */
@@ -452,7 +496,7 @@
   }
 
   .wrapper--focused {
-    box-shadow: 0 0 0 4px var(--color-brand-primary);
+    box-shadow: 0 0 0 3px var(--color-brand-primary);
   }
 }
 

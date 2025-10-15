@@ -135,7 +135,7 @@
 .arrowButton:disabled,
 .arrowDisabled {
   cursor: not-allowed;
-  opacity: 0.3;
+  opacity: 1; /* 비활성화 상태에서도 opacity를 1로 유지 (아이콘 자체에서 비활성화 스타일 처리) */
 }
 
 .arrowIcon {
@@ -329,23 +329,23 @@
   .pagination {
     gap: 4px;
   }
-  
+
   .pageNumbers {
     gap: 8px;
   }
-  
+
   .pageButton {
     width: 28px;
     height: 28px;
     font-size: 14px;
     line-height: 20px;
   }
-  
+
   .arrowButton {
     width: 20px;
     height: 20px;
   }
-  
+
   .arrowIcon {
     width: 20px;
     height: 20px;
@@ -356,23 +356,23 @@
   .pagination {
     gap: 2px;
   }
-  
+
   .pageNumbers {
     gap: 4px;
   }
-  
+
   .pageButton {
     width: 24px;
     height: 24px;
     font-size: 12px;
     line-height: 18px;
   }
-  
+
   .arrowButton {
     width: 18px;
     height: 18px;
   }
-  
+
   .arrowIcon {
     width: 18px;
     height: 18px;
@@ -405,13 +405,13 @@
     color: #ffffff;
     border: 2px solid #ffffff;
   }
-  
+
   .otherPage {
     background-color: #ffffff;
     color: #000000;
     border: 2px solid #000000;
   }
-  
+
   .arrowButton {
     color: #000000;
   }

@@ -37,7 +37,7 @@
   border: none;
   outline: none;
   background: transparent;
-  font-family: var(--font-family-primary);
+  font-family: 'Pretendard Variable', var(--font-family-primary);
   font-weight: 500;
   letter-spacing: -0.16px;
   color: var(--color-text-primary);
@@ -46,6 +46,7 @@
 .input::placeholder {
   color: #ababab;
   font-weight: 500;
+  letter-spacing: -0.16px;
 }
 
 .input:focus {
@@ -67,11 +68,11 @@
   line-height: 20px;
 }
 
-.wrapper--small.input--with-left-icon {
+.wrapper--small.wrapper--with-left-icon {
   padding-left: 8px;
 }
 
-.wrapper--small.input--with-right-icon {
+.wrapper--small.wrapper--with-right-icon {
   padding-right: 8px;
 }
 
@@ -84,13 +85,14 @@
 .input--medium {
   font-size: 16px;
   line-height: 24px;
+  letter-spacing: -0.16px;
 }
 
-.wrapper--medium.input--with-left-icon {
+.wrapper--medium.wrapper--with-left-icon {
   padding-left: 12px;
 }
 
-.wrapper--medium.input--with-right-icon {
+.wrapper--medium.wrapper--with-right-icon {
   padding-right: 12px;
 }
 
@@ -105,11 +107,11 @@
   line-height: 28px;
 }
 
-.wrapper--large.input--with-left-icon {
+.wrapper--large.wrapper--with-left-icon {
   padding-left: 16px;
 }
 
-.wrapper--large.input--with-right-icon {
+.wrapper--large.wrapper--with-right-icon {
   padding-right: 16px;
 }
 
@@ -398,27 +400,27 @@
     height: 32px;
     padding: 0 10px;
   }
-  
+
   .wrapper--medium {
     height: 44px;
     padding: 0 14px;
   }
-  
+
   .wrapper--large {
     height: 52px;
     padding: 0 18px;
   }
-  
+
   .input--small {
     font-size: 13px;
     line-height: 18px;
   }
-  
+
   .input--medium {
     font-size: 15px;
     line-height: 22px;
   }
-  
+
   .input--large {
     font-size: 17px;
     line-height: 26px;
@@ -442,7 +444,7 @@
   .wrapper {
     border-width: 2px;
   }
-  
+
   .wrapper:focus-within {
     border-width: 3px;
   }

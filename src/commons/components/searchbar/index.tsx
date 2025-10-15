@@ -67,7 +67,7 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       onKeyDown,
       onFocus,
       onBlur,
-      placeholder = '검색어를 입력하세요',
+      placeholder = '검색어를 입력해 주세요.',
       ...props
     },
     ref
@@ -173,9 +173,9 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
 
     const containerClasses = [
       styles.container,
-      styles[`container--${variant}`],
-      styles[`container--${size}`],
-      styles[`container--${theme}`],
+      styles[`container--${variant}`], // variant 스타일 적용
+      styles[`container--${size}`], // 사이즈별 너비 적용
+      styles[`container--${theme}`], // theme 스타일 적용
       fullWidth && styles['container--full-width'],
       isFocused && styles['container--focused'],
       disabled && styles['container--disabled'],
@@ -247,14 +247,14 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
                 <div className={styles.loadingSpinner} />
               ) : (
                 <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16ZM19 19l-4.35-4.35"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     stroke="currentColor"
                     strokeWidth="2"
                     strokeLinecap="round"

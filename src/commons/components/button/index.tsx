@@ -17,9 +17,9 @@ export interface ButtonProps
 
   /**
    * 버튼 크기
-   * - small: 104px 너비
-   * - medium: 224px 너비 (기본값)
-   * - large: 432px 너비
+   * - small: 104px 너비 (피그마 디자인 기준)
+   * - medium: 110px 너비 (피그마 디자인 기준)
+   * - large: 224px 너비 (피그마 디자인 기준)
    */
   size?: 'small' | 'medium' | 'large';
 
@@ -52,7 +52,7 @@ export interface ButtonProps
 
 export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
-  size = 'medium',
+  size = 'medium', // 피그마 디자인에 맞춘 기본 크기 (110px)
   theme = 'light',
   children,
   loading = false,

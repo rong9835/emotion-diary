@@ -283,11 +283,7 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
 
       {/* 드롭다운 옵션 목록 */}
       {isOpen && (
-        <div
-          className={dropdownClasses}
-          style={{ maxHeight: `${maxHeight}px` }}
-          role="listbox"
-        >
+        <div className={dropdownClasses} role="listbox">
           {/* 검색 입력 */}
           {searchable && (
             <div className={styles.searchContainer}>
@@ -317,7 +313,22 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
                   aria-selected={option.value === selectedValue}
                   aria-disabled={option.disabled}
                 >
-                  {option.label}
+                  <span className={styles.optionText}>{option.label}</span>
+                  <svg
+                    className={styles.checkIcon}
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                  >
+                    <path
+                      d="M13.5 4.5L6 12L2.5 8.5"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </div>
               ))
             ) : (
