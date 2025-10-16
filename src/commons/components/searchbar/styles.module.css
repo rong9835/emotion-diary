@@ -52,8 +52,7 @@
 }
 
 .wrapper--focused {
-  border-color: var(--color-brand-primary);
-  box-shadow: 0 0 0 3px var(--color-brand-primary) 20;
+  border-color: var(--color-gray-black);
 }
 
 .wrapper--disabled {
@@ -73,12 +72,11 @@
 }
 
 .wrapper--primary:hover {
-  border-color: var(--color-brand-primary);
+  border-color: var(--color-gray-black);
 }
 
 .wrapper--primary.wrapper--focused {
-  border-color: var(--color-brand-primary);
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  border-color: var(--color-gray-black);
 }
 
 /* Secondary Variant */
@@ -108,9 +106,8 @@
 }
 
 .wrapper--tertiary.wrapper--focused {
-  border-color: var(--color-brand-primary);
+  border-color: var(--color-gray-black);
   background-color: var(--color-bg-primary);
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
 /* ========================================
@@ -260,7 +257,7 @@
 }
 
 .searchIcon:hover {
-  color: var(--color-brand-primary);
+  color: var(--color-gray-black);
 }
 
 .searchIcon:disabled {
@@ -485,8 +482,7 @@
    ======================================== */
 
 .wrapper:focus-within {
-  border-color: var(--color-brand-primary);
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  border-color: var(--color-gray-black);
 }
 
 /* High contrast mode support */
@@ -496,7 +492,7 @@
   }
 
   .wrapper--focused {
-    box-shadow: 0 0 0 3px var(--color-brand-primary);
+    border-color: var(--color-gray-black);
   }
 }
 
