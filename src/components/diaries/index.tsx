@@ -6,6 +6,7 @@ import { SelectBox, SelectOption } from '@/commons/components/selectbox';
 import { Button } from '@/commons/components/button';
 import { Pagination } from '@/commons/components/pagination';
 import { EmotionType, getEmotionLabel } from '@/commons/constants/enum';
+import { useNewDiaryModal } from './hooks/index.link.modal.hook';
 import styles from './styles.module.css';
 
 // ========================================
@@ -37,6 +38,12 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 12;
+
+  // ========================================
+  // Modal Hook
+  // ========================================
+
+  const { openNewDiaryModal } = useNewDiaryModal();
 
   // ========================================
   // Mock Data
@@ -674,8 +681,7 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   };
 
   const handleNewDiary = () => {
-    console.log('New diary clicked');
-    // 일기 작성 페이지로 이동하는 로직 추가 예정
+    openNewDiaryModal();
   };
 
   const handlePageChange = (page: number) => {

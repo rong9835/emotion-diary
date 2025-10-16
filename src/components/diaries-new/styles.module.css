@@ -30,7 +30,7 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
   padding: 24px 24px 0 24px;
   flex-shrink: 0;
@@ -47,6 +47,32 @@
 
 .wrapper--dark .headerTitle {
   color: var(--color-text-inverse);
+}
+
+.closeButton {
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  transition: color 0.2s ease-in-out;
+}
+
+.closeButton:hover {
+  color: var(--color-gray-60);
+}
+
+.wrapper--dark .closeButton {
+  color: var(--color-text-inverse);
+}
+
+.wrapper--dark .closeButton:hover {
+  color: var(--color-gray-40);
 }
 
 /* ========================================

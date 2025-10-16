@@ -156,13 +156,18 @@
 }
 
 .option.selected {
-  background-color: rgba(58, 181, 15, 0.05);
+  background-color: rgba(41, 156, 0, 0.05);
   color: #299c00;
   font-weight: 700;
 }
 
+.option.selected .optionText {
+  color: #299c00;
+}
+
 .optionText {
   flex: 1;
+  color: inherit;
 }
 
 .checkIcon {
@@ -175,6 +180,7 @@
 
 .option.selected .checkIcon {
   opacity: 1;
+  color: #299c00;
 }
 
 .option.optionDisabled {
@@ -251,7 +257,7 @@
 }
 
 .variant-primary.theme-light.open .trigger {
-  border-color: var(--color-brand-primary);
+  border-color: #000000;
 }
 
 .variant-primary.theme-light.error .trigger {
@@ -280,7 +286,7 @@
 }
 
 .variant-secondary.theme-light.open .trigger {
-  border-color: var(--color-brand-primary);
+  border-color: #000000;
 }
 
 .variant-secondary.theme-light .dropdown {
@@ -324,7 +330,7 @@
 }
 
 .variant-primary.theme-dark.open .trigger {
-  border-color: var(--color-brand-primary);
+  border-color: #000000;
 }
 
 .variant-primary.theme-dark.error .trigger {
@@ -357,7 +363,7 @@
 }
 
 .variant-secondary.theme-dark.open .trigger {
-  border-color: var(--color-brand-primary);
+  border-color: #000000;
 }
 
 .variant-secondary.theme-dark .dropdown {
