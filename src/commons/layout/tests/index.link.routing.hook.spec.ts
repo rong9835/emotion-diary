@@ -132,16 +132,16 @@ test.describe('Layout Link Routing', () => {
     const diariesTextWeight = await diariesTabText.evaluate(
       (el) => window.getComputedStyle(el).fontWeight
     );
-    
+
     // 활성 상태일 때 폰트 굵기가 700이어야 함
     expect(diariesTextWeight).toBe('700');
-    
+
     // 사진보관함 탭 텍스트는 비활성 상태
     const picturesTabText = page.locator('[data-testid="nav-pictures"] span');
     const picturesTextWeight = await picturesTabText.evaluate(
       (el) => window.getComputedStyle(el).fontWeight
     );
-    
+
     // 비활성 상태일 때 폰트 굵기가 500이어야 함
     expect(picturesTextWeight).toBe('500');
   });
@@ -152,23 +152,23 @@ test.describe('Layout Link Routing', () => {
     // 홈 페이지에서 시작
     await page.goto('/');
     await page.waitForSelector('[data-testid="nav-diaries"]', { timeout: 400 });
-    
+
     // 일기보관함으로 이동
     await page.click('[data-testid="nav-diaries"]');
     await expect(page).toHaveURL('/diaries');
-    
+
     // 뒤로가기
     await page.goBack();
     await page.waitForSelector('[data-testid="nav-diaries"]', { timeout: 400 });
-    
+
     // 홈 페이지에서는 네비게이션 상태 확인
     const diariesTab = page.locator('[data-testid="nav-diaries"]');
     // 홈 페이지에서의 활성 상태는 구현에 따라 다를 수 있음
-    
+
     // 앞으로가기
     await page.goForward();
     await expect(page).toHaveURL('/diaries');
-    
+
     // 일기보관함이 다시 활성 상태가 되어야 함
     await expect(diariesTab).toHaveClass(/activeTab/);
   });
@@ -178,14 +178,14 @@ test.describe('Layout Link Routing', () => {
   }) => {
     // 존재하지 않는 일기 ID로 접근
     await page.goto('/diaries/999999');
-    
+
     // 페이지 로드 완료 대기 (에러 페이지라도 레이아웃은 로드되어야 함)
     await page.waitForSelector('[data-testid="nav-diaries"]', { timeout: 400 });
-    
+
     // 일기보관함 탭이 여전히 활성 상태여야 함
     const diariesTab = page.locator('[data-testid="nav-diaries"]');
     await expect(diariesTab).toHaveClass(/activeTab/);
-    
+
     // 네비게이션 클릭이 여전히 작동해야 함
     await page.click('[data-testid="nav-diaries"]');
     await expect(page).toHaveURL('/diaries');
@@ -196,16 +196,16 @@ test.describe('Layout Link Routing', () => {
   }) => {
     // 일기보관함 탭 클릭 테스트 (마우스 대신 키보드 이벤트 시뮬레이션)
     const diariesTab = page.locator('[data-testid="nav-diaries"]');
-    
+
     // 키보드 Enter 키로 클릭 동작 시뮬레이션
     await diariesTab.press('Enter');
     await expect(page).toHaveURL('/diaries');
-    
+
     // 헤더 로고도 키보드로 접근 가능한지 확인
     const headerLogo = page.locator('[data-testid="header-logo"]');
     await headerLogo.press('Enter');
     await expect(page).toHaveURL('/diaries');
-    
+
     // 네비게이션 요소들이 클릭 이벤트에 반응하는지 확인
     const picturesTab = page.locator('[data-testid="nav-pictures"]');
     await expect(picturesTab).toBeVisible();
