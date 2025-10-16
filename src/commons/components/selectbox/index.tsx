@@ -124,7 +124,7 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
   error = false,
   fullWidth = false,
   className,
-  maxHeight = 200,
+  maxHeight = 200, // eslint-disable-line @typescript-eslint/no-unused-vars
   searchable = false,
   searchPlaceholder = '검색...',
 }) => {

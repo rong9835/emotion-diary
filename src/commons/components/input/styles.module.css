@@ -47,6 +47,7 @@
   color: #ababab;
   font-weight: 500;
   letter-spacing: -0.16px;
+  font-family: 'Pretendard Variable', var(--font-family-primary);
 }
 
 .input:focus {
@@ -79,13 +80,14 @@
 /* Medium Size (Figma 기준) */
 .wrapper--medium {
   height: 48px;
-  padding: 0 16px;
+  padding: 12px 16px;
 }
 
 .input--medium {
   font-size: 16px;
   line-height: 24px;
   letter-spacing: -0.16px;
+  font-weight: 500;
 }
 
 .wrapper--medium.wrapper--with-left-icon {
@@ -130,8 +132,7 @@
 }
 
 .wrapper--primary.wrapper--light:focus-within {
-  border-color: var(--color-brand-primary);
-  box-shadow: 0 0 0 2px var(--color-brand-primary);
+  border-color: #d4d3d3;
 }
 
 .input--primary.input--light {
@@ -140,6 +141,8 @@
 
 .input--primary.input--light::placeholder {
   color: #ababab;
+  font-weight: 500;
+  font-family: 'Pretendard Variable', var(--font-family-primary);
 }
 
 /* Dark Theme */
@@ -153,8 +156,7 @@
 }
 
 .wrapper--primary.wrapper--dark:focus-within {
-  border-color: var(--color-brand-primary);
-  box-shadow: 0 0 0 2px var(--color-brand-primary);
+  border-color: var(--color-border-secondary);
 }
 
 .input--primary.input--dark {
@@ -181,8 +183,7 @@
 }
 
 .wrapper--secondary.wrapper--light:focus-within {
-  border-color: var(--color-brand-secondary);
-  box-shadow: 0 0 0 2px var(--color-brand-secondary);
+  border-color: var(--color-border-primary);
 }
 
 .input--secondary.input--light {
@@ -204,8 +205,7 @@
 }
 
 .wrapper--secondary.wrapper--dark:focus-within {
-  border-color: var(--color-brand-secondary);
-  box-shadow: 0 0 0 2px var(--color-brand-secondary);
+  border-color: var(--color-border-primary);
 }
 
 .input--secondary.input--dark {
@@ -232,9 +232,8 @@
 }
 
 .wrapper--tertiary.wrapper--light:focus-within {
-  border-color: var(--color-brand-primary);
+  border-color: var(--color-border-primary);
   background-color: var(--color-bg-primary);
-  box-shadow: 0 0 0 2px var(--color-brand-primary);
 }
 
 .input--tertiary.input--light {
@@ -257,9 +256,8 @@
 }
 
 .wrapper--tertiary.wrapper--dark:focus-within {
-  border-color: var(--color-brand-primary);
+  border-color: var(--color-border-primary);
   background-color: var(--color-bg-secondary);
-  box-shadow: 0 0 0 2px var(--color-brand-primary);
 }
 
 .input--tertiary.input--dark {
@@ -284,7 +282,6 @@
 
 .wrapper--error:focus-within {
   border-color: var(--color-semantic-error);
-  box-shadow: 0 0 0 2px var(--color-semantic-error);
 }
 
 .input--error {
@@ -432,8 +429,7 @@
  * ======================================== */
 
 .input:focus-visible {
-  outline: 2px solid var(--color-brand-primary);
-  outline-offset: 2px;
+  outline: none;
 }
 
 /* ========================================
