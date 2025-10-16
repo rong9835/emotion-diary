@@ -9,7 +9,7 @@ import { ROUTES } from '../../constants/url';
 /**
  * 레이아웃 링크 라우팅 훅
  * 현재 경로를 추적하고 네비게이션 활성 상태를 관리하는 커스텀 훅
- * 
+ *
  * @returns {Object} 라우팅 관련 상태와 함수들
  * @returns {string} currentPath - 현재 경로
  * @returns {boolean} isDiariesActive - 일기보관함 활성 상태
