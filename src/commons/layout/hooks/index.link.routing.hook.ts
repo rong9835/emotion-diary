@@ -2,9 +2,21 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { ROUTES } from '../../constants/url';
 
+// ========================================
+// Layout Link Routing Hook
+// ========================================
+
 /**
  * 레이아웃 링크 라우팅 훅
- * 현재 경로를 추적하고 네비게이션 활성 상태를 관리
+ * 현재 경로를 추적하고 네비게이션 활성 상태를 관리하는 커스텀 훅
+ * 
+ * @returns {Object} 라우팅 관련 상태와 함수들
+ * @returns {string} currentPath - 현재 경로
+ * @returns {boolean} isDiariesActive - 일기보관함 활성 상태
+ * @returns {boolean} isPicturesActive - 사진보관함 활성 상태
+ * @returns {Function} navigateToDiaries - 일기보관함 페이지로 이동
+ * @returns {Function} navigateToPictures - 사진보관함 페이지로 이동
+ * @returns {Function} navigateToHome - 홈(일기목록) 페이지로 이동
  */
 export const useLinkRouting = () => {
   const pathname = usePathname();
@@ -59,3 +71,9 @@ export const useLinkRouting = () => {
     navigateToHome,
   };
 };
+
+// ========================================
+// Export Default
+// ========================================
+
+export default useLinkRouting;

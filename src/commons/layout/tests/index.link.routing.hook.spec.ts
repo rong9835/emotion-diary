@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
 
+// ========================================
+// Layout Link Routing Tests
+// ========================================
+
 test.describe('Layout Link Routing', () => {
   test.beforeEach(async ({ page }) => {
     // 일기목록 페이지로 이동하여 테스트 시작

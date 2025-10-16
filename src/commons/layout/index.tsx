@@ -5,9 +5,20 @@ import Image from 'next/image';
 import styles from './styles.module.css';
 import { useLinkRouting } from './hooks/index.link.routing.hook';
 
+// ========================================
+// Layout Component Types
+// ========================================
+
 interface LayoutProps {
+  /**
+   * 레이아웃 내부에 렌더링될 자식 컴포넌트들
+   */
   children: React.ReactNode;
 }
+
+// ========================================
+// Layout Component
+// ========================================
 
 export default function Layout({ children }: LayoutProps) {
   const {
