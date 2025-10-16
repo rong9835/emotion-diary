@@ -1,0 +1,423 @@
+/* ========================================
+   DiariesDetail Component Styles
+   와이어프레임 구조 기반 스타일링
+   ======================================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1168px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   Gap 영역들
+   ======================================== */
+
+.gap64 {
+  width: 1168px;
+  height: 64px;
+}
+
+.gap24 {
+  width: 1168px;
+  height: 24px;
+}
+
+.gap16 {
+  width: 1168px;
+  height: 16px;
+}
+
+/* ========================================
+   Detail Title 영역: 1168 * 84
+   ======================================== */
+
+.detailTitle {
+  width: 1168px;
+  height: 84px;
+  background-color: var(--color-bg-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 타이틀 프레임: 1168 * 36 */
+.titleFrame {
+  width: 1168px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 2px solid #000000;
+  padding: 0;
+}
+
+.title {
+  margin: 0;
+  color: var(--color-gray-black);
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.22px;
+}
+
+/* 감정&날짜 프레임: 1168 * 32 */
+.emotionDateFrame {
+  width: 1168px;
+  height: 32px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+/* 감정 정보 (Frame 84): 109 * 32 */
+.emotionFrame {
+  width: 109px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.emotionIcon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emotionText {
+  color: #ea5757;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+}
+
+/* 날짜 정보 (Frame): 107 * 20 */
+.dateFrame {
+  width: 107px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  right: 0; /* 오른쪽 끝에 정렬 */
+  top: 6px; /* (32-20)/2 = 6px 중앙 정렬 */
+}
+
+.dateText {
+  color: #919191;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.14px;
+}
+
+.createdText {
+  color: #919191;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.14px;
+}
+
+/* ========================================
+   Detail Content 영역: 1168 * 169
+   ======================================== */
+
+.detailContent {
+  width: 1168px;
+  height: 169px;
+  background-color: var(--color-bg-primary);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 내용 영역: 1168 * 133 */
+.contentArea {
+  width: 1168px;
+  height: 133px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.contentLabel {
+  width: 1168px;
+  height: 20px;
+  color: var(--color-gray-black);
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.16px;
+  margin: 0;
+}
+
+.contentText {
+  width: 1168px;
+  height: 100px;
+  margin: 0;
+  color: #333333;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.16px;
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+/* Frame 70: 1168 * 24 */
+.copySection {
+  width: 1168px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}
+
+/* Frame 78: 91 * 24 - 정확한 위치 (x: -8660) */
+.copyButton {
+  width: 91px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #1c1c1c;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  position: absolute;
+  right: 0; /* 1168 - 91 = 1077px 오른쪽에서 */
+}
+
+.copyButton:hover {
+  opacity: 0.7;
+}
+
+/* ========================================
+   Detail Footer 영역: 1168 * 40
+   ======================================== */
+
+.detailFooter {
+  width: 1168px;
+  height: 56px;
+  background-color: var(--color-bg-primary);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+  border-bottom: 1px solid black;
+  padding-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.footerContent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 100%;
+  height: 40px;
+  position: relative;
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: flex-start;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 118px; /* 51 + 16 + 51 = 118px */
+  height: 40px;
+  justify-content: space-between;
+  background: none;
+}
+
+/* 수정 버튼 (x: -8687): 51 * 40 */
+.editButton {
+  width: 51px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #d4d3d3;
+  background-color: #ffffff;
+  color: #1c1c1c;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.18px;
+  padding: 0;
+  min-width: 51px;
+  position: absolute;
+  left: 0;
+}
+
+/* 삭제 버튼 (x: -8620): 51 * 40 */
+.deleteButton {
+  width: 51px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #d4d3d3;
+  background-color: #ffffff;
+  color: #1c1c1c;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.18px;
+  padding: 0;
+  min-width: 51px;
+  position: absolute;
+  right: 0;
+}
+
+/* Button 컴포넌트 크기 조정 (secondary variant 사용) */
+
+/* ========================================
+   Retrospect Input 영역: 1168 * 85
+   ======================================== */
+
+.retrospectInput {
+  width: 1168px;
+  height: 85px;
+  background-color: var(--color-bg-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+/* 회고 라벨: 1168 * 24 */
+.retrospectLabel {
+  width: 1168px;
+  height: 24px;
+  color: #000000;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.18px;
+  margin: 0;
+  padding: 0;
+}
+
+/* 입력 프레임: 1168 * 48 */
+.retrospectInputFrame {
+  width: 1168px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* 입력 필드: 1101 * 48 */
+.retrospectInputField {
+  width: 1101px;
+}
+
+/* 입력 버튼: 51 * 48 */
+.retrospectSubmitButton {
+  width: 51px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.18px;
+  padding: 0;
+  min-width: 51px;
+}
+
+/* ========================================
+   Retrospect List 영역: 1168 * 72
+   ======================================== */
+
+.retrospectList {
+  width: 1168px;
+  height: 72px;
+  background: none;
+  border-radius: 16px;
+  display: block;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+/* 회고 아이템 */
+.retrospectItem {
+  width: 1168px;
+  height: 24px;
+  position: relative;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.retrospectItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 1168px;
+  height: 1px;
+  background-color: #e4e4e4;
+}
+
+.retrospectItem:last-child {
+  margin-bottom: 0;
+}
+
+/* 회고 텍스트 */
+.retrospectText {
+  color: #000000;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  width: 238px;
+  height: 24px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* 회고 날짜 */
+.retrospectDate {
+  color: #777777;
+  font-family: 'Pretendard Variable', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  width: 101px;
+  height: 24px;
+  position: absolute;
+  left: 250px;
+  top: 0;
+}
