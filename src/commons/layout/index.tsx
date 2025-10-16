@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import styles from './styles.module.css';
 
 interface LayoutProps {
@@ -9,25 +10,56 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className={styles.container}>
       {/* Header 영역: 1168 * 60 */}
-      <header className={styles.header}></header>
+      <header className={styles.header}>
+        <div className={styles.logo}>
+          <h1 className={styles.logoText}>민지의 다이어리</h1>
+        </div>
+      </header>
 
       {/* Gap 영역: 1168 * 24 */}
       <div className={styles.gap}></div>
 
       {/* Banner 영역: 1168 * 240 */}
-      <section className={styles.banner}></section>
+      <section className={styles.banner}>
+        <Image
+          src="/images/banner.png"
+          alt="배너 이미지"
+          width={1168}
+          height={240}
+          className={styles.bannerImage}
+        />
+      </section>
 
       {/* Gap 영역: 1168 * 24 */}
       <div className={styles.gap}></div>
 
       {/* Navigation 영역: 1168 * 48 */}
-      <nav className={styles.navigation}></nav>
+      <nav className={styles.navigation}>
+        <div className={styles.tabContainer}>
+          <div className={`${styles.tab} ${styles.activeTab}`}>
+            <span className={styles.tabText}>일기보관함</span>
+          </div>
+          <div className={styles.tab}>
+            <span className={styles.tabText}>사진보관함</span>
+          </div>
+        </div>
+      </nav>
 
       {/* Children 영역: 1168 * auto */}
       <main className={styles.children}>{children}</main>
 
       {/* Footer 영역: 1168 * 160 */}
-      <footer className={styles.footer}></footer>
+      <footer className={styles.footer}>
+        <div className={styles.footerContent}>
+          <h2 className={styles.footerTitle}>민지의 다이어리</h2>
+          <div className={styles.footerInfo}>
+            <p className={styles.footerRepresentative}>대표 : 민지</p>
+            <p className={styles.footerCopyright}>
+              Copyright © 2024. 민지 Co., Ltd.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -1,0 +1,321 @@
+/* ========================================
+ * Diaries Component Styles
+ * ======================================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 1168px;
+  margin: 0 auto;
+  /* min-height 제거됨 (요구사항에 따라) */
+}
+
+/* ========================================
+ * Gap Sections
+ * ======================================== */
+
+.gap {
+  width: 1168px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.gap:nth-of-type(3) {
+  height: 42px;
+}
+
+.gap:nth-of-type(5) {
+  height: 40px;
+}
+
+.gap:nth-of-type(7) {
+  height: 40px;
+}
+
+/* ========================================
+ * Search Section
+ * ======================================== */
+
+.search {
+  width: 1168px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.searchFilter {
+  display: flex;
+  align-items: center;
+}
+
+.filterSelectBox {
+  width: 120px;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 320px;
+}
+
+.searchInput {
+  width: 320px;
+}
+
+.searchButton {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.newDiaryButton {
+  width: 110px;
+  background-color: var(--color-gray-black);
+  color: var(--color-gray-white);
+  border: none;
+  border-radius: 8px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--typography-title-large-mobile-size);
+  font-weight: 600;
+  line-height: var(--typography-title-large-mobile-line-height);
+  letter-spacing: -0.18px;
+}
+
+/* ========================================
+ * Main Content Section
+ * ======================================== */
+
+.main {
+  width: 1168px;
+  height: 936px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-primary);
+  box-sizing: border-box;
+}
+
+/* ========================================
+ * Diary Grid Layout
+ * ======================================== */
+
+.diaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+/* ========================================
+ * Diary Card Styles
+ * ======================================== */
+
+.diaryCard {
+  width: 274px;
+  height: 296px;
+  background-color: var(--color-bg-primary);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardImage {
+  width: 274px;
+  height: 208px;
+  position: relative;
+  border-radius: 16px 16px 16px 16px;
+  overflow: hidden;
+}
+
+.cardImageImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px 16px 16px 16px;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-bg-primary);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
+}
+
+.deleteButton:hover {
+  background-color: var(--color-state-hover);
+  color: var(--color-text-primary);
+}
+
+.cardContent {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.emotionText {
+  font-size: var(--typography-body-medium-mobile-size);
+  font-weight: 600;
+  line-height: var(--typography-body-medium-mobile-line-height);
+  letter-spacing: -0.14px;
+}
+
+.dateText {
+  font-size: var(--typography-body-medium-mobile-size);
+  font-weight: 400;
+  line-height: var(--typography-label-large-mobile-line-height);
+  letter-spacing: -0.14px;
+  color: var(--color-gray-50);
+}
+
+.cardTitle {
+  font-size: var(--typography-title-large-mobile-size);
+  font-weight: 700;
+  line-height: var(--typography-label-large-mobile-line-height);
+  letter-spacing: -0.18px;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========================================
+ * Emotion Colors (Figma Design Colors)
+ * ======================================== */
+
+.emotionHAPPY {
+  color: #ea5757;
+}
+
+.emotionSAD {
+  color: #28b4e1;
+}
+
+.emotionANGRY {
+  color: #777777;
+}
+
+.emotionSURPRISE {
+  color: #d59029;
+}
+
+.emotionETC {
+  color: #a229ed;
+}
+
+/* ========================================
+ * Empty State
+ * ======================================== */
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--color-text-disabled);
+  font-size: var(--typography-body-medium-desktop-size);
+  font-weight: 400;
+}
+
+/* ========================================
+ * Pagination Section
+ * ======================================== */
+
+.pagination {
+  width: 1168px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pagination 컴포넌트 내부 스타일 조정 (Figma 디자인 매칭) */
+.pagination :global(.pagination) {
+  width: 288px;
+  height: 32px;
+  gap: 8px;
+}
+
+/* ========================================
+ * Responsive Design
+ * ======================================== */
+
+@media (max-width: 1200px) {
+  .container,
+  .gap,
+  .search,
+  .main,
+  .pagination {
+    width: 100%;
+    max-width: 1168px;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
+
+  .diaryGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .diaryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .diaryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .diaryCard {
+    width: 100%;
+    max-width: 274px;
+    margin: 0 auto;
+  }
+
+  .cardImage {
+    width: 100%;
+  }
+}
+
+/* ========================================
+ * Dark Theme Support
+ * ======================================== */
+
+[data-theme='dark'] .main {
+  background-color: var(--color-gray-80);
+  border-color: var(--color-gray-70);
+}
+
+[data-theme='dark'] .placeholder {
+  color: var(--color-text-tertiary);
+}
