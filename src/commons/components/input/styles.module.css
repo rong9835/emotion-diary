@@ -132,7 +132,7 @@
 }
 
 .wrapper--primary.wrapper--light:focus-within {
-  border-color: #d4d3d3;
+  border-color: #000000;
 }
 
 .input--primary.input--light {

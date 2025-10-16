@@ -70,6 +70,14 @@ const EmotionBox: React.FC<EmotionBoxProps> = ({
               <span className={styles.emotionRadioIcon}>
                 {isSelected ? (
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      fill="none"
+                    />
                     <circle cx="12" cy="12" r="6" fill="currentColor" />
                   </svg>
                 ) : (
@@ -77,9 +85,10 @@ const EmotionBox: React.FC<EmotionBoxProps> = ({
                     <circle
                       cx="12"
                       cy="12"
-                      r="6"
+                      r="10"
                       stroke="currentColor"
                       strokeWidth="2"
+                      fill="none"
                     />
                   </svg>
                 )}
@@ -107,7 +116,7 @@ export const DiariesNew: React.FC<DiariesNewProps> = ({
   // ========================================
 
   const [selectedEmotion, setSelectedEmotion] = useState<EmotionType | null>(
-    null
+    EmotionType.HAPPY
   );
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');

@@ -114,10 +114,16 @@ export const getEmotionImagePath = (
 };
 
 /**
- * 모든 감정 타입 배열 반환
+ * 모든 감정 타입 배열 반환 (지정된 순서: 행복해요, 슬퍼요, 놀랐어요, 화나요, 기타)
  */
 export const getAllEmotionTypes = (): EmotionType[] => {
-  return Object.values(EmotionType);
+  return [
+    EmotionType.HAPPY,
+    EmotionType.SAD,
+    EmotionType.SURPRISE,
+    EmotionType.ANGRY,
+    EmotionType.ETC,
+  ];
 };
 
 /**
