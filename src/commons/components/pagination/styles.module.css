@@ -13,6 +13,7 @@
   justify-content: center;
   gap: 8px;
   font-family: var(--font-family-primary);
+  width: 100%;
 }
 
 .pagination.disabled {
@@ -116,6 +117,8 @@
   color: #5f6368;
   transition: all 0.2s ease-in-out;
   outline: none;
+  padding: 0;
+  margin: 0;
 }
 
 .arrowButton:focus-visible {
@@ -132,15 +135,46 @@
   color: #000000;
 }
 
-.arrowButton:disabled,
-.arrowDisabled {
+.arrowButton:disabled {
   cursor: not-allowed;
   opacity: 1; /* 비활성화 상태에서도 opacity를 1로 유지 (아이콘 자체에서 비활성화 스타일 처리) */
 }
 
-.arrowIcon {
+.arrowDisabled {
+  cursor: not-allowed;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+}
+
+.arrowDisabled .arrowIcon {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+/* 화살표 버튼 정확한 정렬을 위한 추가 스타일 */
+.previousButton,
+.nextButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 24px;
   height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  max-width: 24px;
+  max-height: 24px;
+}
+
+.arrowIcon {
+  width: 7px;
+  height: 12px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
 
 /* ========================================
@@ -206,11 +240,15 @@
 .size-small .arrowButton {
   width: 20px;
   height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
 }
 
 .size-small .arrowIcon {
-  width: 20px;
-  height: 20px;
+  width: 6px;
+  height: 10px;
 }
 
 /* Medium Size (기본) */
@@ -229,11 +267,20 @@
 .size-medium .arrowButton {
   width: 24px;
   height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  max-width: 24px;
+  max-height: 24px;
 }
 
 .size-medium .arrowIcon {
-  width: 24px;
-  height: 24px;
+  width: 7px;
+  height: 12px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
 
 /* Large Size */
@@ -252,11 +299,15 @@
 .size-large .arrowButton {
   width: 28px;
   height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  max-width: 28px;
+  max-height: 28px;
 }
 
 .size-large .arrowIcon {
-  width: 28px;
-  height: 28px;
+  width: 8px;
+  height: 14px;
 }
 
 /* ========================================
@@ -344,11 +395,15 @@
   .arrowButton {
     width: 20px;
     height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
   }
 
   .arrowIcon {
-    width: 20px;
-    height: 20px;
+    width: 6px;
+    height: 10px;
   }
 }
 
@@ -371,11 +426,15 @@
   .arrowButton {
     width: 18px;
     height: 18px;
+    min-width: 18px;
+    min-height: 18px;
+    max-width: 18px;
+    max-height: 18px;
   }
 
   .arrowIcon {
-    width: 18px;
-    height: 18px;
+    width: 5px;
+    height: 9px;
   }
 }
 

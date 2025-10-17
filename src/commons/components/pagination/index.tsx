@@ -153,8 +153,11 @@ export const Pagination: React.FC<PaginationProps> = ({
                 ? '/icons/leftenable_outline_light_m.svg'
                 : '/icons/leftdisabled_outline_light_m.svg'
             }
-            alt=""
+            alt={canGoPrevious ? '이전' : '이전(비활성)'}
             className={styles.arrowIcon}
+            onError={(e) => {
+              console.error('Arrow icon failed to load:', e.currentTarget.src);
+            }}
           />
         </button>
       )}
@@ -193,8 +196,11 @@ export const Pagination: React.FC<PaginationProps> = ({
                 ? '/icons/rightenable_outline_light_m.svg'
                 : '/icons/rightdisabled_outline_light_m.svg'
             }
-            alt=""
+            alt={canGoNext ? '다음' : '다음(비활성)'}
             className={styles.arrowIcon}
+            onError={(e) => {
+              console.error('Arrow icon failed to load:', e.currentTarget.src);
+            }}
           />
         </button>
       )}
