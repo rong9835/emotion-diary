@@ -6,22 +6,29 @@ import React, {
   useState,
   useCallback,
   ReactNode,
+  useEffect,
 } from 'react';
 import { createPortal } from 'react-dom';
-
-interface ModalContextType {
-  isOpen: boolean;
-  openModal: (content: ReactNode, options?: ModalOptions) => void;
-  closeModal: () => void;
-  content: ReactNode;
-  options: ModalOptions;
-}
+import styles from './styles.module.css';
 
 interface ModalOptions {
   closeOnBackdropClick?: boolean;
   closeOnEscape?: boolean;
   showCloseButton?: boolean;
   className?: string;
+}
+
+interface ModalItem {
+  id: string;
+  content: ReactNode;
+  options: ModalOptions;
+}
+
+interface ModalContextType {
+  modals: ModalItem[];
+  openModal: (content: ReactNode, options?: ModalOptions) => string;
+  closeModal: (id?: string) => void;
+  closeAllModals: () => void;
 }
 
 const defaultOptions: ModalOptions = {
@@ -46,105 +53,147 @@ interface ModalProviderProps {
 }
 
 export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [content, setContent] = useState<ReactNode>(null);
-  const [options, setOptions] = useState<ModalOptions>(defaultOptions);
+  const [modals, setModals] = useState<ModalItem[]>([]);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const openModal = useCallback(
-    (modalContent: ReactNode, modalOptions?: ModalOptions) => {
-      setContent(modalContent);
-      setOptions({ ...defaultOptions, ...modalOptions });
-      setIsOpen(true);
+    (modalContent: ReactNode, modalOptions?: ModalOptions): string => {
+      const id = Math.random().toString(36).substr(2, 9);
+      const newModal: ModalItem = {
+        id,
+        content: modalContent,
+        options: { ...defaultOptions, ...modalOptions },
+      };
+      
+      setModals(prev => [...prev, newModal]);
+      return id;
     },
     []
   );
 
-  const closeModal = useCallback(() => {
-    setIsOpen(false);
-    setContent(null);
-    setOptions(defaultOptions);
+  const closeModal = useCallback((id?: string) => {
+    if (id) {
+      setModals(prev => prev.filter(modal => modal.id !== id));
+    } else {
+      // id가 없으면 가장 최근 모달 닫기
+      setModals(prev => prev.slice(0, -1));
+    }
   }, []);
 
-  // ESC 키로 모달 닫기
-  React.useEffect(() => {
+  const closeAllModals = useCallback(() => {
+    setModals([]);
+  }, []);
+
+  // ESC 키로 가장 최근 모달 닫기
+  useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isOpen && options.closeOnEscape) {
-        closeModal();
+      if (event.key === 'Escape' && modals.length > 0) {
+        const topModal = modals[modals.length - 1];
+        if (topModal.options.closeOnEscape) {
+          closeModal();
+        }
       }
     };
 
-    if (isOpen) {
+    if (modals.length > 0) {
       document.addEventListener('keydown', handleEscape);
-
-      // 스크롤바 너비 계산하여 페이지 움직임 방지
-      const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
+    };
+  }, [modals, closeModal]);
+
+  // body 스크롤 제거
+  useEffect(() => {
+    if (modals.length > 0) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = 'unset';
+    }
+
+    return () => {
       document.body.style.overflow = 'unset';
       document.body.style.paddingRight = 'unset';
     };
-  }, [isOpen, options.closeOnEscape, closeModal]);
+  }, [modals.length]);
 
   const contextValue: ModalContextType = {
-    isOpen,
+    modals,
     openModal,
     closeModal,
-    content,
-    options,
+    closeAllModals,
   };
 
   return (
     <ModalContext.Provider value={contextValue}>
       {children}
-      <ModalPortal />
+      {mounted && <ModalStack />}
     </ModalContext.Provider>
   );
 };
 
-const ModalPortal: React.FC = () => {
-  const { isOpen, closeModal, content, options } = useModal();
-  const [mounted, setMounted] = useState(false);
+const ModalStack: React.FC = () => {
+  const { modals, closeModal } = useModal();
 
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted || !isOpen) {
+  if (modals.length === 0) {
     return null;
   }
 
+  return (
+    <>
+      {modals.map((modal, index) => (
+        <ModalPortal
+          key={modal.id}
+          modal={modal}
+          index={index}
+          onClose={() => closeModal(modal.id)}
+        />
+      ))}
+    </>
+  );
+};
+
+interface ModalPortalProps {
+  modal: ModalItem;
+  index: number;
+  onClose: () => void;
+}
+
+const ModalPortal: React.FC<ModalPortalProps> = ({ modal, index, onClose }) => {
   const handleBackdropClick = (event: React.MouseEvent) => {
-    if (event.target === event.currentTarget && options.closeOnBackdropClick) {
-      closeModal();
+    if (event.target === event.currentTarget && modal.options.closeOnBackdropClick) {
+      onClose();
     }
   };
 
   const modalElement = (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      className={styles.modalBackdrop}
+      style={{ zIndex: 1000 + index }}
       onClick={handleBackdropClick}
     >
       <div
-        className={`relative bg-white rounded-lg shadow-lg p-6 ${
-          options.className || ''
-        }`}
+        className={`${styles.modalContent} ${modal.options.className || ''}`}
         onClick={(e) => e.stopPropagation()}
       >
-        {options.showCloseButton && (
+        {modal.options.showCloseButton && (
           <button
-            onClick={closeModal}
-            className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-xl font-bold"
+            onClick={onClose}
+            className={styles.closeButton}
             aria-label="Close modal"
           >
             ×
           </button>
         )}
-        {content}
+        {modal.content}
       </div>
     </div>
   );
