@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Searchbar } from '@/commons/components/searchbar';
-import { SelectBox, SelectOption } from '@/commons/components/selectbox';
+
 import { Button } from '@/commons/components/button';
 import { Pagination } from '@/commons/components/pagination';
+import { Searchbar } from '@/commons/components/searchbar';
+import { SelectBox, SelectOption } from '@/commons/components/selectbox';
 import { EmotionType, getEmotionLabel } from '@/commons/constants/enum';
+
 import { useNewDiaryModal } from './hooks/index.link.modal.hook';
 import styles from './styles.module.css';
 
@@ -670,26 +672,26 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   // Handlers
   // ========================================
 
-  const handleFilterChange = (value: string) => {
+  const handleFilterChange = (value: string): void => {
     setFilterValue(value);
     console.log('Filter changed:', value);
   };
 
-  const handleSearch = (value: string) => {
+  const handleSearch = (value: string): void => {
     setSearchValue(value);
     console.log('Search:', value);
   };
 
-  const handleNewDiary = () => {
+  const handleNewDiary = (): void => {
     openNewDiaryModal();
   };
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (page: number): void => {
     setCurrentPage(page);
     console.log('Page change:', page);
   };
 
-  const handleDeleteDiary = (id: string) => {
+  const handleDeleteDiary = (id: string): void => {
     console.log('Delete diary:', id);
     // 일기 삭제 로직 추가 예정
   };
@@ -718,7 +720,7 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   // Render Diary Card
   // ========================================
 
-  const renderDiaryCard = (diary: DiaryEntry) => {
+  const renderDiaryCard = (diary: DiaryEntry): JSX.Element => {
     const emotionLabel = getEmotionLabel(diary.emotion);
 
     return (
@@ -772,7 +774,7 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   // CSS Classes
   // ========================================
 
-  const containerClasses = [styles.container, className]
+  const containerClasses: string = [styles.container, className]
     .filter(Boolean)
     .join(' ');
 

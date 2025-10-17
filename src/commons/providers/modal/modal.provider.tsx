@@ -5,11 +5,16 @@ import React, {
   useContext,
   useState,
   useCallback,
-  ReactNode,
   useEffect,
+  ReactNode,
 } from 'react';
 import { createPortal } from 'react-dom';
+
 import styles from './styles.module.css';
+
+// ========================================
+// Types & Interfaces
+// ========================================
 
 interface ModalOptions {
   closeOnBackdropClick?: boolean;
@@ -31,6 +36,10 @@ interface ModalContextType {
   closeAllModals: () => void;
 }
 
+// ========================================
+// Constants
+// ========================================
+
 const defaultOptions: ModalOptions = {
   closeOnBackdropClick: true,
   closeOnEscape: true,
@@ -38,15 +47,27 @@ const defaultOptions: ModalOptions = {
   className: '',
 };
 
+// ========================================
+// Context
+// ========================================
+
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
-export const useModal = () => {
+// ========================================
+// Hooks
+// ========================================
+
+export const useModal = (): ModalContextType => {
   const context = useContext(ModalContext);
   if (!context) {
     throw new Error('useModal must be used within a ModalProvider');
   }
   return context;
 };
+
+// ========================================
+// Components
+// ========================================
 
 interface ModalProviderProps {
   children: ReactNode;
@@ -75,7 +96,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     []
   );
 
-  const closeModal = useCallback((id?: string) => {
+  const closeModal = useCallback((id?: string): void => {
     if (id) {
       setModals((prev) => prev.filter((modal) => modal.id !== id));
     } else {
@@ -84,13 +105,17 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
     }
   }, []);
 
-  const closeAllModals = useCallback(() => {
+  const closeAllModals = useCallback((): void => {
     setModals([]);
   }, []);
 
+  // ========================================
+  // Effects
+  // ========================================
+
   // ESC 키로 가장 최근 모달 닫기
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
+    const handleEscape = (event: KeyboardEvent): void => {
       if (event.key === 'Escape' && modals.length > 0) {
         const topModal = modals[modals.length - 1];
         if (topModal.options.closeOnEscape) {
@@ -141,7 +166,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   );
 };
 
-const ModalStack: React.FC = () => {
+const ModalStack: React.FC = (): JSX.Element | null => {
   const { modals, closeModal } = useModal();
 
   if (modals.length === 0) {
@@ -168,10 +193,10 @@ interface ModalPortalProps {
   onClose: () => void;
 }
 
-const ModalPortal: React.FC<ModalPortalProps> = ({ modal, index, onClose }) => {
+const ModalPortal: React.FC<ModalPortalProps> = ({ modal, index, onClose }): JSX.Element => {
   const modalId = `modal-${modal.id}`;
-  
-  const handleBackdropClick = (event: React.MouseEvent) => {
+
+  const handleBackdropClick = (event: React.MouseEvent): void => {
     if (
       event.target === event.currentTarget &&
       modal.options.closeOnBackdropClick
