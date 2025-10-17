@@ -1,0 +1,183 @@
+/* ========================================
+   Modal Component Styles
+   ======================================== */
+
+.modal {
+  /* 피그마 디자인 기준: 480px x 200px */
+  width: 480px;
+  min-height: 200px;
+  background: var(--color-bg-primary);
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   Modal Header Styles
+   ======================================== */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.title {
+  /* 피그마 디자인: Pretendard Variable, Bold, 24px, -0.24 letter-spacing */
+  font-family: var(--font-family-primary);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: -0.24px;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.content {
+  /* 피그마 디자인: Pretendard Variable, Medium, 20px, -0.2 letter-spacing */
+  font-family: var(--font-family-primary);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ========================================
+   Modal Actions Styles
+   ======================================== */
+
+.actions {
+  display: flex;
+  gap: 21px; /* 피그마 디자인: 229px - 104px - 104px = 21px */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Single Action Button */
+.singleButton {
+  width: 100%; /* fullWidth 적용 */
+}
+
+/* Dual Action Buttons */
+.dualButton {
+  width: 104px; /* 피그마 디자인 기준 고정 너비 */
+  flex-shrink: 0;
+}
+
+/* ========================================
+   Variant Styles
+   ======================================== */
+
+/* Info Variant (기본값) */
+.variant-info {
+  /* 기본 스타일은 위에서 정의됨 */
+}
+
+/* Danger Variant */
+.variant-danger .title {
+  color: var(--color-semantic-error); /* 빨간색 제목 */
+}
+
+.variant-danger .content {
+  color: var(--color-semantic-error); /* 빨간색 내용 */
+}
+
+/* ========================================
+   Theme Styles
+   ======================================== */
+
+/* Light Theme (기본값) */
+.theme-light {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+/* Dark Theme */
+.theme-dark {
+  background: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+}
+
+.theme-dark .title {
+  color: var(--color-text-inverse);
+}
+
+.theme-dark .content {
+  color: var(--color-text-tertiary);
+}
+
+/* ========================================
+   Disabled State
+   ======================================== */
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.disabled .actions button {
+  cursor: not-allowed;
+}
+
+/* ========================================
+   Full Width
+   ======================================== */
+
+.fullWidth {
+  width: 100%;
+  max-width: none;
+}
+
+/* ========================================
+   Focus States
+   ======================================== */
+
+.modal:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Responsive Styles
+   ======================================== */
+
+@media (max-width: 640px) {
+  .modal {
+    width: calc(100vw - 32px);
+    max-width: 480px;
+    margin: 0 16px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .dualButton {
+    width: 100%;
+  }
+}
+
+/* ========================================
+   Accessibility
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .modal {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .modal {
+    border: 2px solid var(--color-border-primary);
+  }
+}
