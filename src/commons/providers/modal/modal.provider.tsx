@@ -75,12 +75,18 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+
+      // 스크롤바 너비 계산하여 페이지 움직임 방지
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = 'unset';
     };
   }, [isOpen, options.closeOnEscape, closeModal]);
 
