@@ -17,7 +17,8 @@
   position: relative;
   background-color: white;
   border-radius: 0.5rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
   padding: 1.5rem;
   max-width: 90vw;
   max-height: 90vh;
@@ -75,7 +76,7 @@
     max-width: calc(100vw - 2rem);
     max-height: calc(100vh - 2rem);
   }
-  
+
   .closeButton {
     top: 0.5rem;
     right: 0.5rem;
@@ -83,6 +84,19 @@
     height: 1.5rem;
     font-size: 1.25rem;
   }
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Dark mode support */

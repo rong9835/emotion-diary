@@ -62,14 +62,14 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
 
   const openModal = useCallback(
     (modalContent: ReactNode, modalOptions?: ModalOptions): string => {
-      const id = Math.random().toString(36).substr(2, 9);
+      const id = Math.random().toString(36).substring(2, 11);
       const newModal: ModalItem = {
         id,
         content: modalContent,
         options: { ...defaultOptions, ...modalOptions },
       };
-      
-      setModals(prev => [...prev, newModal]);
+
+      setModals((prev) => [...prev, newModal]);
       return id;
     },
     []
@@ -77,10 +77,10 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
 
   const closeModal = useCallback((id?: string) => {
     if (id) {
-      setModals(prev => prev.filter(modal => modal.id !== id));
+      setModals((prev) => prev.filter((modal) => modal.id !== id));
     } else {
       // id가 없으면 가장 최근 모달 닫기
-      setModals(prev => prev.slice(0, -1));
+      setModals((prev) => prev.slice(0, -1));
     }
   }, []);
 
@@ -111,18 +111,19 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   // body 스크롤 제거
   useEffect(() => {
     if (modals.length > 0) {
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+      const originalOverflow = document.body.style.overflow;
+      const originalPaddingRight = document.body.style.paddingRight;
+      
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = `${scrollbarWidth}px`;
-    } else {
-      document.body.style.overflow = 'unset';
-      document.body.style.paddingRight = 'unset';
-    }
 
-    return () => {
-      document.body.style.overflow = 'unset';
-      document.body.style.paddingRight = 'unset';
-    };
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        document.body.style.paddingRight = originalPaddingRight;
+      };
+    }
   }, [modals.length]);
 
   const contextValue: ModalContextType = {
@@ -168,19 +169,46 @@ interface ModalPortalProps {
 }
 
 const ModalPortal: React.FC<ModalPortalProps> = ({ modal, index, onClose }) => {
+  const modalId = `modal-${modal.id}`;
+  
   const handleBackdropClick = (event: React.MouseEvent) => {
-    if (event.target === event.currentTarget && modal.options.closeOnBackdropClick) {
+    if (
+      event.target === event.currentTarget &&
+      modal.options.closeOnBackdropClick
+    ) {
       onClose();
     }
   };
 
+  // 포커스 트랩을 위한 ref
+  const modalRef = React.useRef<HTMLDivElement>(null);
+
+  // 모달이 열릴 때 첫 번째 포커스 가능한 요소에 포커스
+  React.useEffect(() => {
+    if (modalRef.current) {
+      const focusableElements = modalRef.current.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstFocusable = focusableElements[0] as HTMLElement;
+      if (firstFocusable) {
+        firstFocusable.focus();
+      }
+    }
+  }, []);
+
   const modalElement = (
     <div
+      ref={modalRef}
       className={styles.modalBackdrop}
       style={{ zIndex: 1000 + index }}
       onClick={handleBackdropClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={`${modalId}-title`}
+      aria-describedby={`${modalId}-description`}
     >
       <div
+        id={modalId}
         className={`${styles.modalContent} ${modal.options.className || ''}`}
         onClick={(e) => e.stopPropagation()}
       >
@@ -188,11 +216,18 @@ const ModalPortal: React.FC<ModalPortalProps> = ({ modal, index, onClose }) => {
           <button
             onClick={onClose}
             className={styles.closeButton}
-            aria-label="Close modal"
+            aria-label="모달 닫기"
+            type="button"
           >
             ×
           </button>
         )}
+        <div id={`${modalId}-title`} className="sr-only">
+          모달
+        </div>
+        <div id={`${modalId}-description`} className="sr-only">
+          모달 내용입니다.
+        </div>
         {modal.content}
       </div>
     </div>
