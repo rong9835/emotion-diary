@@ -783,7 +783,7 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   // ========================================
 
   return (
-    <div className={containerClasses}>
+    <div className={containerClasses} data-testid="diaries-page">
       {/* Gap */}
       <div className={styles.gap}></div>
 
@@ -822,6 +822,7 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
             theme="light"
             onClick={handleNewDiary}
             className={styles.newDiaryButton}
+            data-testid="diary-write-button"
           >
             <svg
               width="24"

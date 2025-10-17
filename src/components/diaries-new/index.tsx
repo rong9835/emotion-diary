@@ -6,6 +6,7 @@ import {
   EMOTION_CONFIG,
   getAllEmotionTypes,
 } from '@/commons/constants/enum';
+import { useModalClose } from './hooks/index.link.modal.close.hook';
 import styles from './styles.module.css';
 
 // ========================================
@@ -109,7 +110,6 @@ const EmotionBox: React.FC<EmotionBoxProps> = ({
 export const DiariesNew: React.FC<DiariesNewProps> = ({
   theme = 'light',
   onSave,
-  onCancel,
 }) => {
   // ========================================
   // State Management
@@ -120,6 +120,12 @@ export const DiariesNew: React.FC<DiariesNewProps> = ({
   );
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  // ========================================
+  // Hooks
+  // ========================================
+
+  const { openCancelModal } = useModalClose();
 
   // ========================================
   // Event Handlers
@@ -137,7 +143,7 @@ export const DiariesNew: React.FC<DiariesNewProps> = ({
   };
 
   const handleCancel = () => {
-    onCancel?.();
+    openCancelModal();
   };
 
   // ========================================
@@ -151,7 +157,10 @@ export const DiariesNew: React.FC<DiariesNewProps> = ({
   // ========================================
 
   return (
-    <div className={`${styles.wrapper} ${styles[`wrapper--${theme}`]}`}>
+    <div
+      className={`${styles.wrapper} ${styles[`wrapper--${theme}`]}`}
+      data-testid="diary-write-modal"
+    >
       {/* Header */}
       <header className={styles.header}>
         <h1 className={styles.headerTitle}>일기 쓰기</h1>
@@ -159,6 +168,7 @@ export const DiariesNew: React.FC<DiariesNewProps> = ({
           onClick={handleCancel}
           className={styles.closeButton}
           aria-label="닫기"
+          data-testid="diary-write-close-button"
         >
           <svg
             width="24"
@@ -227,6 +237,7 @@ export const DiariesNew: React.FC<DiariesNewProps> = ({
             size="medium"
             theme={theme}
             onClick={handleCancel}
+            data-testid="diary-write-close-button-footer"
           >
             닫기
           </Button>

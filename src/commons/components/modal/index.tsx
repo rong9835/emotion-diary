@@ -195,6 +195,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
                 onClick={handleCancel}
                 disabled={disabled}
                 className={styles.dualButton}
+                data-testid="continue-writing-button"
               >
                 {cancelText}
               </Button>
@@ -205,6 +206,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
                 onClick={handleConfirm}
                 disabled={disabled}
                 className={styles.dualButton}
+                data-testid="cancel-registration-button"
               >
                 {confirmText}
               </Button>
