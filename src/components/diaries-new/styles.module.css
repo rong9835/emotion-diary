@@ -19,7 +19,7 @@
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.wrapper--dark {
+.wrapper--theme-dark {
   background-color: var(--color-gray-90);
 }
 
@@ -37,15 +37,15 @@
 }
 
 .headerTitle {
-  font-size: 24px;
+  font-size: var(--typography-headline-medium-mobile-size);
   font-weight: 700;
-  color: #000000;
+  color: var(--color-text-primary);
   margin: 0;
-  letter-spacing: -0.24px;
-  line-height: 24px;
+  letter-spacing: var(--typography-headline-medium-mobile-letter-spacing);
+  line-height: var(--typography-headline-medium-mobile-line-height);
 }
 
-.wrapper--dark .headerTitle {
+.wrapper--theme-dark .headerTitle {
   color: var(--color-text-inverse);
 }
 
@@ -59,7 +59,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000000;
+  color: var(--color-text-primary);
   transition: color 0.2s ease-in-out;
 }
 
@@ -67,11 +67,11 @@
   color: var(--color-gray-60);
 }
 
-.wrapper--dark .closeButton {
+.wrapper--theme-dark .closeButton {
   color: var(--color-text-inverse);
 }
 
-.wrapper--dark .closeButton:hover {
+.wrapper--theme-dark .closeButton:hover {
   color: var(--color-gray-40);
 }
 
@@ -98,15 +98,15 @@
 }
 
 .emotionTitle {
-  font-size: 20px;
+  font-size: var(--typography-headline-small-mobile-size);
   font-weight: 600;
   color: var(--color-text-primary);
   margin: 0 0 16px 0;
-  letter-spacing: -0.2px;
-  line-height: 24px;
+  letter-spacing: var(--typography-headline-small-mobile-letter-spacing);
+  line-height: var(--typography-headline-small-mobile-line-height);
 }
 
-.wrapper--dark .emotionTitle {
+.wrapper--theme-dark .emotionTitle {
   color: var(--color-text-inverse);
 }
 
@@ -150,11 +150,11 @@
 }
 
 .emotionRadioLabel {
-  font-size: 18px;
+  font-size: var(--typography-title-large-mobile-size);
   font-weight: 500;
   color: var(--color-gray-60);
-  letter-spacing: -0.18px;
-  line-height: 20px;
+  letter-spacing: var(--typography-title-large-mobile-letter-spacing);
+  line-height: var(--typography-title-large-mobile-line-height);
   transition: color 0.2s ease-in-out;
 }
 
@@ -162,19 +162,19 @@
   color: var(--color-text-primary);
 }
 
-.wrapper--dark .emotionRadioLabel {
+.wrapper--theme-dark .emotionRadioLabel {
   color: var(--color-gray-40);
 }
 
-.wrapper--dark .emotionRadioSelected .emotionRadioLabel {
+.wrapper--theme-dark .emotionRadioSelected .emotionRadioLabel {
   color: var(--color-text-inverse);
 }
 
-.wrapper--dark .emotionRadioIcon {
+.wrapper--theme-dark .emotionRadioIcon {
   color: var(--color-gray-40);
 }
 
-.wrapper--dark .emotionRadioSelected .emotionRadioIcon {
+.wrapper--theme-dark .emotionRadioSelected .emotionRadioIcon {
   color: var(--color-text-inverse);
 }
 
@@ -219,15 +219,15 @@
 }
 
 .textareaLabel {
-  font-size: 14px;
+  font-size: var(--typography-label-large-mobile-size);
   font-weight: 500;
-  color: #000000;
+  color: var(--color-text-primary);
   margin-bottom: 8px;
-  letter-spacing: -0.14px;
-  line-height: 20px;
+  letter-spacing: var(--typography-label-large-mobile-letter-spacing);
+  line-height: var(--typography-label-large-mobile-line-height);
 }
 
-.wrapper--dark .textareaLabel {
+.wrapper--theme-dark .textareaLabel {
   color: var(--color-gray-40);
 }
 
@@ -237,11 +237,11 @@
   padding: 12px 16px;
   border: 1px solid var(--color-gray-20);
   border-radius: 8px;
-  font-size: 16px;
+  font-size: var(--typography-body-large-mobile-size);
   font-weight: 500;
   font-family: var(--font-family-primary);
-  line-height: 24px;
-  letter-spacing: -0.16px;
+  line-height: var(--typography-body-large-mobile-line-height);
+  letter-spacing: var(--typography-body-large-mobile-letter-spacing);
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
   resize: none;
@@ -250,25 +250,25 @@
 }
 
 .textarea::placeholder {
-  color: #ababab;
+  color: var(--color-text-tertiary);
   font-weight: 500;
 }
 
 .textarea:focus {
-  border-color: #000000;
+  border-color: var(--color-text-primary);
 }
 
-.textarea--dark {
+.textarea--theme-dark {
   background-color: var(--color-gray-80);
   border-color: var(--color-gray-60);
   color: var(--color-text-inverse);
 }
 
-.textarea--dark::placeholder {
+.textarea--theme-dark::placeholder {
   color: var(--color-text-tertiary);
 }
 
-.textarea--dark:focus {
+.textarea--theme-dark:focus {
   border-color: var(--color-gray-60);
 }
 

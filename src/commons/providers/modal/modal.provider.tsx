@@ -140,7 +140,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
         window.innerWidth - document.documentElement.clientWidth;
       const originalOverflow = document.body.style.overflow;
       const originalPaddingRight = document.body.style.paddingRight;
-      
+
       document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = `${scrollbarWidth}px`;
 
@@ -193,7 +193,11 @@ interface ModalPortalProps {
   onClose: () => void;
 }
 
-const ModalPortal: React.FC<ModalPortalProps> = ({ modal, index, onClose }): JSX.Element => {
+const ModalPortal: React.FC<ModalPortalProps> = ({
+  modal,
+  index,
+  onClose,
+}): JSX.Element => {
   const modalId = `modal-${modal.id}`;
 
   const handleBackdropClick = (event: React.MouseEvent): void => {

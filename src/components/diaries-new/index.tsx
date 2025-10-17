@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Input } from '@/commons/components/input';
 import { Button } from '@/commons/components/button';
 import {
@@ -7,6 +7,7 @@ import {
   getAllEmotionTypes,
 } from '@/commons/constants/enum';
 import { useModalClose } from './hooks/index.link.modal.close.hook';
+import { useDiaryForm } from './hooks/index.form.hook';
 import styles from './styles.module.css';
 
 // ========================================
@@ -41,13 +42,14 @@ interface EmotionBoxProps {
 const EmotionBox: React.FC<EmotionBoxProps> = ({
   selectedEmotion,
   onEmotionSelect,
-  theme = 'light',
 }) => {
   const emotions = getAllEmotionTypes();
 
   return (
     <div className={styles.emotionSection}>
-      <h3 className={styles.emotionTitle}>오늘 기분은 어땠나요?</h3>
+      <h3 className={`${styles.emotionTitle} typography-headline-small`}>
+        오늘 기분은 어땠나요?
+      </h3>
       <div className={styles.emotionRadioGroup}>
         {emotions.map((emotion) => {
           const config = EMOTION_CONFIG[emotion];
@@ -58,7 +60,7 @@ const EmotionBox: React.FC<EmotionBoxProps> = ({
               key={emotion}
               className={`${styles.emotionRadio} ${
                 isSelected ? styles.emotionRadioSelected : ''
-              } ${styles[`emotionRadio--${theme}`]}`}
+              }`}
             >
               <input
                 type="radio"
@@ -67,8 +69,10 @@ const EmotionBox: React.FC<EmotionBoxProps> = ({
                 checked={isSelected}
                 onChange={() => onEmotionSelect(emotion)}
                 className={styles.emotionRadioInput}
+                aria-label={`${config.label} 감정 선택`}
+                data-testid={`emotion-radio-${emotion}`}
               />
-              <span className={styles.emotionRadioIcon}>
+              <span className={styles.emotionRadioIcon} aria-hidden="true">
                 {isSelected ? (
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <circle
@@ -94,7 +98,11 @@ const EmotionBox: React.FC<EmotionBoxProps> = ({
                   </svg>
                 )}
               </span>
-              <span className={styles.emotionRadioLabel}>{config.label}</span>
+              <span
+                className={`${styles.emotionRadioLabel} typography-title-large`}
+              >
+                {config.label}
+              </span>
             </label>
           );
         })}
@@ -112,147 +120,146 @@ export const DiariesNew: React.FC<DiariesNewProps> = ({
   onSave,
 }) => {
   // ========================================
-  // State Management
-  // ========================================
-
-  const [selectedEmotion, setSelectedEmotion] = useState<EmotionType | null>(
-    EmotionType.HAPPY
-  );
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-
-  // ========================================
   // Hooks
   // ========================================
 
   const { openCancelModal } = useModalClose();
+  const { form, onSubmit, isFormValid, watchedValues } = useDiaryForm();
+
+  const { register, handleSubmit, setValue } = form;
 
   // ========================================
   // Event Handlers
   // ========================================
 
-  const handleSave = () => {
-    if (selectedEmotion && title.trim() && content.trim()) {
-      const diaryData: DiaryData = {
-        emotion: selectedEmotion,
-        title: title.trim(),
-        content: content.trim(),
-      };
-      onSave?.(diaryData);
-    }
+  const handleFormSubmit = (data: DiaryData) => {
+    onSave?.(data);
+    onSubmit();
   };
 
   const handleCancel = () => {
     openCancelModal();
   };
 
-  // ========================================
-  // Validation
-  // ========================================
-
-  const isFormValid = selectedEmotion && title.trim() && content.trim();
+  const handleEmotionChange = (emotion: EmotionType) => {
+    setValue('emotion', emotion);
+  };
 
   // ========================================
   // Render
   // ========================================
 
   return (
-    <div
-      className={`${styles.wrapper} ${styles[`wrapper--${theme}`]}`}
-      data-testid="diary-write-modal"
-    >
-      {/* Header */}
-      <header className={styles.header}>
-        <h1 className={styles.headerTitle}>일기 쓰기</h1>
-        <button
-          onClick={handleCancel}
-          className={styles.closeButton}
-          aria-label="닫기"
-          data-testid="diary-write-close-button"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+    <form onSubmit={handleSubmit(handleFormSubmit)}>
+      <div
+        className={`${styles.wrapper} ${styles[`wrapper--theme-${theme}`]}`}
+        data-testid="diary-write-modal"
+      >
+        {/* Header */}
+        <header className={styles.header}>
+          <h1 className={`${styles.headerTitle} typography-headline-medium`}>
+            일기 쓰기
+          </h1>
+          <button
+            type="button"
+            onClick={handleCancel}
+            className={styles.closeButton}
+            aria-label="닫기"
+            data-testid="diary-write-close-button"
           >
-            <path
-              d="M18 6L6 18M6 6l12 12"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-      </header>
-
-      {/* Main Content */}
-      <div className={styles.mainContent}>
-        {/* Emotion Selection Box */}
-        <EmotionBox
-          selectedEmotion={selectedEmotion}
-          onEmotionSelect={setSelectedEmotion}
-          theme={theme}
-        />
-
-        {/* Text Area */}
-        <div className={styles.textArea}>
-          {/* Title Input */}
-          <div className={styles.inputTitleSection}>
-            <Input
-              label="제목"
-              placeholder="제목을 입력합니다."
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              fullWidth
-              theme={theme}
-              size="medium"
-              variant="primary"
-            />
-          </div>
-
-          {/* Content Input */}
-          <div className={styles.inputContentSection}>
-            <div className={styles.textareaContainer}>
-              <label className={styles.textareaLabel}>내용</label>
-              <textarea
-                className={`${styles.textarea} ${styles[`textarea--${theme}`]}`}
-                placeholder="내용을 입력합니다."
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                rows={5}
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M18 6L6 18M6 6l12 12"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
+            </svg>
+          </button>
+        </header>
+
+        {/* Main Content */}
+        <div className={styles.mainContent}>
+          {/* Emotion Selection Box */}
+          <EmotionBox
+            selectedEmotion={watchedValues.emotion}
+            onEmotionSelect={handleEmotionChange}
+          />
+
+          {/* Text Area */}
+          <div className={styles.textArea}>
+            {/* Title Input */}
+            <div className={styles.inputTitleSection}>
+              <Input
+                label="제목"
+                placeholder="제목을 입력합니다."
+                {...register('title')}
+                fullWidth
+                theme={theme}
+                size="medium"
+                variant="primary"
+                data-testid="diary-title-input"
+              />
+            </div>
+
+            {/* Content Input */}
+            <div className={styles.inputContentSection}>
+              <div className={styles.textareaContainer}>
+                <label
+                  className={`${styles.textareaLabel} typography-label-large`}
+                >
+                  내용
+                </label>
+                <textarea
+                  className={`${styles.textarea} typography-body-large ${
+                    styles[`textarea--theme-${theme}`]
+                  }`}
+                  placeholder="내용을 입력합니다."
+                  {...register('content')}
+                  rows={5}
+                  aria-label="일기 내용 입력"
+                  data-testid="diary-content-textarea"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Footer */}
-      <footer className={styles.footer}>
-        <div className={styles.buttonGroup}>
-          <Button
-            variant="secondary"
-            size="medium"
-            theme={theme}
-            onClick={handleCancel}
-            data-testid="diary-write-close-button-footer"
-          >
-            닫기
-          </Button>
-          <Button
-            variant="primary"
-            size="medium"
-            theme={theme}
-            onClick={handleSave}
-            disabled={!isFormValid}
-          >
-            등록하기
-          </Button>
-        </div>
-      </footer>
-    </div>
+        {/* Footer */}
+        <footer className={styles.footer}>
+          <div className={styles.buttonGroup}>
+            <Button
+              type="button"
+              variant="secondary"
+              size="medium"
+              theme={theme}
+              onClick={handleCancel}
+              data-testid="diary-write-close-button-footer"
+            >
+              닫기
+            </Button>
+            <Button
+              type="submit"
+              variant="primary"
+              size="medium"
+              theme={theme}
+              disabled={!isFormValid}
+              data-testid="diary-submit-button"
+            >
+              등록하기
+            </Button>
+          </div>
+        </footer>
+      </div>
+    </form>
   );
 };
 

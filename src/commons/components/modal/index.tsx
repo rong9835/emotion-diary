@@ -100,9 +100,9 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
     // 클래스명 조합
     const modalClasses = [
       styles.modal,
-      styles[`variant-${variant}`],
-      styles[`actions-${actions}`],
-      styles[`theme-${theme}`],
+      styles[`variant--${variant}`],
+      styles[`actions--${actions}`],
+      styles[`theme--${theme}`],
       disabled && styles.disabled,
       fullWidth && styles.fullWidth,
       className,
@@ -160,14 +160,21 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         aria-modal="true"
         aria-labelledby="modal-title"
         aria-describedby="modal-content"
+        data-modal-component="true"
         {...props}
       >
         {/* 모달 헤더 */}
         <div className={styles.header}>
-          <h2 id="modal-title" className={styles.title}>
+          <h2
+            id="modal-title"
+            className={`${styles.title} typography-headline-medium`}
+          >
             {title}
           </h2>
-          <p id="modal-content" className={styles.content}>
+          <p
+            id="modal-content"
+            className={`${styles.content} typography-headline-small`}
+          >
             {content}
           </p>
         </div>
@@ -182,7 +189,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
               fullWidth
               onClick={handleConfirm}
               disabled={disabled}
-              className={styles.singleButton}
+              className={styles['button--single']}
             >
               {confirmText}
             </Button>
@@ -194,7 +201,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
                 size="small"
                 onClick={handleCancel}
                 disabled={disabled}
-                className={styles.dualButton}
+                className={styles['button--dual']}
                 data-testid="continue-writing-button"
               >
                 {cancelText}
@@ -205,7 +212,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
                 size="small"
                 onClick={handleConfirm}
                 disabled={disabled}
-                className={styles.dualButton}
+                className={styles['button--dual']}
                 data-testid="cancel-registration-button"
               >
                 {confirmText}

@@ -60,12 +60,12 @@
 }
 
 /* Single Action Button */
-.singleButton {
+.button--single {
   width: 100%; /* fullWidth 적용 */
 }
 
 /* Dual Action Buttons */
-.dualButton {
+.button--dual {
   width: 104px; /* 피그마 디자인 기준 고정 너비 */
   flex-shrink: 0;
 }
@@ -75,16 +75,16 @@
    ======================================== */
 
 /* Info Variant (기본값) */
-.variant-info {
+.variant--info {
   /* 기본 스타일은 위에서 정의됨 */
 }
 
 /* Danger Variant */
-.variant-danger .title {
+.variant--danger .title {
   color: var(--color-semantic-error); /* 빨간색 제목 */
 }
 
-.variant-danger .content {
+.variant--danger .content {
   color: var(--color-semantic-error); /* 빨간색 내용 */
 }
 
@@ -93,22 +93,22 @@
    ======================================== */
 
 /* Light Theme (기본값) */
-.theme-light {
+.theme--light {
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
 }
 
 /* Dark Theme */
-.theme-dark {
+.theme--dark {
   background: var(--color-bg-inverse);
   color: var(--color-text-inverse);
 }
 
-.theme-dark .title {
+.theme--dark .title {
   color: var(--color-text-inverse);
 }
 
-.theme-dark .content {
+.theme--dark .content {
   color: var(--color-text-tertiary);
 }
 

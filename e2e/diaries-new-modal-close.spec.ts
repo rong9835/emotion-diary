@@ -61,9 +61,9 @@ test.describe('일기쓰기 모달 닫기 기능', () => {
   }) => {
     // 닫기 버튼 클릭하여 등록취소 모달 열기
     await page.click('[data-testid="diary-write-close-button"]');
-    await page.waitForSelector('[data-testid="cancel-confirmation-modal"]', {
-      timeout: 500,
-    });
+    await expect(
+      page.locator('[data-testid="cancel-confirmation-modal"]')
+    ).toBeVisible();
 
     // 계속작성 버튼 클릭
     await page.click('[data-testid="continue-writing-button"]');
@@ -82,9 +82,9 @@ test.describe('일기쓰기 모달 닫기 기능', () => {
   }) => {
     // 닫기 버튼 클릭하여 등록취소 모달 열기
     await page.click('[data-testid="diary-write-close-button"]');
-    await page.waitForSelector('[data-testid="cancel-confirmation-modal"]', {
-      timeout: 500,
-    });
+    await expect(
+      page.locator('[data-testid="cancel-confirmation-modal"]')
+    ).toBeVisible();
 
     // 등록취소 버튼 클릭
     await page.click('[data-testid="cancel-registration-button"]');
