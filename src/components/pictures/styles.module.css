@@ -55,9 +55,10 @@
 
 .pictureGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(640px, 1fr));
+  grid-template-columns: repeat(auto-fit, 640px);
   gap: 24px;
   width: 100%;
+  justify-content: center;
 }
 
 .pictureItem {
