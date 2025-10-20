@@ -3,20 +3,25 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-// API 응답 타입 정의
+// ========================================
+// Types & Interfaces
+// ========================================
+
 interface DogApiResponse {
   message: string[];
   status: string;
 }
 
-// 강아지 사진 데이터 타입
 interface DogPicture {
   id: number;
   src: string;
   alt: string;
 }
 
-// API 호출 함수
+// ========================================
+// API Functions
+// ========================================
+
 const fetchDogs = async (count: number = 6): Promise<DogPicture[]> => {
   const response = await fetch(
     `https://dog.ceo/api/breeds/image/random/${count}`,
@@ -46,14 +51,25 @@ const fetchDogs = async (count: number = 6): Promise<DogPicture[]> => {
   }));
 };
 
-// 무한스크롤 훅
+// ========================================
+// Custom Hooks
+// ========================================
+
 export const useDogPicturesBinding = () => {
+  // ========================================
+  // State
+  // ========================================
+
   const [pictures, setPictures] = useState<DogPicture[]>([]);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
+
+  // ========================================
+  // React Query
+  // ========================================
 
   // 초기 데이터 로드
   const {
@@ -69,6 +85,10 @@ export const useDogPicturesBinding = () => {
     retryDelay: 1000,
     refetchOnWindowFocus: false,
   });
+
+  // ========================================
+  // Effects
+  // ========================================
 
   // 초기 데이터 설정
   useEffect(() => {
@@ -86,6 +106,10 @@ export const useDogPicturesBinding = () => {
       setErrorMessage('강아지 사진을 불러오는데 실패했습니다.');
     }
   }, [initialError]);
+
+  // ========================================
+  // Functions
+  // ========================================
 
   // 추가 데이터 로드 함수
   const loadMorePictures = useCallback(async () => {
@@ -105,6 +129,10 @@ export const useDogPicturesBinding = () => {
       setIsLoadingMore(false);
     }
   }, [isLoadingMore]);
+
+  // ========================================
+  // Intersection Observer
+  // ========================================
 
   // 무한스크롤 관찰자 설정
   useEffect(() => {

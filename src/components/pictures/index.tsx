@@ -1,47 +1,182 @@
 'use client';
 
 import React, { useState } from 'react';
+
 import { SelectBox, SelectOption } from '@/commons/components/selectbox';
+
 import { useDogPicturesBinding } from './hooks/index.binding.hook';
 import styles from './styles.module.css';
 
-const Pictures: React.FC = () => {
-  // 필터 옵션
-  const filterOptions: SelectOption[] = [
+// ========================================
+// Types & Interfaces
+// ========================================
+
+export interface PicturesProps {
+  /**
+   * 추가 클래스명
+   */
+  className?: string;
+
+  /**
+   * 컴포넌트의 시각적 스타일 variant
+   * - default: 기본 스타일
+   * - compact: 컴팩트 스타일
+   */
+  variant?: 'default' | 'compact';
+
+  /**
+   * 테마 모드
+   * - light: 라이트 모드 (기본값)
+   * - dark: 다크 모드
+   */
+  theme?: 'light' | 'dark';
+
+  /**
+   * 필터 옵션들
+   */
+  filterOptions?: SelectOption[];
+
+  /**
+   * 기본 선택된 필터 값
+   */
+  defaultFilter?: string;
+
+  /**
+   * 필터 변경 시 호출되는 콜백
+   */
+  onFilterChange?: (value: string) => void;
+
+  /**
+   * 사진 클릭 시 호출되는 콜백
+   */
+  onPictureClick?: (picture: { id: number; src: string; alt: string }) => void;
+
+  /**
+   * 로딩 상태
+   */
+  loading?: boolean;
+
+  /**
+   * 에러 상태
+   */
+  error?: boolean;
+
+  /**
+   * 에러 메시지
+   */
+  errorMessage?: string;
+
+  /**
+   * 에러 재시도 핸들러
+   */
+  onRetry?: () => void;
+}
+
+// ========================================
+// Pictures Component
+// ========================================
+
+const Pictures: React.FC<PicturesProps> = ({
+  className,
+  variant = 'default',
+  theme = 'light',
+  filterOptions: customFilterOptions,
+  defaultFilter = 'all',
+  onFilterChange,
+  onPictureClick,
+  loading: externalLoading,
+  error: externalError,
+  errorMessage: externalErrorMessage,
+  onRetry,
+}) => {
+  // ========================================
+  // State
+  // ========================================
+
+  const [selectedFilter, setSelectedFilter] = useState<string>(defaultFilter);
+
+  // ========================================
+  // Data Binding Hook
+  // ========================================
+
+  const {
+    pictures,
+    isLoading: internalLoading,
+    isLoadingMore,
+    hasError: internalError,
+    errorMessage: internalErrorMessage,
+    containerRef,
+    retry: internalRetry,
+  } = useDogPicturesBinding();
+
+  // ========================================
+  // Computed Values
+  // ========================================
+
+  const isLoading = externalLoading !== undefined ? externalLoading : internalLoading;
+  const hasError = externalError !== undefined ? externalError : internalError;
+  const errorMessage = externalErrorMessage || internalErrorMessage;
+  const retry = onRetry || internalRetry;
+
+  // ========================================
+  // Filter Options
+  // ========================================
+
+  const defaultFilterOptions: SelectOption[] = [
     { value: 'all', label: '전체' },
     { value: 'recent', label: '최신순' },
     { value: 'oldest', label: '오래된순' },
     { value: 'favorite', label: '즐겨찾기' },
   ];
 
-  const [selectedFilter, setSelectedFilter] = useState<string>('all');
-  const {
-    pictures,
-    isLoading,
-    isLoadingMore,
-    hasError,
-    errorMessage,
-    containerRef,
-    retry,
-  } = useDogPicturesBinding();
+  const filterOptions = customFilterOptions || defaultFilterOptions;
 
-  const handleFilterChange = (value: string) => {
+  // ========================================
+  // Handlers
+  // ========================================
+
+  const handleFilterChange = (value: string): void => {
     setSelectedFilter(value);
+    onFilterChange?.(value);
   };
 
-  // 스플래시 스크린 컴포넌트
+  const handlePictureClick = (picture: { id: number; src: string; alt: string }): void => {
+    onPictureClick?.(picture);
+  };
+
+  // ========================================
+  // Render Splash Screen Component
+  // ========================================
+
   const SplashScreen: React.FC<{ index: number }> = ({ index }) => (
     <div className={styles.splashScreen} data-testid={`splash-screen-${index}`}>
       <div className={styles.splashLine}></div>
     </div>
   );
 
+  // ========================================
+  // CSS Classes
+  // ========================================
+
+  const containerClasses: string = [
+    styles.container,
+    styles[`variant-${variant}`],
+    styles[`theme-${theme}`],
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  // ========================================
+  // Render
+  // ========================================
+
   return (
-    <div className={styles.container} data-testid="pictures-container">
-      {/* gap: 1168 x 32 */}
+    <div className={containerClasses} data-testid="pictures-container">
+      {/* Gap */}
       <div className={styles.gap}></div>
 
-      {/* filter: 1168 x 48 */}
+      {/* Filter Section */}
       <div className={styles.filter}>
         <SelectBox
           options={filterOptions}
@@ -54,12 +189,12 @@ const Pictures: React.FC = () => {
         />
       </div>
 
-      {/* gap: 1168 x 42 */}
+      {/* Gap */}
       <div className={styles.gap}></div>
 
-      {/* main: 1168 x auto */}
+      {/* Main Content */}
       <div className={styles.main}>
-        {/* 에러 메시지 */}
+        {/* Error Message */}
         {hasError && (
           <div className={styles.errorContainer} data-testid="error-message">
             <p className={styles.errorMessage}>{errorMessage}</p>
@@ -69,7 +204,7 @@ const Pictures: React.FC = () => {
           </div>
         )}
 
-        {/* 로딩 중 스플래시 스크린 */}
+        {/* Loading Splash Screens */}
         {isLoading && (
           <div className={styles.pictureGrid}>
             {Array.from({ length: 6 }, (_, index) => (
@@ -78,7 +213,7 @@ const Pictures: React.FC = () => {
           </div>
         )}
 
-        {/* 사진 그리드 */}
+        {/* Picture Grid */}
         {!isLoading && (
           <div className={styles.pictureGrid} ref={containerRef}>
             {pictures.map((picture, index) => (
@@ -86,6 +221,15 @@ const Pictures: React.FC = () => {
                 key={picture.id}
                 className={styles.pictureItem}
                 data-testid={`picture-item-${index}`}
+                onClick={() => handlePictureClick(picture)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handlePictureClick(picture);
+                  }
+                }}
               >
                 <img
                   src={picture.src}
@@ -95,7 +239,7 @@ const Pictures: React.FC = () => {
               </div>
             ))}
 
-            {/* 추가 로딩 중 스플래시 스크린 */}
+            {/* Additional Loading Splash Screens */}
             {isLoadingMore && (
               <>
                 <SplashScreen index={pictures.length} />
@@ -112,5 +256,9 @@ const Pictures: React.FC = () => {
     </div>
   );
 };
+
+// ========================================
+// Export
+// ========================================
 
 export default Pictures;

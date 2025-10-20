@@ -17,6 +17,72 @@
 }
 
 /* ========================================
+ * Variant Styles
+ * ======================================== */
+
+.variant-default {
+  /* 기본 스타일 - 이미 container에 정의됨 */
+}
+
+.variant-compact {
+  max-width: 800px;
+  padding: 0 12px;
+}
+
+.variant-compact .pictureGrid {
+  grid-template-columns: repeat(auto-fit, 400px);
+  gap: 16px;
+}
+
+.variant-compact .pictureItem {
+  width: 400px;
+  height: 400px;
+}
+
+/* ========================================
+ * Theme Styles
+ * ======================================== */
+
+.theme-light {
+  /* 라이트 테마 - 기본 스타일 */
+}
+
+.theme-dark {
+  background-color: var(--color-gray-90);
+  color: var(--color-gray-10);
+}
+
+.theme-dark .errorContainer {
+  background-color: var(--color-gray-80);
+}
+
+.theme-dark .errorMessage {
+  color: var(--color-gray-10);
+}
+
+.theme-dark .retryButton {
+  background-color: var(--color-primary-60);
+  color: var(--color-gray-10);
+}
+
+.theme-dark .retryButton:hover {
+  background-color: var(--color-primary-70);
+}
+
+.theme-dark .pictureItem {
+  background-color: var(--color-gray-70);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.theme-dark .pictureItem:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.theme-dark .splashScreen {
+  background-color: var(--color-gray-70);
+}
+
+/* ========================================
  * Gap Sections
  * ======================================== */
 
@@ -70,11 +136,23 @@
   background-color: var(--color-gray-20); /* #d9d9d9 */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+  outline: none;
 }
 
 .pictureItem:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.pictureItem:focus {
+  outline: 2px solid var(--color-primary-50);
+  outline-offset: 2px;
+}
+
+.pictureItem:focus-visible {
+  outline: 2px solid var(--color-primary-50);
+  outline-offset: 2px;
 }
 
 .pictureImage {
