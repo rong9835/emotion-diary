@@ -74,18 +74,23 @@ test.describe('Pictures Component - 강아지 사진 목록 조회 기능', () =
   });
 
   test('API 호출 실패 시 에러 처리가 되어야 함', async ({ page }) => {
+    // 새로운 페이지 컨텍스트로 테스트 (캐시 방지)
+    const newPage = await page.context().newPage();
+
     // API 호출을 실패하도록 모킹
-    await page.route('https://dog.ceo/api/breeds/image/random/6', (route) => {
+    await newPage.route('https://dog.ceo/api/breeds/image/random/6', (route) => {
       route.abort('failed');
     });
 
-    // 페이지 새로고침
-    await page.reload();
+    // 페이지로 이동
+    await newPage.goto('/pictures');
 
-    // 에러 메시지가 표시되는지 확인
-    await expect(page.locator('[data-testid="error-message"]')).toBeVisible({
-      timeout: 2000,
+    // 에러 메시지가 표시되는지 확인 (retry 1초 + 재시도를 고려해 3초)
+    await expect(newPage.locator('[data-testid="error-message"]')).toBeVisible({
+      timeout: 3000,
     });
+
+    await newPage.close();
   });
 
   test('스플래시 스크린 애니메이션이 올바르게 작동해야 함', async ({
