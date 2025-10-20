@@ -1,6 +1,6 @@
 /* ========================================
  * Pictures Component Styles
- * 와이어프레임 구조 기반 구현
+ * 피그마 디자인 기반 구현
  * ======================================== */
 
 /* ========================================
@@ -13,6 +13,7 @@
   width: 100%;
   max-width: 1168px;
   margin: 0 auto;
+  padding: 0 16px;
 }
 
 /* ========================================
@@ -31,6 +32,12 @@
 .filter {
   width: 100%;
   height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.filterSelect {
+  width: 120px; /* 피그마 디자인에 맞춘 크기 */
 }
 
 /* ========================================
@@ -40,4 +47,72 @@
 .main {
   width: 100%;
   flex: 1;
+}
+
+/* ========================================
+ * Picture Grid Layout
+ * ======================================== */
+
+.pictureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(640px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.pictureItem {
+  position: relative;
+  width: 640px;
+  height: 640px;
+  border-radius: 24px;
+  overflow: hidden;
+  background-color: var(--color-gray-20); /* #d9d9d9 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.pictureItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.pictureImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+/* ========================================
+ * Responsive Design
+ * ======================================== */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .pictureGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pictureItem {
+    width: 100%;
+    height: 300px;
+  }
+
+  .filterSelect {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 8px;
+  }
+
+  .pictureItem {
+    height: 250px;
+  }
 }
