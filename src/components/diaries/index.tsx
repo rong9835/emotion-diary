@@ -61,7 +61,6 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
 
   const { navigateToDiaryDetail } = useDiaryRouting();
 
-
   // ========================================
   // Filter Options
   // ========================================
@@ -98,10 +97,7 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
     console.log('Page change:', page);
   };
 
-  const handleDeleteDiary = (
-    event: React.MouseEvent,
-    id: string
-  ): void => {
+  const handleDeleteDiary = (event: React.MouseEvent, id: string): void => {
     event.stopPropagation(); // 이벤트 버블링 방지
     console.log('Delete diary:', id);
     // 일기 삭제 로직 추가 예정

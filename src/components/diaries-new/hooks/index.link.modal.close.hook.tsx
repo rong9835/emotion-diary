@@ -43,8 +43,8 @@ export const useModalClose = (): UseModalCloseReturn => {
       <Modal
         variant="info"
         actions="dual"
-        title="등록을 취소하시겠습니까?"
-        content="작성 중인 내용이 사라집니다."
+        title="일기 등록 취소"
+        content="일기 등록을 취소 하시겠어요?"
         confirmText="등록취소"
         cancelText="계속작성"
         onConfirm={() => {

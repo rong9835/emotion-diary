@@ -20,6 +20,9 @@ export default defineConfig({
   // /* 리포터 설정 */
   // reporter: 'html',
 
+  /* 테스트 파일 패턴 설정 */
+  testMatch: ['**/*.spec.{js,ts}', '**/*.test.{js,ts}'],
+
   /* 모든 테스트에 적용되는 공통 설정 */
   use: {
     // /* 실패 시 스크린샷 캡처 */
