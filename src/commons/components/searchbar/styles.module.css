@@ -227,15 +227,6 @@
   color: var(--color-text-disabled);
 }
 
-/* Input with icons padding adjustments */
-.input--with-search-icon {
-  padding-left: 8px;
-}
-
-.input--with-clear-button {
-  padding-right: 8px;
-}
-
 /* ========================================
    Icons & Buttons
    ======================================== */
