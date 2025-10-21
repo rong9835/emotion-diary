@@ -51,7 +51,7 @@ export default function Layout({ children }: LayoutProps) {
       )}
 
       {/* Gap 영역: 1168 * 24 */}
-      {(showHeader || showBanner) && <div className={styles.gap}></div>}
+      {showBanner && <div className={styles.gap}></div>}
 
       {/* Banner 영역: 1168 * 240 */}
       {showBanner && (
@@ -67,7 +67,7 @@ export default function Layout({ children }: LayoutProps) {
       )}
 
       {/* Gap 영역: 1168 * 24 */}
-      {(showBanner || showNavigation) && <div className={styles.gap}></div>}
+      {showBanner && showNavigation && <div className={styles.gap}></div>}
 
       {/* Navigation 영역: 1168 * 48 */}
       {showNavigation && (
