@@ -5,7 +5,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { useRef } from 'react';
 import { useModal } from '@/commons/providers/modal/modal.provider';
 import { Modal } from '@/commons/components/modal';
 import { ROUTES } from '@/commons/constants/url';
@@ -16,12 +15,12 @@ import { ROUTES } from '@/commons/constants/url';
 
 const signupSchema = z
   .object({
-    email: z.string().min(1, '이메일을 입력해주세요').refine(
-      (email) => email.includes('@'),
-      {
+    email: z
+      .string()
+      .min(1, '이메일을 입력해주세요')
+      .refine((email) => email.includes('@'), {
         message: '이메일에 @를 포함해주세요',
-      }
-    ),
+      }),
     password: z
       .string()
       .min(8, '비밀번호는 8자리 이상이어야 합니다')
@@ -32,7 +31,7 @@ const signupSchema = z
         }
       ),
     passwordConfirm: z.string().min(1, '비밀번호 확인을 입력해주세요'),
-    name: z.string().min(1, '이름을 입력해주세요'),
+    name: z.string().min(2, '이름은 2글자 이상이어야 합니다'),
   })
   .refine((data) => data.password === data.passwordConfirm, {
     message: '비밀번호가 일치하지 않습니다',
@@ -55,29 +54,34 @@ interface CreateUserResponse {
   _id: string;
 }
 
-const createUser = async (input: CreateUserInput): Promise<CreateUserResponse> => {
-  const response = await fetch('https://main-practice.codebootcamp.co.kr/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: `
+const createUser = async (
+  input: CreateUserInput
+): Promise<CreateUserResponse> => {
+  const response = await fetch(
+    'https://main-practice.codebootcamp.co.kr/graphql',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: `
         mutation createUser($createUserInput: CreateUserInput!) {
           createUser(createUserInput: $createUserInput) {
             _id
           }
         }
       `,
-      variables: {
-        createUserInput: {
-          email: input.email,
-          password: input.password,
-          name: input.name,
+        variables: {
+          createUserInput: {
+            email: input.email,
+            password: input.password,
+            name: input.name,
+          },
         },
-      },
-    }),
-  });
+      }),
+    }
+  );
 
   const result = await response.json();
 
@@ -95,25 +99,53 @@ const createUser = async (input: CreateUserInput): Promise<CreateUserResponse> =
 export const useSignupForm = () => {
   const router = useRouter();
   const { openModal, closeAllModals } = useModal();
-  const hasShownSuccessModal = useRef(false);
-  const hasShownFailureModal = useRef(false);
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
+    watch,
   } = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
     mode: 'onChange',
   });
 
+  // 모든 필드 값 감시
+  const watchedValues = watch();
+
+  // 커스텀 유효성 검사 로직
+  const isFormValid = () => {
+    const { email, password, passwordConfirm, name } = watchedValues || {};
+
+    // 모든 필드가 입력되었는지 확인 (빈 문자열도 입력으로 간주)
+    if (
+      email === undefined ||
+      password === undefined ||
+      passwordConfirm === undefined ||
+      name === undefined
+    ) {
+      return false;
+    }
+
+    // 빈 문자열이 아닌지 확인
+    if (
+      !email.trim() ||
+      !password.trim() ||
+      !passwordConfirm.trim() ||
+      !name.trim()
+    ) {
+      return false;
+    }
+
+    // 모든 필드가 입력되었으면 버튼을 활성화 (에러 메시지는 폼 제출 시 표시)
+    return true;
+  };
+
   const mutation = useMutation({
     mutationFn: createUser,
+    retry: false, // 재시도 비활성화
     onSuccess: (data) => {
-      if (data._id && !hasShownSuccessModal.current) {
-        hasShownSuccessModal.current = true;
-        hasShownFailureModal.current = false;
-
+      if (data._id) {
         openModal(
           <Modal
             variant="info"
@@ -130,23 +162,18 @@ export const useSignupForm = () => {
       }
     },
     onError: () => {
-      if (!hasShownFailureModal.current) {
-        hasShownFailureModal.current = true;
-        hasShownSuccessModal.current = false;
-
-        openModal(
-          <Modal
-            variant="danger"
-            actions="single"
-            title="가입 실패"
-            content="회원가입에 실패했습니다"
-            confirmText="확인"
-            onConfirm={() => {
-              closeAllModals();
-            }}
-          />
-        );
-      }
+      openModal(
+        <Modal
+          variant="danger"
+          actions="single"
+          title="가입 실패"
+          content="회원가입에 실패했습니다"
+          confirmText="확인"
+          onConfirm={() => {
+            closeAllModals();
+          }}
+        />
+      );
     },
   });
 
@@ -162,7 +189,7 @@ export const useSignupForm = () => {
     register,
     handleSubmit: handleSubmit(onSubmit),
     errors,
-    isValid,
+    isValid: isFormValid(),
     isLoading: mutation.isPending,
   };
 };

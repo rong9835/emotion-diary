@@ -152,6 +152,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
 
     return (
       <div
+        {...props}
         ref={ref || modalRef}
         className={modalClasses}
         onKeyDown={handleKeyDown}
@@ -161,7 +162,6 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         aria-labelledby="modal-title"
         aria-describedby="modal-content"
         data-modal-component="true"
-        {...props}
       >
         {/* 모달 헤더 */}
         <div className={styles.header}>
@@ -182,17 +182,13 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         {/* 모달 액션 버튼 영역 */}
         <div className={styles.actions}>
           {actions === 'single' ? (
-            <Button
-              variant="primary"
-              theme="light"
-              size="large"
-              fullWidth
+            <button
               onClick={handleConfirm}
               disabled={disabled}
               className={styles['button--single']}
             >
               {confirmText}
-            </Button>
+            </button>
           ) : (
             <>
               <Button

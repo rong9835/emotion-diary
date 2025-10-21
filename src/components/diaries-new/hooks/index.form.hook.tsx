@@ -153,25 +153,22 @@ export const useDiaryForm = () => {
   // ========================================
 
   const showSuccessModal = (diaryId: number) => {
-    const modalContent = (
-      <div data-testid="diary-register-success-modal">
-        <Modal
-          variant="info"
-          actions="single"
-          title="등록 완료"
-          content="일기가 성공적으로 등록되었습니다."
-          onConfirm={() => handleSuccessModalConfirm(diaryId)}
-          confirmText="확인"
-        />
-      </div>
+    openModal(
+      <Modal
+        variant="info"
+        actions="single"
+        title="등록 완료"
+        content="일기가 성공적으로 등록되었습니다."
+        onConfirm={() => handleSuccessModalConfirm(diaryId)}
+        confirmText="확인"
+        data-testid="diary-register-success-modal"
+      />,
+      {
+        closeOnBackdropClick: false,
+        closeOnEscape: false,
+        showCloseButton: false,
+      }
     );
-
-    openModal(modalContent, {
-      closeOnBackdropClick: false,
-      closeOnEscape: false,
-      showCloseButton: false,
-      className: 'diary-register-success-modal',
-    });
   };
 
   const handleSuccessModalConfirm = (diaryId: number) => {

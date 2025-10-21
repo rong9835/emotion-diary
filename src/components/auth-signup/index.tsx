@@ -11,7 +11,8 @@ import styles from './styles.module.css';
 // ========================================
 
 export const AuthSignup: React.FC = () => {
-  const { register, handleSubmit, errors, isValid, isLoading } = useSignupForm();
+  const { register, handleSubmit, errors, isValid, isLoading } =
+    useSignupForm();
 
   return (
     <div className={styles.container} data-testid="signup-container">

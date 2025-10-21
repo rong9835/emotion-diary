@@ -170,7 +170,7 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
           {/* 날짜 정보 (Frame): 107 * 20 */}
           <div className={styles.dateFrame}>
             <span className={styles.dateText} data-testid="diary-date">
-              {diaryData.createdAt}
+              {new Date(diaryData.createdAt).toLocaleDateString('ko-KR')}
             </span>
             <span className={styles.createdText}>작성</span>
           </div>

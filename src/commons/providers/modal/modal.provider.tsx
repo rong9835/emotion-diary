@@ -198,8 +198,6 @@ const ModalPortal: React.FC<ModalPortalProps> = ({
   index,
   onClose,
 }): JSX.Element => {
-  const modalId = `modal-${modal.id}`;
-
   const handleBackdropClick = (event: React.MouseEvent): void => {
     if (
       event.target === event.currentTarget &&
@@ -225,7 +223,26 @@ const ModalPortal: React.FC<ModalPortalProps> = ({
     }
   }, []);
 
-  const modalElement = (
+  // Modal 컴포넌트인지 확인 (displayName으로 판단)
+  // forwardRef로 감싸진 컴포넌트는 type이 object이므로 둘 다 허용
+  const isModalComponent =
+    React.isValidElement(modal.content) &&
+    modal.content.type &&
+    (typeof modal.content.type === 'function' || typeof modal.content.type === 'object') &&
+    (modal.content.type as { displayName?: string }).displayName === 'Modal';
+
+  const modalElement = isModalComponent ? (
+    // Modal 컴포넌트인 경우: backdrop만 렌더링
+    <div
+      ref={modalRef}
+      className={styles.modalBackdrop}
+      style={{ zIndex: 1000 + index }}
+      onClick={handleBackdropClick}
+    >
+      {modal.content}
+    </div>
+  ) : (
+    // 일반 콘텐츠인 경우: 기존 방식 사용
     <div
       ref={modalRef}
       className={styles.modalBackdrop}
@@ -233,11 +250,8 @@ const ModalPortal: React.FC<ModalPortalProps> = ({
       onClick={handleBackdropClick}
       role="dialog"
       aria-modal="true"
-      aria-labelledby={`${modalId}-title`}
-      aria-describedby={`${modalId}-description`}
     >
       <div
-        id={modalId}
         className={`${styles.modalContent} ${modal.options.className || ''}`}
         onClick={(e) => e.stopPropagation()}
       >
@@ -251,12 +265,6 @@ const ModalPortal: React.FC<ModalPortalProps> = ({
             ×
           </button>
         )}
-        <div id={`${modalId}-title`} className="sr-only">
-          모달
-        </div>
-        <div id={`${modalId}-description`} className="sr-only">
-          모달 내용입니다.
-        </div>
         {modal.content}
       </div>
     </div>

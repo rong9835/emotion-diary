@@ -5,12 +5,6 @@ import { defineConfig, devices } from '@playwright/test';
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  testMatch: [
-    '**/e2e/**/*.spec.ts',
-    '**/components/**/tests/**/*.binding.hook.spec.ts',
-    '**/components/**/tests/**/*.form.hook.spec.ts',
-  ],
-
   // /* 병렬로 실행할 최대 테스트 수 */
   // fullyParallel: true,
 

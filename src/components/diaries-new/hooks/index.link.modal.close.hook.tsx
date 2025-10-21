@@ -63,7 +63,6 @@ export const useModalClose = (): UseModalCloseReturn => {
       closeOnBackdropClick: false,
       closeOnEscape: true,
       showCloseButton: false,
-      className: '!p-0 !rounded-none !bg-transparent !shadow-none', // Modal provider의 모든 스타일 제거 (Modal 컴포넌트만 사용)
     });
   }, [openModal, closeModal, closeAll]);
 
