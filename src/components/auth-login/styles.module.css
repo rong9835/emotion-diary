@@ -63,10 +63,21 @@
 .inputGroup {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .input {
   width: 100%;
+}
+
+.errorMessage {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: -0.14px;
+  font-family: 'Pretendard Variable', var(--font-family-primary);
+  color: var(--color-error);
+  margin: 0;
 }
 
 .buttonGroup {

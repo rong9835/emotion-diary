@@ -143,7 +143,7 @@ export const PAGE_CONFIG: Record<string, PageMetadata> = {
       headerDarkModeToggle: false,
       banner: false,
       navigation: false,
-      footer: true,
+      footer: false,
     },
     title: '일기 상세',
     description: '감정 일기 상세 페이지',

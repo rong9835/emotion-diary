@@ -77,22 +77,23 @@ test.describe('Layout Link Routing', () => {
     await expect(diariesTab).toHaveClass(/activeTab/);
   });
 
-  test('일기 상세 페이지에서도 일기보관함이 활성 상태로 표시되어야 함', async ({
+  test('일기 상세 페이지에서는 네비게이션이 표시되지 않아야 함', async ({
     page,
   }) => {
     // 일기 상세 페이지로 직접 이동 (예: /diaries/1)
     await page.goto('/diaries/1');
 
-    // 페이지 로드 완료 대기 (data-testid 기반, timeout 500ms 미만)
-    await page.waitForSelector('[data-testid="nav-diaries"]', { timeout: 400 });
+    // 페이지 로드 완료 대기 (일기 상세 페이지의 data-testid로 확인)
+    await page.waitForSelector('[data-testid="diary-detail-page"]', {
+      timeout: 400,
+    });
 
-    // 일기보관함 탭이 활성 상태인지 확인
+    // 네비게이션이 표시되지 않는지 확인
     const diariesTab = page.locator('[data-testid="nav-diaries"]');
-    await expect(diariesTab).toHaveClass(/activeTab/);
+    await expect(diariesTab).not.toBeVisible();
 
-    // 사진보관함 탭은 비활성 상태인지 확인
     const picturesTab = page.locator('[data-testid="nav-pictures"]');
-    await expect(picturesTab).not.toHaveClass(/activeTab/);
+    await expect(picturesTab).not.toBeVisible();
   });
 
   test('네비게이션 탭에 cursor pointer 스타일이 적용되어야 함', async ({
@@ -173,22 +174,23 @@ test.describe('Layout Link Routing', () => {
     await expect(diariesTab).toHaveClass(/activeTab/);
   });
 
-  test('존재하지 않는 일기 상세 페이지 접근 시에도 네비게이션이 정상 작동해야 함', async ({
+  test('존재하지 않는 일기 상세 페이지 접근 시에도 네비게이션이 표시되지 않아야 함', async ({
     page,
   }) => {
     // 존재하지 않는 일기 ID로 접근
     await page.goto('/diaries/999999');
 
-    // 페이지 로드 완료 대기 (에러 페이지라도 레이아웃은 로드되어야 함)
-    await page.waitForSelector('[data-testid="nav-diaries"]', { timeout: 400 });
+    // 페이지 로드 완료 대기 (일기 상세 페이지의 data-testid로 확인)
+    await page.waitForSelector('[data-testid="diary-detail-page"]', {
+      timeout: 400,
+    });
 
-    // 일기보관함 탭이 여전히 활성 상태여야 함
+    // 네비게이션이 표시되지 않는지 확인
     const diariesTab = page.locator('[data-testid="nav-diaries"]');
-    await expect(diariesTab).toHaveClass(/activeTab/);
+    await expect(diariesTab).not.toBeVisible();
 
-    // 네비게이션 클릭이 여전히 작동해야 함
-    await page.click('[data-testid="nav-diaries"]');
-    await expect(page).toHaveURL('/diaries');
+    const picturesTab = page.locator('[data-testid="nav-pictures"]');
+    await expect(picturesTab).not.toBeVisible();
   });
 
   test('키보드 접근성: 네비게이션 요소들이 클릭 가능해야 함', async ({

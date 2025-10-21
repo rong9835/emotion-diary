@@ -1,13 +1,18 @@
+'use client';
+
 import React from 'react';
 import { Input } from '../../commons/components/input';
 import { Button } from '../../commons/components/button';
 import styles from './styles.module.css';
+import { useLoginForm } from './hooks/index.form.hook';
 
 // ========================================
 // AuthLogin Component
 // ========================================
 
 export const AuthLogin: React.FC = () => {
+  const { register, handleSubmit, errors, isValid, isLoading } = useLoginForm();
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -18,7 +23,7 @@ export const AuthLogin: React.FC = () => {
         </div>
 
         {/* Form */}
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit} data-testid="login-form">
           {/* Email Input */}
           <div className={styles.inputGroup}>
             <Input
@@ -28,7 +33,12 @@ export const AuthLogin: React.FC = () => {
               theme="light"
               size="medium"
               className={styles.input}
+              data-testid="login-email-input"
+              {...register('email')}
             />
+            {errors.email && (
+              <p className={styles.errorMessage}>{errors.email.message}</p>
+            )}
           </div>
 
           {/* Password Input */}
@@ -40,7 +50,12 @@ export const AuthLogin: React.FC = () => {
               theme="light"
               size="medium"
               className={styles.input}
+              data-testid="login-password-input"
+              {...register('password')}
             />
+            {errors.password && (
+              <p className={styles.errorMessage}>{errors.password.message}</p>
+            )}
           </div>
 
           {/* Login Button */}
@@ -51,8 +66,10 @@ export const AuthLogin: React.FC = () => {
               theme="light"
               size="large"
               className={styles.loginButton}
+              disabled={!isValid || isLoading}
+              data-testid="login-submit-button"
             >
-              로그인
+              {isLoading ? '로그인 중...' : '로그인'}
             </Button>
           </div>
         </form>
