@@ -1,0 +1,169 @@
+/* ========================================
+ * AuthLogin Component Styles
+ * ======================================== */
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-primary);
+  padding: 1rem;
+}
+
+.content {
+  width: 100%;
+  max-width: 400px;
+  background: var(--color-bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border-secondary);
+}
+
+/* ========================================
+ * Header Styles
+ * ======================================== */
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 700;
+  letter-spacing: -0.28px;
+  font-family: 'Pretendard Variable', var(--font-family-primary);
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: -0.14px;
+  font-family: 'Pretendard Variable', var(--font-family-primary);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ========================================
+ * Form Styles
+ * ======================================== */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  width: 100%;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.loginButton {
+  width: 100%;
+}
+
+/* ========================================
+ * Footer Styles
+ * ======================================== */
+
+.footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border-secondary);
+}
+
+.signupText {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: -0.14px;
+  font-family: 'Pretendard Variable', var(--font-family-primary);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.signupLink {
+  color: var(--color-text-link);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.signupLink:hover {
+  color: var(--color-brand-hover);
+  text-decoration: underline;
+}
+
+/* ========================================
+ * Responsive Design
+ * ======================================== */
+
+@media (min-width: 768px) {
+  .content {
+    padding: 3rem;
+    max-width: 480px;
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: -0.36px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.18px;
+  }
+
+  .signupText {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.18px;
+  }
+}
+
+/* ========================================
+ * Focus States
+ * ======================================== */
+
+.container:focus-within {
+  outline: none;
+}
+
+/* ========================================
+ * Animation
+ * ======================================== */
+
+.content {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
