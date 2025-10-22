@@ -13,7 +13,7 @@
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding: 10px 0;
 }
 
@@ -33,6 +33,33 @@
   letter-spacing: -0.18px;
   color: var(--color-gray-black);
   margin: 0;
+}
+
+/* ========================================
+ * 인증 상태 UI 스타일
+ * ======================================== */
+
+.authStatus {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userName {
+  font-family: var(--font-family-primary);
+  font-size: var(--typography-body-medium-mobile-size);
+  font-weight: 600;
+  line-height: var(--typography-body-medium-mobile-line-height);
+  letter-spacing: -0.14px;
+  color: var(--color-text-primary);
+}
+
+.logoutButton {
+  width: 80px;
+}
+
+.loginButton {
+  width: 80px;
 }
 
 /* Gap 영역: 1168 * 24 */

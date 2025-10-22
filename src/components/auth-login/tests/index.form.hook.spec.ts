@@ -101,7 +101,7 @@ test.describe('로그인 폼 기능 테스트', () => {
 
     if (userStr) {
       const user = JSON.parse(userStr);
-      expect(user._id).toBeTruthy();
+      expect(user.id).toBeTruthy();
       expect(user.name).toBeTruthy();
     }
 

@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/commons/providers/modal/modal.provider';
+import { useAuth } from '@/commons/providers/auth/auth.provider';
 import { Modal } from '@/commons/components/modal';
 import { ROUTES } from '@/commons/constants/url';
 
@@ -118,6 +119,7 @@ const fetchUserLoggedIn = async (
 export const useLoginForm = () => {
   const router = useRouter();
   const { openModal, closeAllModals } = useModal();
+  const { login } = useAuth();
 
   const {
     register,
@@ -169,9 +171,12 @@ export const useLoginForm = () => {
     },
     retry: false, // 재시도 비활성화
     onSuccess: (data) => {
-      // 로컬스토리지에 저장
-      localStorage.setItem('accessToken', data.accessToken);
-      localStorage.setItem('user', JSON.stringify(data.user));
+      // Auth Provider를 통해 로그인 상태 업데이트
+      login(data.accessToken, {
+        id: data.user._id,
+        email: '', // 이메일은 API에서 반환하지 않으므로 빈 문자열
+        name: data.user.name,
+      });
 
       // 성공 모달 표시
       openModal(
