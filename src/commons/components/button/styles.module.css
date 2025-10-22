@@ -14,9 +14,7 @@
   justify-content: center;
   position: relative;
 
-  /* Sizing */
-  height: 48px;
-  /* min-width는 size variant에서 조정 가능하도록 제거 */
+  /* Sizing - width는 className으로 제어 */
 
   /* Typography - Figma 기반 */
   font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont,
@@ -42,22 +40,19 @@
 }
 
 /* ========================================
- * Size Variants
+ * Size Variants (height 기준)
  * ======================================== */
 
 .size-small {
-  /* width는 className으로 오버라이드 가능하도록 제거 */
-  min-width: auto;
+  height: 40px;
 }
 
 .size-medium {
-  /* width는 className으로 오버라이드 가능하도록 제거 */
-  min-width: auto;
+  height: 48px;
 }
 
 .size-large {
-  /* width는 className으로 오버라이드 가능하도록 제거 */
-  min-width: auto;
+  height: 56px;
 }
 
 .fullWidth {
@@ -318,10 +313,20 @@
 @media (max-width: 768px) {
   .button {
     font-size: 16px;
+  }
+
+  /* 모바일에서 버튼 height 약간 감소 */
+  .size-small {
+    height: 36px;
+  }
+
+  .size-medium {
     height: 44px;
   }
 
-  /* size variants는 className으로 width를 제어하므로 여기서는 제거 */
+  .size-large {
+    height: 52px;
+  }
 
   .buttonGroup.direction-horizontal {
     flex-direction: column;
