@@ -16,7 +16,7 @@
 
   /* Sizing */
   height: 48px;
-  min-width: 104px; /* 피그마 디자인에 맞춘 최소 너비 */
+  /* min-width는 size variant에서 조정 가능하도록 제거 */
 
   /* Typography - Figma 기반 */
   font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont,
@@ -46,17 +46,18 @@
  * ======================================== */
 
 .size-small {
-  width: 104px; /* 피그마 디자인에 맞춘 크기 */
-  min-width: 104px;
+  /* width는 className으로 오버라이드 가능하도록 제거 */
+  min-width: auto;
 }
 
 .size-medium {
-  width: 104px; /* 피그마 디자인에 맞춘 크기 */
+  /* width는 className으로 오버라이드 가능하도록 제거 */
+  min-width: auto;
 }
 
 .size-large {
-  width: 224px; /* 피그마 디자인에 맞춘 크기 */
-  min-width: 224px;
+  /* width는 className으로 오버라이드 가능하도록 제거 */
+  min-width: auto;
 }
 
 .fullWidth {
@@ -320,19 +321,7 @@
     height: 44px;
   }
 
-  .size-small {
-    width: 96px; /* 모바일에서 약간 작게 */
-    min-width: 96px;
-  }
-
-  .size-medium {
-    width: 104px; /* 모바일에서 약간 작게 */
-  }
-
-  .size-large {
-    width: 200px; /* 모바일에서 약간 작게 */
-    min-width: 200px;
-  }
+  /* size variants는 className으로 width를 제어하므로 여기서는 제거 */
 
   .buttonGroup.direction-horizontal {
     flex-direction: column;

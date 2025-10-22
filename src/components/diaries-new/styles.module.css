@@ -293,6 +293,15 @@
   gap: 16px;
 }
 
+/* 버튼 너비 스타일 */
+.closeButton_footer {
+  width: 104px;
+}
+
+.submitButton {
+  width: 104px;
+}
+
 /* ========================================
    Responsive Design
    ======================================== */

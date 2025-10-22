@@ -242,6 +242,7 @@ export const DiariesNew: React.FC<DiariesNewProps> = ({
               size="medium"
               theme={theme}
               onClick={handleCancel}
+              className={styles.closeButton_footer}
               data-testid="diary-write-close-button-footer"
             >
               닫기
@@ -252,6 +253,7 @@ export const DiariesNew: React.FC<DiariesNewProps> = ({
               size="medium"
               theme={theme}
               disabled={!isFormValid}
+              className={styles.submitButton}
               data-testid="diary-submit-button"
             >
               등록하기
