@@ -13,6 +13,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  box-sizing: border-box; /* border와 padding을 width/height에 포함 */
 
   /* Sizing - width는 className으로 제어 */
 
