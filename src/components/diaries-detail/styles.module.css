@@ -311,7 +311,7 @@
   width: 1069px;
 }
 
-/* 입력 버튼: 51 * 40 (height는 size="small"에서 자동 적용) */
+/* 입력 버튼: 51 * 48 (height는 size="medium"에서 자동 적용) */
 .retrospectSubmitButton {
   width: 51px;
 }

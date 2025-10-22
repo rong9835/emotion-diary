@@ -253,7 +253,7 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
           />
           <Button
             variant="primary"
-            size="small"
+            size="medium"
             theme="light"
             onClick={handleRetrospectSubmit}
             className={styles.retrospectSubmitButton}
