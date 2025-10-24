@@ -13,6 +13,12 @@ test.describe('DiariesDetail Binding Hook', () => {
   test.beforeEach(async ({ page }) => {
     // 먼저 페이지로 이동하여 로컬스토리지 컨텍스트를 얻습니다
     await page.goto('/');
+
+    // 테스트 환경에서 인증 가드 바이패스 설정
+    await page.evaluate(() => {
+      window.__TEST_BYPASS__ = true;
+    });
+
     // 로컬스토리지에 테스트 데이터 설정
     await page.evaluate((data) => {
       localStorage.setItem('diaries', JSON.stringify([data]));

@@ -25,6 +25,15 @@ interface AuthGuardProps {
 
 const TEST_ENV = 'test';
 
+/**
+ * 전역 테스트 바이패스 변수 타입 확장
+ */
+declare global {
+  interface Window {
+    __TEST_BYPASS__?: boolean;
+  }
+}
+
 // ========================================
 // AuthGuard Component
 // ========================================
@@ -45,11 +54,20 @@ export function AuthGuard({ children }: AuthGuardProps) {
   const pageAccessLevel = getPageAccessLevel(pathname);
   const isMemberOnlyPage = pageAccessLevel === AccessLevel.MEMBER_ONLY;
 
-  // 로그인 상태 확인 (실제 환경에서는 실제 로그인 상태, 테스트 환경에서는 항상 로그인 상태)
-  const shouldBeLoggedIn = isTestEnv ? true : checkAuthStatus();
+  // 테스트 바이패스 플래그 확인
+  // window.__TEST_BYPASS__가 true인 경우 권한 검사 완전 우회
+  const isTestBypass =
+    typeof window !== 'undefined' && window.__TEST_BYPASS__ === true;
+  const shouldCheckAuth =
+    typeof window !== 'undefined' && window.__TEST_BYPASS__ === false;
+
+  // 로그인 상태 확인
+  const shouldBeLoggedIn = shouldCheckAuth ? checkAuthStatus() : true;
 
   // 권한 검증 로직
-  const hasPermission = isTestEnv || !isMemberOnlyPage || shouldBeLoggedIn;
+  // 테스트 바이패스가 활성화된 경우 권한 검사 완전 우회
+  const hasPermission =
+    isTestBypass || isTestEnv || !isMemberOnlyPage || shouldBeLoggedIn;
 
   // 로그인 모달 표시
   const showLoginModal = useCallback(() => {

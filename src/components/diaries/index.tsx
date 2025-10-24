@@ -11,6 +11,7 @@ import { EmotionType, getEmotionLabel } from '@/commons/constants/enum';
 import { useNewDiaryModal } from './hooks/index.link.modal.hook';
 import { useDiariesBinding } from './hooks/index.binding.hook';
 import { useDiaryRouting } from './hooks/index.link.routing.hook';
+import { useSearch } from './hooks/index.search.hook';
 import styles from './styles.module.css';
 
 // ========================================
@@ -39,7 +40,6 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   // ========================================
 
   const [filterValue, setFilterValue] = useState<string>('all');
-  const [searchValue, setSearchValue] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 12;
 
@@ -54,6 +54,16 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   // ========================================
 
   const localStorageDiaries = useDiariesBinding();
+
+  // ========================================
+  // Search Hook
+  // ========================================
+
+  const {
+    searchValue,
+    handleSearch,
+    filteredDiaries: searchedDiaries,
+  } = useSearch(localStorageDiaries);
 
   // ========================================
   // Routing Hook
@@ -83,11 +93,6 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
     console.log('Filter changed:', value);
   };
 
-  const handleSearch = (value: string): void => {
-    setSearchValue(value);
-    console.log('Search:', value);
-  };
-
   const handleNewDiary = (): void => {
     openNewDiaryModal();
   };
@@ -111,13 +116,10 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   // Filtered Data
   // ========================================
 
-  const filteredDiaries = localStorageDiaries.filter((diary) => {
+  const filteredDiaries = searchedDiaries.filter((diary) => {
     const matchesFilter =
       filterValue === 'all' || diary.emotion.toLowerCase() === filterValue;
-    const matchesSearch =
-      searchValue === '' ||
-      diary.title.toLowerCase().includes(searchValue.toLowerCase());
-    return matchesFilter && matchesSearch;
+    return matchesFilter;
   });
 
   const totalPages = Math.ceil(filteredDiaries.length / itemsPerPage);
@@ -229,6 +231,7 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
         <div className={styles.searchBar}>
           <Searchbar
             placeholder="검색어를 입력해 주세요."
+            value={searchValue}
             onSearch={handleSearch}
             variant="primary"
             size="medium"

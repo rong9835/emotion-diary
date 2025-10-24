@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { Button } from '@/commons/components/button';
 import { Input } from '@/commons/components/input';
@@ -11,6 +11,8 @@ import {
   ImageSize,
 } from '@/commons/constants/enum';
 import { useDiaryBinding } from './hooks/index.binding.hook';
+import { useRetrospectForm } from './hooks/index.retrospect.form.hook';
+import { useRetrospectList } from './hooks/index.retrospect.list.hook';
 import styles from './styles.module.css';
 
 // ========================================
@@ -31,27 +33,15 @@ export interface DiariesDetailProps {
 }
 
 export interface RetrospectData {
-  id: string;
+  id: number;
   content: string;
+  diaryId: number;
   createdAt: string;
 }
 
 // ========================================
-// Mock Data (회고용)
+// Mock Data (회고용) - 제거됨, 실제 데이터 사용
 // ========================================
-
-const mockRetrospectData: RetrospectData[] = [
-  {
-    id: '1',
-    content: '3년이 지나고 다시 보니 이때가 그립다.',
-    createdAt: '2024. 09. 24',
-  },
-  {
-    id: '2',
-    content: '3년이 지나고 다시 보니 이때가 그립다.',
-    createdAt: '2024. 09. 24',
-  },
-];
 
 // ========================================
 // DiariesDetail Component
@@ -64,10 +54,11 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
   // 실제 데이터 바인딩
   const { diaryData, isLoading, error } = useDiaryBinding(diaryId || '');
 
-  // 회고 관련 상태
-  const [retrospectInput, setRetrospectInput] = useState('');
-  const [retrospectList, setRetrospectList] =
-    useState<RetrospectData[]>(mockRetrospectData);
+  // 회고 폼 훅
+  const { register, handleSubmit, isValid } = useRetrospectForm();
+
+  // 회고 목록 훅
+  const { retrospectList } = useRetrospectList(diaryId || '');
 
   const handleEdit = () => {
     console.log('수정 버튼 클릭');
@@ -84,24 +75,6 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
     }
   };
 
-  const handleRetrospectSubmit = () => {
-    if (retrospectInput.trim()) {
-      const newRetrospect: RetrospectData = {
-        id: Date.now().toString(),
-        content: retrospectInput.trim(),
-        createdAt: new Date()
-          .toLocaleDateString('ko-KR', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-          })
-          .replace(/\. /g, '. '),
-      };
-      setRetrospectList([newRetrospect, ...retrospectList]);
-      setRetrospectInput('');
-      console.log('회고 추가됨:', newRetrospect);
-    }
-  };
 
   // 로딩 상태 처리
   if (isLoading) {
@@ -241,26 +214,31 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
         <div className={styles.retrospectLabel}>회고</div>
 
         {/* 입력 영역 */}
-        <div className={styles.retrospectInputFrame}>
+        <form
+          className={styles.retrospectInputFrame}
+          onSubmit={handleSubmit(diaryId || '')}
+        >
           <Input
             variant="primary"
             size="medium"
             theme="light"
             placeholder="회고를 남겨보세요."
-            value={retrospectInput}
-            onChange={(e) => setRetrospectInput(e.target.value)}
+            {...register('content')}
             className={styles.retrospectInputField}
+            data-testid="retrospect-input"
           />
           <Button
             variant="primary"
             size="medium"
             theme="light"
-            onClick={handleRetrospectSubmit}
+            type="submit"
+            disabled={!isValid}
             className={styles.retrospectSubmitButton}
+            data-testid="retrospect-submit"
           >
             입력
           </Button>
-        </div>
+        </form>
       </section>
 
       {/* Gap 영역: 1168 * 16 */}
@@ -268,14 +246,20 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
 
       {/* Retrospect List 영역: 1168 * 72 */}
       <section className={styles.retrospectList}>
-        {retrospectList.map((retrospect) => (
-          <div key={retrospect.id} className={styles.retrospectItem}>
-            <span className={styles.retrospectText}>{retrospect.content}</span>
-            <span className={styles.retrospectDate}>
-              [{retrospect.createdAt}]
-            </span>
+        {retrospectList.length > 0 ? (
+          retrospectList.map((retrospect) => (
+            <div key={retrospect.id} className={styles.retrospectItem}>
+              <span className={styles.retrospectText}>{retrospect.content}</span>
+              <span className={styles.retrospectDate}>
+                [{retrospect.createdAt}]
+              </span>
+            </div>
+          ))
+        ) : (
+          <div className={styles.retrospectEmpty}>
+            아직 회고가 없습니다. 첫 번째 회고를 남겨보세요.
           </div>
-        ))}
+        )}
       </section>
     </div>
   );

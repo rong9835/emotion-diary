@@ -80,6 +80,11 @@ test.describe('Layout Link Routing', () => {
   test('일기 상세 페이지에서는 네비게이션이 표시되지 않아야 함', async ({
     page,
   }) => {
+    // 테스트 환경에서 인증 가드 바이패스 설정
+    await page.evaluate(() => {
+      window.__TEST_BYPASS__ = true;
+    });
+
     // 일기 상세 페이지로 직접 이동 (예: /diaries/1)
     await page.goto('/diaries/1');
 
@@ -177,6 +182,11 @@ test.describe('Layout Link Routing', () => {
   test('존재하지 않는 일기 상세 페이지 접근 시에도 네비게이션이 표시되지 않아야 함', async ({
     page,
   }) => {
+    // 테스트 환경에서 인증 가드 바이패스 설정
+    await page.evaluate(() => {
+      window.__TEST_BYPASS__ = true;
+    });
+
     // 존재하지 않는 일기 ID로 접근
     await page.goto('/diaries/999999');
 

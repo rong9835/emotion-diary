@@ -162,18 +162,21 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         aria-labelledby="modal-title"
         aria-describedby="modal-content"
         data-modal-component="true"
+        data-testid="modal-component"
       >
         {/* 모달 헤더 */}
         <div className={styles.header}>
           <h2
             id="modal-title"
             className={`${styles.title} typography-headline-medium`}
+            data-testid="modal-title"
           >
             {title}
           </h2>
           <p
             id="modal-content"
             className={`${styles.content} typography-headline-small`}
+            data-testid="modal-content"
           >
             {content}
           </p>
@@ -186,6 +189,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
               onClick={handleConfirm}
               disabled={disabled}
               className={styles['button--single']}
+              data-testid="modal-confirm"
             >
               {confirmText}
             </button>
@@ -198,7 +202,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
                 onClick={handleCancel}
                 disabled={disabled}
                 className={styles['button--dual']}
-                data-testid="continue-writing-button"
+                data-testid="modal-cancel"
               >
                 {cancelText}
               </Button>
@@ -209,7 +213,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
                 onClick={handleConfirm}
                 disabled={disabled}
                 className={styles['button--dual']}
-                data-testid="cancel-registration-button"
+                data-testid="modal-confirm"
               >
                 {confirmText}
               </Button>

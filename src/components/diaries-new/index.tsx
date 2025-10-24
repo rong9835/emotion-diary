@@ -153,7 +153,7 @@ export const DiariesNew: React.FC<DiariesNewProps> = ({
     <form onSubmit={handleSubmit(handleFormSubmit)}>
       <div
         className={`${styles.wrapper} ${styles[`wrapper--theme-${theme}`]}`}
-        data-testid="diary-write-modal"
+        data-testid="diaries-new"
       >
         {/* Header */}
         <header className={styles.header}>

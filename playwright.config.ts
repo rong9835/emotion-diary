@@ -4,7 +4,7 @@ import { defineConfig, devices } from '@playwright/test';
  * Playwright 설정 파일
  * @see https://playwright.dev/docs/test-configuration
  */
-const port = 3000 + (parseInt(process.env.TEST_PARALLEL_INDEX || '0'));
+const port = 3000 + parseInt(process.env.agentIndex || '0');
 
 export default defineConfig({
   // /* 병렬로 실행할 최대 테스트 수 */

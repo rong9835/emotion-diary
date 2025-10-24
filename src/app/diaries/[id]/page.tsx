@@ -2,11 +2,14 @@ import React from 'react';
 import { DiariesDetail } from '@/components/diaries-detail';
 
 interface DiaryDetailPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function DiaryDetailPage({ params }: DiaryDetailPageProps) {
-  return <DiariesDetail diaryId={params.id} />;
+export default async function DiaryDetailPage({
+  params,
+}: DiaryDetailPageProps) {
+  const { id } = await params;
+  return <DiariesDetail diaryId={id} />;
 }

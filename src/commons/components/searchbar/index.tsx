@@ -3,6 +3,7 @@ import React, {
   InputHTMLAttributes,
   useState,
   useCallback,
+  useEffect,
 } from 'react';
 import styles from './styles.module.css';
 
@@ -82,6 +83,11 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
     const [isFocused, setIsFocused] = useState<boolean>(false);
     const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
+    // value prop이 변경될 때 내부 상태 동기화
+    useEffect(() => {
+      setInputValue((value as string) || '');
+    }, [value]);
+
     // ========================================
     // Handlers
     // ========================================
@@ -92,6 +98,9 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         setInputValue(newValue);
         onChange?.(e);
 
+        // 실시간 검색 실행
+        onSearch?.(newValue);
+
         // 자동완성 드롭다운 표시 조건
         if (showSuggestions && newValue.length > 0) {
           setShowDropdown(true);
@@ -99,7 +108,7 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
           setShowDropdown(false);
         }
       },
-      [onChange, showSuggestions]
+      [onChange, onSearch, showSuggestions]
     );
 
     const handleKeyDown = useCallback(

@@ -105,6 +105,11 @@ export interface SelectBoxProps {
    * 검색 플레이스홀더
    */
   searchPlaceholder?: string;
+
+  /**
+   * 테스트 ID (테스트용)
+   */
+  'data-testid'?: string;
 }
 
 // ========================================
@@ -127,6 +132,7 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
   maxHeight = 200, // eslint-disable-line @typescript-eslint/no-unused-vars
   searchable = false,
   searchPlaceholder = '검색...',
+  'data-testid': dataTestId,
 }) => {
   // 상태 관리
   const [isOpen, setIsOpen] = useState(false);
@@ -151,6 +157,13 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
           option.label.toLowerCase().includes(searchTerm.toLowerCase())
         )
       : options;
+
+  // value prop 변경 감지 및 동기화
+  useEffect(() => {
+    if (value !== undefined && value !== selectedValue) {
+      setSelectedValue(value);
+    }
+  }, [value]);
 
   // 외부 클릭 감지
   useEffect(() => {
@@ -259,6 +272,7 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
       aria-expanded={isOpen}
       aria-haspopup="listbox"
       aria-disabled={disabled}
+      data-testid={dataTestId}
     >
       {/* 선택된 값 표시 영역 */}
       <div

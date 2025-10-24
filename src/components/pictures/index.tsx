@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { SelectBox, SelectOption } from '@/commons/components/selectbox';
 
 import { useDogPicturesBinding } from './hooks/index.binding.hook';
+import { usePicturesFilter } from './hooks/index.filter.hook';
 import styles from './styles.module.css';
 
 // ========================================
@@ -93,7 +94,7 @@ const Pictures: React.FC<PicturesProps> = ({
   // State
   // ========================================
 
-  const [selectedFilter, setSelectedFilter] = useState<string>(defaultFilter);
+  const [, setSelectedFilter] = useState<string>(defaultFilter);
 
   // ========================================
   // Data Binding Hook
@@ -110,6 +111,17 @@ const Pictures: React.FC<PicturesProps> = ({
   } = useDogPicturesBinding();
 
   // ========================================
+  // Filter Hook
+  // ========================================
+
+  const {
+    filterOptions: defaultPictureSizeFilterOptions,
+    selectedFilter: selectedPictureSizeFilter,
+    handleFilterChange: handlePictureSizeFilterChange,
+    filterClassName,
+  } = usePicturesFilter();
+
+  // ========================================
   // Computed Values
   // ========================================
 
@@ -122,20 +134,15 @@ const Pictures: React.FC<PicturesProps> = ({
   // Filter Options
   // ========================================
 
-  const defaultFilterOptions: SelectOption[] = [
-    { value: 'all', label: '전체' },
-    { value: 'recent', label: '최신순' },
-    { value: 'oldest', label: '오래된순' },
-    { value: 'favorite', label: '즐겨찾기' },
-  ];
-
-  const filterOptions = customFilterOptions || defaultFilterOptions;
+  const filterOptions =
+    customFilterOptions || defaultPictureSizeFilterOptions;
 
   // ========================================
   // Handlers
   // ========================================
 
   const handleFilterChange = (value: string): void => {
+    handlePictureSizeFilterChange(value);
     setSelectedFilter(value);
     onFilterChange?.(value);
   };
@@ -162,6 +169,7 @@ const Pictures: React.FC<PicturesProps> = ({
     styles.container,
     styles[`variant-${variant}`],
     styles[`theme-${theme}`],
+    styles[filterClassName],
     className,
   ]
     .filter(Boolean)
@@ -180,12 +188,13 @@ const Pictures: React.FC<PicturesProps> = ({
       <div className={styles.filter}>
         <SelectBox
           options={filterOptions}
-          value={selectedFilter}
+          value={selectedPictureSizeFilter}
           onChange={handleFilterChange}
           variant="primary"
           theme="light"
           size="medium"
           className={styles.filterSelect}
+          data-testid="pictures-filter-select"
         />
       </div>
 

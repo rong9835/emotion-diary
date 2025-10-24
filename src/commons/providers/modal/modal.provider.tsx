@@ -228,7 +228,8 @@ const ModalPortal: React.FC<ModalPortalProps> = ({
   const isModalComponent =
     React.isValidElement(modal.content) &&
     modal.content.type &&
-    (typeof modal.content.type === 'function' || typeof modal.content.type === 'object') &&
+    (typeof modal.content.type === 'function' ||
+      typeof modal.content.type === 'object') &&
     (modal.content.type as { displayName?: string }).displayName === 'Modal';
 
   const modalElement = isModalComponent ? (
@@ -238,6 +239,7 @@ const ModalPortal: React.FC<ModalPortalProps> = ({
       className={styles.modalBackdrop}
       style={{ zIndex: 1000 + index }}
       onClick={handleBackdropClick}
+      data-testid="modal-container"
     >
       {modal.content}
     </div>
@@ -250,6 +252,7 @@ const ModalPortal: React.FC<ModalPortalProps> = ({
       onClick={handleBackdropClick}
       role="dialog"
       aria-modal="true"
+      data-testid="modal-container"
     >
       <div
         className={`${styles.modalContent} ${modal.options.className || ''}`}
