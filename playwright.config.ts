@@ -4,6 +4,8 @@ import { defineConfig, devices } from '@playwright/test';
  * Playwright 설정 파일
  * @see https://playwright.dev/docs/test-configuration
  */
+const port = 3000 + (parseInt(process.env.TEST_PARALLEL_INDEX || '0'));
+
 export default defineConfig({
   // /* 병렬로 실행할 최대 테스트 수 */
   // fullyParallel: true,
@@ -32,7 +34,7 @@ export default defineConfig({
     // video: 'retain-on-failure',
 
     /* 베이스 URL */
-    baseURL: 'http://localhost:3000',
+    baseURL: `http://localhost:${port}`,
 
     // /* 추적 설정 (디버깅용) */
     // trace: 'on-first-retry',
@@ -68,8 +70,8 @@ export default defineConfig({
 
   /* 테스트 실행 전 개발 서버 자동 시작 */
   webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:3000',
+    command: `npm run dev -- -p ${port}`,
+    url: `http://localhost:${port}`,
     reuseExistingServer: !process.env.CI,
     env: {
       NEXT_PUBLIC_TEST_ENV: 'test',
