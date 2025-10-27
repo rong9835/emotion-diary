@@ -4,6 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import { Button } from '@/commons/components/button';
 import { Input } from '@/commons/components/input';
+import { Modal } from '@/commons/components/modal';
+import { useModal } from '@/commons/providers/modal/modal.provider';
 import {
   EmotionType,
   getEmotionLabel,
@@ -13,6 +15,7 @@ import { useDiaryBinding } from './hooks/index.binding.hook';
 import { useRetrospectForm } from './hooks/index.retrospect.form.hook';
 import { useRetrospectBinding } from './hooks/index.retrospect.binding.hook';
 import { useUpdateDiary } from './hooks/index.update.hook';
+import { useDeleteDiary } from './hooks/index.delete.hook';
 import styles from './styles.module.css';
 
 // ========================================
@@ -40,7 +43,6 @@ const formatDateForDisplay = (dateString: string): string => {
     return dateString;
   }
 };
-
 
 // ========================================
 // Types & Interfaces
@@ -98,8 +100,31 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
   // 회고 바인딩 훅 (실제 데이터 사용)
   const { retrospectList } = useRetrospectBinding(diaryId || '');
 
+  // 삭제 훅
+  const { deleteDiary, isDeleting } = useDeleteDiary(diaryId || '');
+
+  // 모달 훅
+  const { openModal, closeModal } = useModal();
+
   const handleDelete = () => {
-    console.log('삭제 버튼 클릭');
+    const modalId = openModal(
+      <Modal
+        variant="danger"
+        actions="dual"
+        theme="light"
+        title="일기 삭제"
+        content="정말로 이 일기를 삭제하시겠습니까?"
+        confirmText="삭제"
+        cancelText="취소"
+        onConfirm={() => {
+          deleteDiary();
+          closeModal(modalId);
+        }}
+        onCancel={() => closeModal(modalId)}
+        disabled={isDeleting}
+        data-testid="delete-modal"
+      />
+    );
   };
 
   const handleCopyContent = () => {
@@ -153,10 +178,7 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
             <h2 className={styles.editMoodTitle}>오늘 기분은 어땟나요?</h2>
             <div className={styles.emotionRadioGroup}>
               {getAllEmotionTypes().map((emotionType) => (
-                <label
-                  key={emotionType}
-                  className={styles.emotionRadio}
-                >
+                <label key={emotionType} className={styles.emotionRadio}>
                   <input
                     type="radio"
                     value={emotionType}
@@ -289,6 +311,7 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
                 theme="light"
                 onClick={handleDelete}
                 className={styles.deleteButton}
+                data-testid="delete-button"
               >
                 삭제
               </Button>

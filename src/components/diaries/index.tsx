@@ -7,6 +7,7 @@ import { Pagination } from '@/commons/components/pagination';
 import { Searchbar } from '@/commons/components/searchbar';
 import { SelectBox } from '@/commons/components/selectbox';
 import { EmotionType, getEmotionLabel } from '@/commons/constants/enum';
+import { useAuth } from '@/commons/providers/auth/auth.provider';
 
 import { useNewDiaryModal } from './hooks/index.link.modal.hook';
 import { useDiariesBinding } from './hooks/index.binding.hook';
@@ -14,6 +15,7 @@ import { useDiaryRouting } from './hooks/index.link.routing.hook';
 import { useSearch } from './hooks/index.search.hook';
 import { useFilter } from './hooks/index.filter.hook';
 import { usePagination } from './hooks/index.pagination.hook';
+import { useDeleteDiary } from './hooks/index.delete.hook';
 import styles from './styles.module.css';
 
 // ========================================
@@ -94,6 +96,18 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   const { navigateToDiaryDetail } = useDiaryRouting();
 
   // ========================================
+  // Delete Hook
+  // ========================================
+
+  const { handleDeleteDiary } = useDeleteDiary();
+
+  // ========================================
+  // Auth Hook
+  // ========================================
+
+  const { isLoggedIn } = useAuth();
+
+  // ========================================
   // Handlers
   // ========================================
 
@@ -101,10 +115,12 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
     openNewDiaryModal();
   };
 
-  const handleDeleteDiary = (event: React.MouseEvent, id: string): void => {
+  const handleDeleteDiaryClick = (
+    event: React.MouseEvent,
+    id: string
+  ): void => {
     event.stopPropagation(); // 이벤트 버블링 방지
-    console.log('Delete diary:', id);
-    // 일기 삭제 로직 추가 예정
+    handleDeleteDiary(id);
   };
 
   const handleCardClick = (id: string): void => {
@@ -132,28 +148,30 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
             className={styles.cardImageImg}
             data-testid="emotion-image"
           />
-          <button
-            className={styles.deleteButton}
-            onClick={(e) => handleDeleteDiary(e, diary.id)}
-            aria-label="일기 삭제"
-            data-testid="delete-button"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+          {isLoggedIn && (
+            <button
+              className={styles.deleteButton}
+              onClick={(e) => handleDeleteDiaryClick(e, diary.id)}
+              aria-label="일기 삭제"
+              data-testid="delete-button"
             >
-              <path
-                d="M18 6L6 18M6 6l12 12"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6L6 18M6 6l12 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          )}
         </div>
         <div className={styles.cardContent}>
           <div className={styles.cardHeader}>

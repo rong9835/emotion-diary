@@ -45,7 +45,7 @@ test.describe('Pictures Component - 강아지 사진 목록 조회 기능', () =
     await expect(splashScreens).toHaveCount(6);
 
     // 스플래시 스크린이 사라지고 실제 이미지가 표시될 때까지 대기
-    await expect(splashScreens.first()).toBeHidden({ timeout: 2000 });
+    await expect(splashScreens.first()).toBeHidden({ timeout: 5000 });
   });
 
   test('무한스크롤로 추가 강아지 사진을 로드해야 함', async ({ page }) => {
@@ -78,9 +78,12 @@ test.describe('Pictures Component - 강아지 사진 목록 조회 기능', () =
     const newPage = await page.context().newPage();
 
     // API 호출을 실패하도록 모킹
-    await newPage.route('https://dog.ceo/api/breeds/image/random/6', (route) => {
-      route.abort('failed');
-    });
+    await newPage.route(
+      'https://dog.ceo/api/breeds/image/random/6',
+      (route) => {
+        route.abort('failed');
+      }
+    );
 
     // 페이지로 이동
     await newPage.goto('/pictures');

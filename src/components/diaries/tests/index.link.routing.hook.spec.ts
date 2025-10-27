@@ -69,7 +69,9 @@ test.describe('Diary Card Link Routing', () => {
   // Test: 일기 카드 클릭 시 상세 페이지로 이동
   // ========================================
 
-  test('should navigate to detail page when clicking on diary card', async ({ page }) => {
+  test('should navigate to detail page when clicking on diary card', async ({
+    page,
+  }) => {
     // Given: 일기 카드가 렌더링됨
     const firstCard = page.locator('[data-testid="diary-card-1"]');
     await expect(firstCard).toBeVisible();
@@ -85,7 +87,9 @@ test.describe('Diary Card Link Routing', () => {
   // Test: 여러 일기 카드 클릭 테스트
   // ========================================
 
-  test('should navigate to correct detail page for each diary card', async ({ page }) => {
+  test('should navigate to correct detail page for each diary card', async ({
+    page,
+  }) => {
     // Test for diary card 2
     const secondCard = page.locator('[data-testid="diary-card-2"]');
     await expect(secondCard).toBeVisible();
@@ -108,12 +112,28 @@ test.describe('Diary Card Link Routing', () => {
   // ========================================
 
   test('should not navigate when clicking delete button', async ({ page }) => {
-    // Given: 일기 카드가 렌더링됨
+    // Given: 로그인 상태 설정 (삭제 버튼이 표시되도록)
+    await page.evaluate(() => {
+      localStorage.setItem('accessToken', 'test-token');
+      localStorage.setItem(
+        'user',
+        JSON.stringify({ name: '테스트사용자', email: 'test@test.com' })
+      );
+    });
+
+    // 페이지 새로고침으로 인증 상태 업데이트
+    await page.reload();
+    await page.waitForSelector('[data-testid="diaries-page"]');
+
+    // 일기 카드가 렌더링됨
     const firstCard = page.locator('[data-testid="diary-card-1"]');
     await expect(firstCard).toBeVisible();
 
-    // When: 삭제 버튼을 클릭
+    // 삭제 버튼이 표시되는지 확인
     const deleteButton = page.locator('[data-testid="delete-button"]').first();
+    await expect(deleteButton).toBeVisible();
+
+    // When: 삭제 버튼을 클릭
     await deleteButton.click();
 
     // Then: 페이지 이동하지 않음 (여전히 diaries 페이지에 있음)

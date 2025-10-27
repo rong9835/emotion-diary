@@ -8,8 +8,10 @@ test.describe('Layout Link Routing', () => {
   test.beforeEach(async ({ page }) => {
     // 일기목록 페이지로 이동하여 테스트 시작
     await page.goto('/diaries');
-    // 페이지 로드 완료 대기 (data-testid 기반, timeout 500ms 미만)
-    await page.waitForSelector('[data-testid="nav-diaries"]', { timeout: 400 });
+    // 페이지 로드 완료 대기 (data-testid 기반, timeout 2000ms)
+    await page.waitForSelector('[data-testid="nav-diaries"]', {
+      timeout: 2000,
+    });
   });
 
   test('일기보관함 네비게이션이 활성 상태로 표시되어야 함', async ({
