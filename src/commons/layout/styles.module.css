@@ -9,12 +9,21 @@
 
 /* Header 영역: 1168 * 60 */
 .header {
-  width: 1168px;
+  width: 100%;
+  max-width: 1168px;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
+}
+
+/* max-width보다 작을 때 좌/우 20px 패딩 */
+@media (max-width: 1168px) {
+  .header {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .logo {
@@ -64,18 +73,36 @@
 
 /* Gap 영역: 1168 * 24 */
 .gap {
-  width: 1168px;
+  width: 100%;
+  max-width: 1168px;
   height: 24px;
+}
+
+/* max-width보다 작을 때 좌/우 20px 패딩 */
+@media (max-width: 1168px) {
+  .gap {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 /* Banner 영역: 1168 * 240 */
 .banner {
-  width: 1168px;
+  width: 100%;
+  max-width: 1168px;
   height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+/* max-width보다 작을 때 좌/우 20px 패딩 */
+@media (max-width: 1168px) {
+  .banner {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .bannerImage {
@@ -87,10 +114,19 @@
 
 /* Navigation 영역: 1168 * 48 */
 .navigation {
-  width: 1168px;
+  width: 100%;
+  max-width: 1168px;
   height: 48px;
   display: flex;
   align-items: center;
+}
+
+/* max-width보다 작을 때 좌/우 20px 패딩 */
+@media (max-width: 1168px) {
+  .navigation {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .tabContainer {
@@ -142,9 +178,18 @@
 
 /* Children 영역: 1168 * auto */
 .children {
-  width: 1168px;
+  width: 100%;
+  max-width: 1168px;
   flex: 1;
   min-height: 200px;
+}
+
+/* max-width보다 작을 때 좌/우 20px 패딩 */
+@media (max-width: 1168px) {
+  .children {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 /* Footer 영역: 1168 * 160 */
@@ -159,11 +204,20 @@
 }
 
 .footerContent {
-  width: 1168px;
+  width: 100%;
+  max-width: 1168px;
   height: 112px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+/* max-width보다 작을 때 좌/우 20px 패딩 */
+@media (max-width: 1168px) {
+  .footerContent {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .footerTitle {

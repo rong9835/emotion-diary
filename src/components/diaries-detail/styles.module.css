@@ -6,7 +6,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 1168px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -15,17 +15,17 @@
    ======================================== */
 
 .gap64 {
-  width: 1168px;
+  width: 100%;
   height: 64px;
 }
 
 .gap24 {
-  width: 1168px;
+  width: 100%;
   height: 24px;
 }
 
 .gap16 {
-  width: 1168px;
+  width: 100%;
   height: 16px;
 }
 
@@ -34,7 +34,7 @@
    ======================================== */
 
 .detailTitle {
-  width: 1168px;
+  width: 100%;
   height: 84px;
   background-color: var(--color-bg-primary);
   display: flex;
@@ -44,7 +44,7 @@
 
 /* 타이틀 프레임: 1168 * 36 */
 .titleFrame {
-  width: 1168px;
+  width: 100%;
   height: 36px;
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@
 
 /* 감정&날짜 프레임: 1168 * 32 */
 .emotionDateFrame {
-  width: 1168px;
+  width: 100%;
   height: 32px;
   display: flex;
   align-items: flex-start;
@@ -195,7 +195,7 @@
    ======================================== */
 
 .detailContent {
-  width: 1168px;
+  width: 100%;
   min-height: 169px;
   background-color: var(--color-bg-primary);
   display: flex;
@@ -205,7 +205,7 @@
 
 /* 내용 영역: 1168 * 133 */
 .contentArea {
-  width: 1168px;
+  width: 100%;
   min-height: 133px;
   display: flex;
   flex-direction: column;
@@ -213,7 +213,7 @@
 }
 
 .contentLabel {
-  width: 1168px;
+  width: 100%;
   height: 20px;
   color: var(--color-gray-black);
   font-family: 'Pretendard Variable', sans-serif;
@@ -225,7 +225,7 @@
 }
 
 .contentText {
-  width: 1168px;
+  width: 100%;
   min-height: 100px;
   margin: 0;
   color: #333333;
@@ -240,7 +240,7 @@
 
 /* 내용 텍스트 영역 (수정 모드) */
 .contentTextarea {
-  width: 1168px;
+  width: 100%;
   min-height: 100px;
   margin: 0;
   padding: 8px;
@@ -253,11 +253,12 @@
   border: 1px solid #e4e4e4;
   border-radius: 4px;
   resize: vertical;
+  box-sizing: border-box;
 }
 
 /* Frame 70: 1168 * 24 */
 .copySection {
-  width: 1168px;
+  width: 100%;
   height: 24px;
   display: flex;
   align-items: center;
@@ -295,7 +296,7 @@
    ======================================== */
 
 .detailFooter {
-  width: 1168px;
+  width: 100%;
   height: 56px;
   background-color: var(--color-bg-primary);
   display: flex;
@@ -354,7 +355,7 @@
    ======================================== */
 
 .retrospectInput {
-  width: 1168px;
+  width: 100%;
   height: 85px;
   background-color: var(--color-bg-primary);
   display: flex;
@@ -364,7 +365,7 @@
 
 /* 회고 라벨: 1168 * 24 */
 .retrospectLabel {
-  width: 1168px;
+  width: 100%;
   height: 24px;
   color: #000000;
   font-family: 'Pretendard Variable', sans-serif;
@@ -378,7 +379,7 @@
 
 /* 입력 프레임: 1168 * 48 */
 .retrospectInputFrame {
-  width: 1168px;
+  width: 100%;
   height: 48px;
   display: flex;
   align-items: center;
@@ -387,7 +388,7 @@
 
 /* 입력 필드: 1069 * 48 */
 .retrospectInputField {
-  width: 1069px;
+  /* fullWidth prop으로 처리 */
 }
 
 /* 입력 버튼: 51 * 48 (height는 size="medium"에서 자동 적용) */
@@ -400,7 +401,7 @@
    ======================================== */
 
 .retrospectList {
-  width: 1168px;
+  width: 100%;
   height: 72px;
   background: none;
   border-radius: 16px;
@@ -412,7 +413,7 @@
 
 /* 회고 아이템 */
 .retrospectItem {
-  width: 1168px;
+  width: 100%;
   min-height: 24px;
   display: flex;
   align-items: center;
@@ -427,7 +428,7 @@
   position: absolute;
   bottom: -12px;
   left: 0;
-  width: 1168px;
+  width: 100%;
   height: 1px;
   background-color: #e4e4e4;
 }
@@ -476,7 +477,7 @@
 
 /* 기분 선택 영역: 1168 * 64 */
 .editMoodSection {
-  width: 1168px;
+  width: 100%;
   min-height: 64px;
   background-color: var(--color-bg-primary);
   display: flex;
@@ -485,7 +486,7 @@
 }
 
 .editMoodTitle {
-  width: 1168px;
+  width: 100%;
   height: 24px;
   color: #000000;
   font-family: 'Pretendard Variable', sans-serif;
@@ -499,7 +500,7 @@
 
 /* 제목 입력 영역: 1168 * 76 */
 .editTitleSection {
-  width: 1168px;
+  width: 100%;
   min-height: 76px;
   display: flex;
   flex-direction: column;
@@ -507,7 +508,7 @@
 }
 
 .editLabel {
-  width: 1168px;
+  width: 100%;
   height: 20px;
   color: #333333;
   font-family: 'Pretendard Variable', sans-serif;
@@ -520,7 +521,7 @@
 }
 
 .editInput {
-  width: 1168px;
+  width: 100%;
   height: 48px;
   padding: 12px 16px;
   background-color: #ffffff;
@@ -542,7 +543,7 @@
 
 /* 내용 입력 영역: 1168 * 156 */
 .editContentSection {
-  width: 1168px;
+  width: 100%;
   min-height: 156px;
   display: flex;
   flex-direction: column;
@@ -550,7 +551,7 @@
 }
 
 .editTextarea {
-  width: 1168px;
+  width: 100%;
   min-height: 128px;
   padding: 12px 16px;
   background-color: #ffffff;
@@ -573,7 +574,7 @@
 
 /* 버튼 영역: 1168 * 48 */
 .editButtonSection {
-  width: 1168px;
+  width: 100%;
   height: 48px;
   display: flex;
   align-items: center;

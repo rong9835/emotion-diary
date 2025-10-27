@@ -346,6 +346,7 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
             className={styles.retrospectInputField}
             data-testid="retrospect-input"
             disabled={isEditMode}
+            fullWidth
           />
           <Button
             variant="primary"
