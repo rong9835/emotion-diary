@@ -212,7 +212,7 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
       {/* Gap */}
       <div className={styles.gap}></div>
 
-      {/* Search Section */}
+      {/* Search Section - Desktop */}
       <div className={styles.search}>
         {/* Filter SelectBox */}
         <div className={styles.searchFilter}>
@@ -250,6 +250,62 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
             onClick={handleNewDiary}
             className={styles.newDiaryButton}
             data-testid="diary-write-button"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ marginRight: '4px' }}
+            >
+              <path
+                d="M12 5V19M5 12H19"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            일기쓰기
+          </Button>
+        </div>
+      </div>
+
+      {/* Search Section - Mobile */}
+      <div className={styles.searchMobile}>
+        {/* Search Bar Row */}
+        <div className={styles.searchMobileRow}>
+          <Searchbar
+            placeholder="검색어를 입력해 주세요."
+            value={searchValue}
+            onSearch={handleSearch}
+            variant="primary"
+            size="medium"
+            theme="light"
+            className={styles.searchInputMobile}
+          />
+        </div>
+
+        {/* Filter & Button Row */}
+        <div className={styles.searchMobileRow}>
+          <SelectBox
+            options={filterOptions}
+            value={filterValue}
+            onChange={handleFilterChange}
+            variant="primary"
+            size="medium"
+            theme="light"
+            className={styles.filterSelectBoxMobile}
+            data-testid="emotion-filter-select-mobile"
+          />
+          <Button
+            variant="primary"
+            size="medium"
+            theme="light"
+            onClick={handleNewDiary}
+            className={styles.newDiaryButtonMobile}
+            data-testid="diary-write-button-mobile"
           >
             <svg
               width="24"

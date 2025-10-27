@@ -200,7 +200,7 @@ export const DiariesNew: React.FC<DiariesNewProps> = ({
             <div className={styles.inputTitleSection}>
               <Input
                 label="제목"
-                placeholder="제목을 입력합니다."
+                placeholder="제목을 입력해 주세요."
                 {...register('title')}
                 fullWidth
                 theme={theme}
@@ -222,7 +222,7 @@ export const DiariesNew: React.FC<DiariesNewProps> = ({
                   className={`${styles.textarea} typography-body-large ${
                     styles[`textarea--theme-${theme}`]
                   }`}
-                  placeholder="내용을 입력합니다."
+                  placeholder="내용을 입력해 주세요."
                   {...register('content')}
                   rows={5}
                   aria-label="일기 내용 입력"

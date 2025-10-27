@@ -255,3 +255,68 @@
   color: var(--color-gray-50);
   margin: 0;
 }
+
+/* ========================================
+ * Responsive Design - 767px 이하 (모바일)
+ * ======================================== */
+
+@media (max-width: 767px) {
+  /* 모바일 레이아웃 (Figma 노드 3:3696 기준) */
+
+  /* Header */
+  .header {
+    max-width: 360px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Gap */
+  .gap {
+    max-width: 360px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Banner */
+  .banner {
+    max-width: 360px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Navigation - 모바일 스타일 (Figma 노드 3:3696) */
+  .navigation {
+    max-width: 360px;
+    height: 44px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .tabContainer {
+    gap: 0;
+    max-width: 320px;
+  }
+
+  .tab {
+    width: 77px;
+    height: 44px;
+  }
+
+  .tabText {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.16px;
+  }
+
+  .activeTab::after {
+    left: 0;
+    right: 0;
+  }
+
+  /* Children - 패딩 없음 (각 페이지 컴포넌트가 자체적으로 관리) */
+  .children {
+    max-width: 360px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

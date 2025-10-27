@@ -13,7 +13,6 @@
   width: 100%;
   max-width: 1168px;
   margin: 0 auto;
-  padding: 0 16px;
 }
 
 /* ========================================
@@ -100,6 +99,7 @@
   height: 48px;
   display: flex;
   align-items: center;
+  padding: 0 20px;
 }
 
 .filterSelect {
@@ -163,36 +163,73 @@
 }
 
 /* ========================================
- * Responsive Design
+ * Responsive Design - 767px Breakpoint
+ * 피그마 디자인 기반: 360px 모바일 뷰
  * ======================================== */
 
-@media (max-width: 768px) {
+/* 모바일 뷰: 767px 이하 */
+@media (max-width: 767px) {
   .container {
-    padding: 0 12px;
+    max-width: 360px;
+  }
+
+  .filter {
+    height: 40px;
   }
 
   .pictureGrid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 24px;
+    justify-content: center;
   }
 
   .pictureItem {
-    width: 100%;
-    height: 300px;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+  }
+
+  .splashScreen {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
   }
 
   .filterSelect {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 8px;
+    width: 102px;
   }
 
-  .pictureItem {
-    height: 250px;
+  /* 모바일 - 기본형 필터 (280x280) */
+  .filter-basic .pictureItem {
+    width: 280px;
+    height: 280px;
+  }
+
+  .filter-basic .splashScreen {
+    width: 280px;
+    height: 280px;
+  }
+
+  /* 모바일 - 가로형 필터 (280x210) */
+  .filter-landscape .pictureItem {
+    width: 280px;
+    height: 210px;
+  }
+
+  .filter-landscape .splashScreen {
+    width: 280px;
+    height: 210px;
+  }
+
+  /* 모바일 - 세로형 필터 (280x372) */
+  .filter-portrait .pictureItem {
+    width: 280px;
+    height: 372px;
+  }
+
+  .filter-portrait .splashScreen {
+    width: 280px;
+    height: 372px;
   }
 }
 
@@ -289,68 +326,54 @@
 }
 
 /* ========================================
- * Responsive Splash Screen
+ * Filter Size Classes - Desktop (768px 이상)
  * ======================================== */
 
-@media (max-width: 768px) {
-  .splashScreen {
-    width: 100%;
-    height: 300px;
+/* 데스크탑에서만 적용 (767px 초과) */
+@media (min-width: 768px) {
+  /* 기본 필터 - 640x640 (정사각형 1:1) */
+  .filter-basic .pictureItem {
+    width: 640px;
+    height: 640px;
   }
-}
 
-@media (max-width: 480px) {
-  .splashScreen {
-    height: 250px;
+  .filter-basic .splashScreen {
+    width: 640px;
+    height: 640px;
   }
-}
 
-/* ========================================
- * Filter Size Classes
- * ======================================== */
+  .filter-basic .pictureGrid {
+    grid-template-columns: repeat(auto-fit, 640px);
+  }
 
-/* 기본 필터 - 640x640 (기본 크기 유지) */
-.filter-basic .pictureItem {
-  width: 640px;
-  height: 640px;
-}
+  /* 가로형 필터 - 640x480 (가로형 4:3) */
+  .filter-landscape .pictureItem {
+    width: 640px;
+    height: 480px;
+  }
 
-.filter-basic .splashScreen {
-  width: 640px;
-  height: 640px;
-}
+  .filter-landscape .splashScreen {
+    width: 640px;
+    height: 480px;
+  }
 
-.filter-basic .pictureGrid {
-  grid-template-columns: repeat(auto-fit, 640px);
-}
+  .filter-landscape .pictureGrid {
+    grid-template-columns: repeat(auto-fit, 640px);
+  }
 
-/* 가로형 필터 - 640x480 */
-.filter-landscape .pictureItem {
-  width: 640px;
-  height: 480px;
-}
+  /* 세로형 필터 - 480x640 (세로형 3:4) */
+  .filter-portrait .pictureItem {
+    width: 480px;
+    height: 640px;
+  }
 
-.filter-landscape .splashScreen {
-  width: 640px;
-  height: 480px;
-}
+  .filter-portrait .splashScreen {
+    width: 480px;
+    height: 640px;
+  }
 
-.filter-landscape .pictureGrid {
-  grid-template-columns: repeat(auto-fit, 640px);
-}
-
-/* 세로형 필터 - 480x640 */
-.filter-portrait .pictureItem {
-  width: 480px;
-  height: 640px;
-}
-
-.filter-portrait .splashScreen {
-  width: 480px;
-  height: 640px;
-}
-
-.filter-portrait .pictureGrid {
-  grid-template-columns: 480px;
-  justify-content: center;
+  .filter-portrait .pictureGrid {
+    grid-template-columns: repeat(auto-fit, 480px);
+    justify-content: center;
+  }
 }

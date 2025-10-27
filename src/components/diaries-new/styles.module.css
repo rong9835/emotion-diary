@@ -303,45 +303,85 @@
 }
 
 /* ========================================
-   Responsive Design
+   Responsive Design - Breakpoint: 767px
    ======================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  /* Wrapper - 모바일 사이즈: 320px x 620px */
   .wrapper {
-    width: 100%;
-    max-width: 640px;
+    width: 320px;
     height: auto;
-    min-height: 560px;
+    min-height: 620px;
+  }
+
+  /* Header */
+  .header {
+    padding: 24px 24px 0 24px;
+  }
+
+  /* Main Content */
+  .mainContent {
+    padding: 24px 24px 24px 24px;
+  }
+
+  /* Emotion Section - 세로 배치 */
+  .emotionSection {
+    width: 272px;
+    height: 204px;
+    margin-bottom: 24px;
+  }
+
+  .emotionTitle {
+    margin: 0 0 16px 0;
   }
 
   .emotionRadioGroup {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 12px;
-    height: auto;
+    height: 168px;
   }
 
   .emotionRadio {
-    min-width: 80px;
-  }
-}
-
-@media (max-width: 480px) {
-  .emotionRadioGroup {
-    justify-content: center;
-    gap: 8px;
+    width: 100%;
+    min-width: auto;
   }
 
-  .emotionRadio {
-    min-width: 70px;
+  /* Text Area */
+  .textArea {
+    width: 272px;
+    height: 232px;
+  }
+
+  /* Input Title Section */
+  .inputTitleSection {
+    width: 272px;
+    height: 64px;
+    margin-bottom: 16px;
+  }
+
+  /* Input Content Section */
+  .inputContentSection {
+    width: 272px;
+    height: 152px;
+  }
+
+  /* Footer */
+  .footer {
+    height: 64px;
+    padding: 0 24px 24px 24px;
   }
 
   .buttonGroup {
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
+    width: 176px;
+    gap: 16px;
   }
 
-  .buttonGroup > * {
-    width: 100%;
+  .closeButton_footer {
+    width: 80px;
+  }
+
+  .submitButton {
+    width: 80px;
   }
 }

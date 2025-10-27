@@ -36,17 +36,17 @@
   border: 1px solid;
   background-color: transparent;
   transition: all 0.2s ease-in-out;
-  height: 48px;
+  height: 40px;
   box-sizing: border-box;
 }
 
 .value {
   flex: 1;
   text-align: left;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 24px;
-  letter-spacing: -0.16px;
+  letter-spacing: -0.14px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -224,7 +224,7 @@
 }
 
 .size-medium {
-  width: 120px;
+  width: 102px;
 }
 
 .size-large {
