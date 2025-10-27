@@ -12,8 +12,34 @@ import {
 } from '@/commons/constants/enum';
 import { useDiaryBinding } from './hooks/index.binding.hook';
 import { useRetrospectForm } from './hooks/index.retrospect.form.hook';
-import { useRetrospectList } from './hooks/index.retrospect.list.hook';
+import { useRetrospectBinding } from './hooks/index.retrospect.binding.hook';
 import styles from './styles.module.css';
+
+// ========================================
+// Utility Functions
+// ========================================
+
+/**
+ * 날짜 문자열을 한국어 형식으로 포맷팅
+ * ISO 형식 (2025-01-17T03:53:43.827Z) 또는 YYYY-MM-DD 형식을 YYYY. MM. DD로 변환
+ */
+const formatDateForDisplay = (dateString: string): string => {
+  try {
+    // ISO 형식인 경우 날짜 부분만 추출
+    const dateOnly = dateString.split('T')[0];
+    const parts = dateOnly.split('-');
+
+    if (parts.length === 3) {
+      return `${parts[0]}. ${parts[1]}. ${parts[2]}`;
+    }
+
+    // 이미 YYYY-MM-DD 형식인 경우
+    return dateOnly.replace(/-/g, '. ');
+  } catch (error) {
+    console.error('Error formatting date:', error);
+    return dateString;
+  }
+};
 
 // ========================================
 // Types & Interfaces
@@ -57,8 +83,8 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
   // 회고 폼 훅
   const { register, handleSubmit, isValid } = useRetrospectForm();
 
-  // 회고 목록 훅
-  const { retrospectList } = useRetrospectList(diaryId || '');
+  // 회고 바인딩 훅 (실제 데이터 사용)
+  const { retrospectList } = useRetrospectBinding(diaryId || '');
 
   const handleEdit = () => {
     console.log('수정 버튼 클릭');
@@ -74,7 +100,6 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
       console.log('내용 복사됨');
     }
   };
-
 
   // 로딩 상태 처리
   if (isLoading) {
@@ -143,9 +168,7 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
           {/* 날짜 정보 (Frame): 107 * 20 */}
           <div className={styles.dateFrame}>
             <span className={styles.dateText} data-testid="diary-date">
-              {new Date(diaryData.createdAt)
-                .toLocaleDateString('ko-KR')
-                .replace(/\.$/, '')}
+              {formatDateForDisplay(diaryData.createdAt)}
             </span>
             <span className={styles.createdText}>작성</span>
           </div>
@@ -249,7 +272,9 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
         {retrospectList.length > 0 ? (
           retrospectList.map((retrospect) => (
             <div key={retrospect.id} className={styles.retrospectItem}>
-              <span className={styles.retrospectText}>{retrospect.content}</span>
+              <span className={styles.retrospectText}>
+                {retrospect.content}
+              </span>
               <span className={styles.retrospectDate}>
                 [{retrospect.createdAt}]
               </span>

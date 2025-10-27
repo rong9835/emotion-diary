@@ -1,7 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { EmotionType, getEmotionImagePath, ImageSize } from '@/commons/constants/enum';
+import {
+  EmotionType,
+  getEmotionImagePath,
+  ImageSize,
+} from '@/commons/constants/enum';
 
 // ========================================
 // Types & Interfaces
@@ -93,18 +97,21 @@ export const useDiariesBinding = (): DiaryCardData[] => {
 
 /**
  * 날짜 포맷 변환 함수
- * YYYY-MM-DD → YYYY. MM. DD
+ * ISO 형식 (2025-01-17T03:53:43.827Z) 또는 YYYY-MM-DD → YYYY. MM. DD
  *
- * @param {string} dateString - 변환할 날짜 문자열 (YYYY-MM-DD 형식)
+ * @param {string} dateString - 변환할 날짜 문자열 (ISO 또는 YYYY-MM-DD 형식)
  * @returns {string} 변환된 날짜 문자열 (YYYY. MM. DD 형식)
  */
 const formatDate = (dateString: string): string => {
   try {
-    // YYYY-MM-DD 형식을 YYYY. MM. DD 형식으로 변환
-    const parts = dateString.split('-');
+    // ISO 형식인 경우 날짜 부분만 추출
+    const dateOnly = dateString.split('T')[0];
+    const parts = dateOnly.split('-');
+
     if (parts.length === 3) {
       return `${parts[0]}. ${parts[1]}. ${parts[2]}`;
     }
+
     return dateString;
   } catch (error) {
     console.error('Error formatting date:', error);

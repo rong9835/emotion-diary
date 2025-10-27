@@ -133,7 +133,7 @@ export const useDiaryForm = () => {
         title: data.title.trim(),
         content: data.content.trim(),
         emotion: data.emotion,
-        createdAt: new Date().toISOString(),
+        createdAt: new Date().toISOString().split('T')[0], // 날짜만 저장 (YYYY-MM-DD)
       };
 
       // 일기 데이터 저장

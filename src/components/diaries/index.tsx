@@ -5,13 +5,14 @@ import React, { useState } from 'react';
 import { Button } from '@/commons/components/button';
 import { Pagination } from '@/commons/components/pagination';
 import { Searchbar } from '@/commons/components/searchbar';
-import { SelectBox, SelectOption } from '@/commons/components/selectbox';
+import { SelectBox } from '@/commons/components/selectbox';
 import { EmotionType, getEmotionLabel } from '@/commons/constants/enum';
 
 import { useNewDiaryModal } from './hooks/index.link.modal.hook';
 import { useDiariesBinding } from './hooks/index.binding.hook';
 import { useDiaryRouting } from './hooks/index.link.routing.hook';
 import { useSearch } from './hooks/index.search.hook';
+import { useFilter } from './hooks/index.filter.hook';
 import styles from './styles.module.css';
 
 // ========================================
@@ -39,7 +40,6 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   // State
   // ========================================
 
-  const [filterValue, setFilterValue] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 12;
 
@@ -66,32 +66,21 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   } = useSearch(localStorageDiaries);
 
   // ========================================
+  // Filter Hook
+  // ========================================
+
+  const { filterValue, filterOptions, filteredDiaries, handleFilterChange } =
+    useFilter(searchedDiaries);
+
+  // ========================================
   // Routing Hook
   // ========================================
 
   const { navigateToDiaryDetail } = useDiaryRouting();
 
   // ========================================
-  // Filter Options
-  // ========================================
-
-  const filterOptions: SelectOption[] = [
-    { value: 'all', label: '전체' },
-    { value: 'happy', label: '기쁨' },
-    { value: 'sad', label: '슬픔' },
-    { value: 'angry', label: '화남' },
-    { value: 'surprise', label: '놀람' },
-    { value: 'etc', label: '기타' },
-  ];
-
-  // ========================================
   // Handlers
   // ========================================
-
-  const handleFilterChange = (value: string): void => {
-    setFilterValue(value);
-    console.log('Filter changed:', value);
-  };
 
   const handleNewDiary = (): void => {
     openNewDiaryModal();
@@ -113,14 +102,8 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   };
 
   // ========================================
-  // Filtered Data
+  // Paginated Data
   // ========================================
-
-  const filteredDiaries = searchedDiaries.filter((diary) => {
-    const matchesFilter =
-      filterValue === 'all' || diary.emotion.toLowerCase() === filterValue;
-    return matchesFilter;
-  });
 
   const totalPages = Math.ceil(filteredDiaries.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -224,6 +207,7 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
             size="medium"
             theme="light"
             className={styles.filterSelectBox}
+            data-testid="emotion-filter-select"
           />
         </div>
 
