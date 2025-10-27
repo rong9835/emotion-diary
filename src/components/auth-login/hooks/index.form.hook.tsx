@@ -44,9 +44,7 @@ interface FetchUserLoggedInResponse {
   name: string;
 }
 
-const loginUser = async (
-  input: LoginUserInput
-): Promise<LoginUserResponse> => {
+const loginUser = async (input: LoginUserInput): Promise<LoginUserResponse> => {
   const response = await fetch(
     'https://main-practice.codebootcamp.co.kr/graphql',
     {
@@ -188,12 +186,17 @@ export const useLoginForm = () => {
           confirmText="확인"
           onConfirm={() => {
             closeAllModals();
-            router.push(ROUTES.DIARIES.LIST);
+            setTimeout(() => {
+              router.push(ROUTES.DIARIES.LIST);
+            }, 100);
           }}
         />
       );
     },
     onError: (error) => {
+      // 콘솔 로그
+      console.error('Login error:', error);
+
       // 에러가 validation 에러인 경우
       if (error.message.includes('@')) {
         setError('email', {
@@ -209,7 +212,7 @@ export const useLoginForm = () => {
           variant="danger"
           actions="single"
           title="로그인 실패"
-          content="로그인에 실패했습니다"
+          content={`로그인에 실패했습니다: ${error.message}`}
           confirmText="확인"
           onConfirm={() => {
             closeAllModals();

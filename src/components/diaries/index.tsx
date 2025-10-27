@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Button } from '@/commons/components/button';
 import { Pagination } from '@/commons/components/pagination';
@@ -13,6 +13,7 @@ import { useDiariesBinding } from './hooks/index.binding.hook';
 import { useDiaryRouting } from './hooks/index.link.routing.hook';
 import { useSearch } from './hooks/index.search.hook';
 import { useFilter } from './hooks/index.filter.hook';
+import { usePagination } from './hooks/index.pagination.hook';
 import styles from './styles.module.css';
 
 // ========================================
@@ -40,7 +41,6 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   // State
   // ========================================
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 12;
 
   // ========================================
@@ -73,6 +73,21 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
     useFilter(searchedDiaries);
 
   // ========================================
+  // Pagination Hook
+  // ========================================
+
+  const {
+    currentPage,
+    totalPages,
+    paginatedData: paginatedDiaries,
+    handlePageChange,
+  } = usePagination({
+    data: filteredDiaries,
+    itemsPerPage,
+    initialPage: 1,
+  });
+
+  // ========================================
   // Routing Hook
   // ========================================
 
@@ -86,11 +101,6 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
     openNewDiaryModal();
   };
 
-  const handlePageChange = (page: number): void => {
-    setCurrentPage(page);
-    console.log('Page change:', page);
-  };
-
   const handleDeleteDiary = (event: React.MouseEvent, id: string): void => {
     event.stopPropagation(); // 이벤트 버블링 방지
     console.log('Delete diary:', id);
@@ -100,17 +110,6 @@ export const Diaries: React.FC<DiariesProps> = ({ className }) => {
   const handleCardClick = (id: string): void => {
     navigateToDiaryDetail(id);
   };
-
-  // ========================================
-  // Paginated Data
-  // ========================================
-
-  const totalPages = Math.ceil(filteredDiaries.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedDiaries = filteredDiaries.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
 
   // ========================================
   // Render Diary Card

@@ -136,7 +136,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   const canGoNext = currentPage < totalPages && !disabled;
 
   return (
-    <div className={paginationClasses}>
+    <div className={paginationClasses} data-testid="pagination">
       {/* 이전 버튼 */}
       {showArrows && (
         <button
@@ -146,6 +146,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           onClick={handlePrevious}
           disabled={!canGoPrevious}
           aria-label="이전 페이지"
+          data-testid="pagination-previous"
         >
           <img
             src={
@@ -174,6 +175,7 @@ export const Pagination: React.FC<PaginationProps> = ({
             disabled={disabled}
             aria-label={`페이지 ${page}`}
             aria-current={page === currentPage ? 'page' : undefined}
+            data-testid={`page-button-${page}`}
           >
             {page}
           </button>
@@ -189,6 +191,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           onClick={handleNext}
           disabled={!canGoNext}
           aria-label="다음 페이지"
+          data-testid="pagination-next"
         >
           <img
             src={

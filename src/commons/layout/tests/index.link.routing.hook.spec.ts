@@ -24,10 +24,10 @@ test.describe('Layout Link Routing', () => {
     await expect(picturesTab).not.toHaveClass(/activeTab/);
   });
 
-  test.skip('사진보관함 네비게이션 클릭 시 페이지 이동 및 활성 상태 변경', async ({
+  test('사진보관함 네비게이션 클릭 시 페이지 이동 및 활성 상태 변경', async ({
     page,
   }) => {
-    // /pictures 경로는 테스트 skip 대상
+    // 사진보관함 네비게이션 테스트
     // 사진보관함 탭 클릭
     await page.click('[data-testid="nav-pictures"]');
 
@@ -80,9 +80,35 @@ test.describe('Layout Link Routing', () => {
   test('일기 상세 페이지에서는 네비게이션이 표시되지 않아야 함', async ({
     page,
   }) => {
-    // 테스트 환경에서 인증 가드 바이패스 설정
+    // 로그인 페이지로 이동
+    await page.goto('/auth/login');
+    await page.waitForSelector('[data-testid="login-form"]');
+
+    // 로그인 정보 입력
+    await page.fill('input[name="email"]', 'qwer@qwer.com');
+    await page.fill('input[name="password"]', 'qwer1234');
+    await page.click('[data-testid="login-submit-button"]');
+
+    // 로그인 성공 모달 확인 및 클릭
+    const modalConfirmButton = page
+      .locator('[data-modal-component="true"]')
+      .locator('button:has-text("확인")');
+    await expect(modalConfirmButton).toBeVisible();
+    await modalConfirmButton.click();
+
+    // 일기 목록 페이지로 이동 대기
+    await page.waitForURL('/diaries', { timeout: 10000 });
+
+    // 테스트 데이터 추가
     await page.evaluate(() => {
-      window.__TEST_BYPASS__ = true;
+      const testDiary = {
+        id: 1,
+        title: '테스트 일기',
+        content: '테스트 내용',
+        emotion: 'HAPPY',
+        createdAt: '2025-01-20T00:00:00.000Z',
+      };
+      localStorage.setItem('diaries', JSON.stringify([testDiary]));
     });
 
     // 일기 상세 페이지로 직접 이동 (예: /diaries/1)
@@ -182,10 +208,24 @@ test.describe('Layout Link Routing', () => {
   test('존재하지 않는 일기 상세 페이지 접근 시에도 네비게이션이 표시되지 않아야 함', async ({
     page,
   }) => {
-    // 테스트 환경에서 인증 가드 바이패스 설정
-    await page.evaluate(() => {
-      window.__TEST_BYPASS__ = true;
-    });
+    // 로그인 페이지로 이동
+    await page.goto('/auth/login');
+    await page.waitForSelector('[data-testid="login-form"]');
+
+    // 로그인 정보 입력
+    await page.fill('input[name="email"]', 'qwer@qwer.com');
+    await page.fill('input[name="password"]', 'qwer1234');
+    await page.click('[data-testid="login-submit-button"]');
+
+    // 로그인 성공 모달 확인 및 클릭
+    const modalConfirmButton = page
+      .locator('[data-modal-component="true"]')
+      .locator('button:has-text("확인")');
+    await expect(modalConfirmButton).toBeVisible();
+    await modalConfirmButton.click();
+
+    // 일기 목록 페이지로 이동 대기
+    await page.waitForURL('/diaries', { timeout: 10000 });
 
     // 존재하지 않는 일기 ID로 접근
     await page.goto('/diaries/999999');

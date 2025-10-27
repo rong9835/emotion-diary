@@ -11,17 +11,27 @@ const testDiaryData = {
 
 test.describe('DiariesDetail Retrospect Form Hook', () => {
   test.beforeEach(async ({ page }) => {
-    // 먼저 페이지로 이동하여 로컬스토리지 컨텍스트를 얻습니다
-    await page.goto('/');
+    // 로그인 페이지로 이동
+    await page.goto('/auth/login');
+    await page.waitForSelector('[data-testid="login-form"]');
 
-    // 테스트 환경에서 인증 가드 바이패스 설정
-    await page.evaluate(() => {
-      window.__TEST_BYPASS__ = true;
-    });
+    // 로그인 정보 입력
+    await page.fill('input[name="email"]', 'qwer@qwer.com');
+    await page.fill('input[name="password"]', 'qwer1234');
+    await page.click('[data-testid="login-submit-button"]');
+
+    // 로그인 성공 모달 확인 및 클릭
+    const modalConfirmButton = page
+      .locator('[data-modal-component="true"]')
+      .locator('button:has-text("확인")');
+    await expect(modalConfirmButton).toBeVisible();
+    await modalConfirmButton.click();
+
+    // 일기 목록 페이지로 이동 대기
+    await page.waitForURL('/diaries');
 
     // 로컬스토리지에 테스트 데이터 설정
     await page.evaluate((data) => {
-      localStorage.clear();
       localStorage.setItem('diaries', JSON.stringify([data]));
     }, testDiaryData);
   });
@@ -242,5 +252,123 @@ test.describe('DiariesDetail Retrospect Form Hook', () => {
     // 검증
     expect(retrospects).not.toBeNull();
     expect(retrospects[0].diaryId).toBe(2);
+  });
+
+  test('회고가 없을 때 빈 상태 메시지가 표시되는지 확인', async ({ page }) => {
+    // 상세 페이지로 이동
+    await page.goto('/diaries/1');
+    // 페이지 로드 대기 (data-testid 사용)
+    await page.waitForSelector('[data-testid="diary-detail-page"]');
+
+    // 회고 목록 영역에서 빈 상태 메시지 확인
+    const emptyMessage = page.locator(
+      'text=아직 회고가 없습니다. 첫 번째 회고를 남겨보세요.'
+    );
+    await expect(emptyMessage).toBeVisible();
+  });
+
+  test('회고 목록이 실시간으로 업데이트되는지 확인', async ({ page }) => {
+    // 상세 페이지로 이동
+    await page.goto('/diaries/1');
+    // 페이지 로드 대기 (data-testid 사용)
+    await page.waitForSelector('[data-testid="diary-detail-page"]');
+
+    // 초기에는 빈 상태 메시지가 보여야 함
+    const emptyMessage = page.locator(
+      'text=아직 회고가 없습니다. 첫 번째 회고를 남겨보세요.'
+    );
+    await expect(emptyMessage).toBeVisible();
+
+    // 입력 필드와 버튼 찾기
+    const inputField = page.locator('[data-testid="retrospect-input"]');
+    const submitButton = page.locator('[data-testid="retrospect-submit"]');
+
+    // 첫 번째 회고 입력
+    await inputField.fill('첫 번째 회고입니다.');
+    await submitButton.click();
+
+    // 페이지 새로고침 대기
+    await page.waitForLoadState('load');
+    await page.waitForSelector('[data-testid="diary-detail-page"]');
+
+    // 빈 상태 메시지가 사라지고 회고 목록이 표시되어야 함
+    await expect(emptyMessage).not.toBeVisible();
+
+    const retrospectItem = page.locator('text=첫 번째 회고입니다.').first();
+    await expect(retrospectItem).toBeVisible();
+
+    // 두 번째 회고 추가
+    const newInputField = page.locator('[data-testid="retrospect-input"]');
+    const newSubmitButton = page.locator('[data-testid="retrospect-submit"]');
+
+    await newInputField.fill('두 번째 회고입니다.');
+    await newSubmitButton.click();
+
+    // 페이지 새로고침 대기
+    await page.waitForLoadState('load');
+    await page.waitForSelector('[data-testid="diary-detail-page"]');
+
+    // 두 개의 회고가 모두 표시되어야 함
+    await expect(page.locator('text=첫 번째 회고입니다.')).toBeVisible();
+    await expect(page.locator('text=두 번째 회고입니다.')).toBeVisible();
+  });
+
+  test('회고 입력 중 에러가 발생했을 때 적절한 처리가 되는지 확인', async ({
+    page,
+  }) => {
+    // 상세 페이지로 이동
+    await page.goto('/diaries/1');
+    // 페이지 로드 대기 (data-testid 사용)
+    await page.waitForSelector('[data-testid="diary-detail-page"]');
+
+    // 로컬스토리지 접근을 차단하여 에러 상황 시뮬레이션
+    await page.evaluate(() => {
+      localStorage.setItem = () => {
+        throw new Error('Storage quota exceeded');
+      };
+    });
+
+    // 입력 필드와 버튼 찾기
+    const inputField = page.locator('[data-testid="retrospect-input"]');
+    const submitButton = page.locator('[data-testid="retrospect-submit"]');
+
+    // 회고 입력
+    await inputField.fill('에러 테스트 회고');
+    await submitButton.click();
+
+    // 에러가 발생해도 페이지가 정상적으로 동작해야 함
+    await page.waitForLoadState('load');
+    await expect(
+      page.locator('[data-testid="diary-detail-page"]')
+    ).toBeVisible();
+  });
+
+  test('회고 입력 시 로딩 상태가 적절히 처리되는지 확인', async ({ page }) => {
+    // 상세 페이지로 이동
+    await page.goto('/diaries/1');
+    // 페이지 로드 대기 (data-testid 사용)
+    await page.waitForSelector('[data-testid="diary-detail-page"]');
+
+    // 입력 필드와 버튼 찾기
+    const inputField = page.locator('[data-testid="retrospect-input"]');
+    const submitButton = page.locator('[data-testid="retrospect-submit"]');
+
+    // 회고 입력
+    await inputField.fill('로딩 테스트 회고');
+
+    // 버튼이 활성화되어 있는지 확인
+    await expect(submitButton).toBeEnabled();
+
+    // 등록 버튼 클릭
+    await submitButton.click();
+
+    // 버튼이 일시적으로 비활성화될 수 있음 (제출 중 상태)
+    // 페이지 새로고침 후 정상 상태로 돌아와야 함
+    await page.waitForLoadState('load');
+    await page.waitForSelector('[data-testid="diary-detail-page"]');
+
+    // 입력 필드가 초기화되고 버튼이 다시 활성화되어야 함
+    await expect(inputField).toHaveValue('');
+    await expect(submitButton).toBeDisabled(); // 빈 입력이므로 비활성화
   });
 });

@@ -11,13 +11,24 @@ const testDiaryData = {
 
 test.describe('DiariesDetail Binding Hook', () => {
   test.beforeEach(async ({ page }) => {
-    // 먼저 페이지로 이동하여 로컬스토리지 컨텍스트를 얻습니다
-    await page.goto('/');
+    // 로그인 페이지로 이동
+    await page.goto('/auth/login');
+    await page.waitForSelector('[data-testid="login-form"]');
 
-    // 테스트 환경에서 인증 가드 바이패스 설정
-    await page.evaluate(() => {
-      window.__TEST_BYPASS__ = true;
-    });
+    // 로그인 정보 입력
+    await page.fill('input[name="email"]', 'qwer@qwer.com');
+    await page.fill('input[name="password"]', 'qwer1234');
+    await page.click('[data-testid="login-submit-button"]');
+
+    // 로그인 성공 모달 확인 및 클릭
+    const modalConfirmButton = page
+      .locator('[data-modal-component="true"]')
+      .locator('button:has-text("확인")');
+    await expect(modalConfirmButton).toBeVisible();
+    await modalConfirmButton.click();
+
+    // 일기 목록 페이지로 이동 대기
+    await page.waitForURL('/diaries');
 
     // 로컬스토리지에 테스트 데이터 설정
     await page.evaluate((data) => {
@@ -37,9 +48,6 @@ test.describe('DiariesDetail Binding Hook', () => {
     await expect(page.locator('[data-testid="diary-title"]')).toHaveText(
       testDiaryData.title
     );
-
-    // 감정 아이콘 확인
-    await expect(page.locator('[data-testid="emotion-icon"]')).toBeVisible();
 
     // 감정 텍스트 확인
     await expect(page.locator('[data-testid="emotion-text"]')).toHaveText(

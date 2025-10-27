@@ -1,0 +1,823 @@
+
+Running 111 tests using 5 workers
+
+  ✓  1 [chromium] › src/components/auth-signup/tests/index.form.hook.spec.ts:20:7 › 회원가입 폼 기능 테스트 › 1-1. 모든 필드가 비어있을 때 회원가입 버튼이 비활성화되어야 함 (1.8s)
+  ✓  2 [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:15:7 › Layout Link Routing › 일기보관함 네비게이션이 활성 상태로 표시되어야 함 (1.9s)
+  -  3 [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:27:8 › Layout Link Routing › 사진보관함 네비게이션 클릭 시 페이지 이동 및 활성 상태 변경
+  ✓  4 [chromium] › src/commons/layout/tests/index.area.hook.spec.ts:23:7 › Layout Area Hook Tests › 홈 페이지 - 모든 레이아웃 영역이 노출되어야 함 (1.9s)
+  ✓  5 [chromium] › src/components/auth-login/tests/index.form.hook.spec.ts:11:7 › 로그인 폼 기능 테스트 › 모든 인풋이 입력되면 로그인 버튼이 활성화되어야 한다 (1.9s)
+  ✓  6 [chromium] › src/commons/layout/tests/index.auth.hook.spec.ts:12:9 › Layout 인증 기능 테스트 › 비로그인 유저 › 로그인 버튼이 노출되고 클릭 시 로그인 페이지로 이동해야 함 (2.2s)
+  ✓  7 [chromium] › src/commons/layout/tests/index.area.hook.spec.ts:57:7 › Layout Area Hook Tests › 일기 목록 페이지 - 모든 레이아웃 영역이 노출되어야 함 (다크모드 토글 제외) (833ms)
+  ✓  8 [chromium] › src/components/auth-signup/tests/index.form.hook.spec.ts:28:7 › 회원가입 폼 기능 테스트 › 1-2. 모든 필드가 입력되면 회원가입 버튼이 활성화되어야 함 (999ms)
+  ✓  9 [chromium] › src/commons/layout/tests/index.area.hook.spec.ts:91:7 › Layout Area Hook Tests › URL 기반 레이아웃 설정이 올바르게 적용되는지 확인 (539ms)
+  ✓  10 [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:46:7 › Layout Link Routing › 일기보관함 네비게이션 클릭 시 페이지 이동 및 활성 상태 변경 (1.4s)
+  ✓  11 [chromium] › src/commons/layout/tests/index.area.hook.spec.ts:105:7 › Layout Area Hook Tests › 네비게이션 탭이 올바르게 렌더링되는지 확인 (711ms)
+  ✓  12 [chromium] › src/components/auth-signup/tests/index.form.hook.spec.ts:48:7 › 회원가입 폼 기능 테스트 › 1-3. 이메일에 @ 미포함 시 에러 메시지가 표시되어야 함 (1.5s)
+  ✓  13 [chromium] › src/commons/layout/tests/index.area.hook.spec.ts:122:7 › Layout Area Hook Tests › 헤더 로고가 올바르게 렌더링되는지 확인 (431ms)
+  ✓  14 [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:64:7 › Layout Link Routing › 헤더 로고 클릭 시 일기목록 페이지로 이동 (1.4s)
+  ✓  15 [chromium] › src/components/diaries/tests/index.binding.hook.spec.ts:90:7 › Diaries Binding Hook Tests › 로컬스토리지에서 일기 데이터를 로드하여 표시해야 함 (726ms)
+  ✓  16 [chromium] › src/components/auth-signup/tests/index.form.hook.spec.ts:65:7 › 회원가입 폼 기능 테스트 › 1-4. 비밀번호가 영문+숫자 8자리 미만일 때 에러 메시지가 표시되어야 함 (1.4s)
+  ✓  17 [chromium] › src/components/diaries/tests/index.binding.hook.spec.ts:101:7 › Diaries Binding Hook Tests › 각 일기 카드에 제목이 올바르게 바인딩되어야 함 (698ms)
+  ✓  18 [chromium] › src/components/diaries/tests/index.binding.hook.spec.ts:115:7 › Diaries Binding Hook Tests › 각 일기 카드에 감정 텍스트가 올바르게 바인딩되어야 함 (683ms)
+  ✓  19 [chromium] › src/components/auth-signup/tests/index.form.hook.spec.ts:84:7 › 회원가입 폼 기능 테스트 › 1-5. 비밀번호와 비밀번호 확인이 다를 때 에러 메시지가 표시되어야 함 (1.4s)
+  ✓  20 [chromium] › src/components/diaries/tests/index.binding.hook.spec.ts:149:7 › Diaries Binding Hook Tests › 각 일기 카드에 감정별 이미지가 올바르게 바인딩되어야 함 (686ms)
+  ✓  21 [chromium] › src/components/diaries/tests/index.binding.hook.spec.ts:178:7 › Diaries Binding Hook Tests › 각 일기 카드에 작성일이 올바르게 바인딩되어야 함 (679ms)
+  ✓  22 [chromium] › src/components/auth-signup/tests/index.form.hook.spec.ts:108:7 › 회원가입 폼 기능 테스트 › 1-6. 이름이 1글자 미만일 때 에러 메시지가 표시되어야 함 (1.4s)
+  ✘  23 [chromium] › src/components/auth-login/tests/index.form.hook.spec.ts:42:7 › 로그인 폼 기능 테스트 › 로그인에 성공하면 accessToken과 사용자 정보를 받아와야 한다 (6.9s)
+  ✓  24 [chromium] › src/components/diaries/tests/index.binding.hook.spec.ts:194:7 › Diaries Binding Hook Tests › 긴 제목은 ellipsis로 처리되어야 함 (953ms)
+  ✓  25 [chromium] › src/components/diaries/tests/index.binding.hook.spec.ts:220:7 › Diaries Binding Hook Tests › 로컬스토리지에 데이터가 없는 경우 빈 상태를 표시해야 함 (1.0s)
+  ✓  26 [chromium] › src/components/auth-signup/tests/index.form.hook.spec.ts:134:7 › 회원가입 폼 기능 테스트 › 2-1. 회원가입 성공 시 가입완료 모달이 표시되어야 함 (1.5s)
+  ✓  27 [chromium] › src/components/auth-login/tests/index.form.hook.spec.ts:94:7 › 로그인 폼 기능 테스트 › 로그인에 실패하면 에러 모달이 표시되어야 한다 (1.5s)
+  ✓  28 [chromium] › src/components/diaries/tests/index.binding.hook.spec.ts:237:7 › Diaries Binding Hook Tests › 로컬스토리지에 빈 배열이 있는 경우 빈 상태를 표시해야 함 (1.0s)
+  ✓  29 [chromium] › src/components/auth-signup/tests/index.form.hook.spec.ts:161:7 › 회원가입 폼 기능 테스트 › 2-2. 가입완료 모달에서 확인 클릭 시 로그인 페이지로 이동해야 함 (1.6s)
+  ✓  30 [chromium] › src/components/diaries/tests/index.binding.hook.spec.ts:254:7 › Diaries Binding Hook Tests › 잘못된 형식의 로컬스토리지 데이터 처리 (979ms)
+  ✓  31 [chromium] › src/components/auth-login/tests/index.form.hook.spec.ts:155:7 › 로그인 폼 기능 테스트 › 이메일에 @가 없으면 검증 에러가 발생해야 한다 (1.4s)
+  ✓  32 [chromium] › src/components/auth-login/tests/index.form.hook.spec.ts:176:7 › 로그인 폼 기능 테스트 › 비밀번호가 비어있으면 버튼이 비활성화되어야 한다 (436ms)
+  ✓  33 [chromium] › src/components/diaries/tests/index.filter.spec.ts:94:7 › 일기 필터 기능 테스트 › 필터 선택박스가 올바르게 표시되어야 한다 (864ms)
+  ✓  34 [chromium] › src/components/diaries/tests/index.link.modal.hook.spec.ts:35:9 › Diaries Modal Hook Auth Tests › 비로그인 유저 시나리오 › 일기쓰기버튼 클릭 시 로그인 요청 모달이 노출되어야 함 (849ms)
+  ✓  35 [chromium] › src/components/diaries/tests/index.filter.spec.ts:135:7 › 일기 필터 기능 테스트 › 전체 필터로 모든 일기가 표시되어야 한다 (811ms)
+  ✘  36 [chromium] › src/commons/layout/tests/index.auth.hook.spec.ts:36:9 › Layout 인증 기능 테스트 › 로그인 유저 › 로그인 후 유저이름과 로그아웃 버튼이 노출되고 로그아웃 기능이 동작해야 함 (11.8s)
+  ✓  37 [chromium] › src/components/diaries/tests/index.link.modal.hook.spec.ts:81:9 › Diaries Modal Hook Auth Tests › 비로그인 유저 시나리오 › 로그인 요청 모달에서 확인 버튼 클릭 시 로그인 페이지로 이동해야 함 (1.0s)
+  ✓  38 [chromium] › src/components/diaries/tests/index.filter.spec.ts:148:7 › 일기 필터 기능 테스트 › 행복해요 필터로 행복한 일기만 표시되어야 한다 (926ms)
+  ✓  39 [chromium] › src/components/auth-signup/tests/index.form.hook.spec.ts:195:7 › 회원가입 폼 기능 테스트 › 2-3. 같은 성공 모달은 한 번만 표시되어야 함 (3.0s)
+Request: http://localhost:3000/_next/static/chunks/_app-pages-browser_node_modules_tanstack_query-devtools_build_DevtoolsComponent_6ELMOJL2_js.js GET
+Response: http://localhost:3000/_next/static/chunks/_app-pages-browser_node_modules_tanstack_query-devtools_build_DevtoolsComponent_6ELMOJL2_js.js [33m200[39m
+  ✓  40 [chromium] › src/components/diaries/tests/index.link.modal.hook.spec.ts:113:9 › Diaries Modal Hook Auth Tests › 비로그인 유저 시나리오 › 로그인 요청 모달에서 취소 버튼 클릭 시 모달이 닫혀야 함 (1.3s)
+  ✓  41 [chromium] › src/components/diaries/tests/index.filter.spec.ts:175:7 › 일기 필터 기능 테스트 › 슬퍼요 필터로 슬픈 일기만 표시되어야 한다 (1.3s)
+  ✓  42 [chromium] › src/components/diaries/tests/index.link.routing.hook.spec.ts:72:7 › Diary Card Link Routing › should navigate to detail page when clicking on diary card (1.4s)
+Request: https://main-practice.codebootcamp.co.kr/graphql POST
+Intercepted request to: https://main-practice.codebootcamp.co.kr/graphql
+Post data: {"query":"\n        mutation createUser($createUserInput: CreateUserInput!) {\n          createUser(createUserInput: $createUserInput) {\n            _id\n          }\n        }\n      ","variables":{"createUserInput":{"email":"duplicate1761543820299@example.com","password":"Test1234","name":"테스트사용자"}}}
+Mocking createUser error response
+Response: https://main-practice.codebootcamp.co.kr/graphql [33m200[39m
+  ✘  43 [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:80:7 › Layout Link Routing › 일기 상세 페이지에서는 네비게이션이 표시되지 않아야 함 (11.9s)
+  ✓  44 [chromium] › src/components/diaries/tests/index.link.modal.hook.spec.ts:168:9 › Diaries Modal Hook Auth Tests › 로그인 유저 시나리오 › 일기쓰기버튼 클릭 시 일기쓰기 페이지 모달이 노출되어야 함 (1.0s)
+  ✓  45 [chromium] › src/components/diaries/tests/index.filter.spec.ts:202:7 › 일기 필터 기능 테스트 › 놀랐어요 필터로 놀라운 일기만 표시되어야 한다 (1.1s)
+  ✓  46 [chromium] › src/components/auth-signup/tests/index.form.hook.spec.ts:250:7 › 회원가입 폼 기능 테스트 › 3-1. 이메일 중복 시 가입실패 모달이 표시되어야 함 (2.6s)
+  ✓  47 [chromium] › src/components/diaries/tests/index.link.routing.hook.spec.ts:88:7 › Diary Card Link Routing › should navigate to correct detail page for each diary card (2.0s)
+  ✓  48 [chromium] › src/components/diaries/tests/index.link.modal.hook.spec.ts:211:9 › Diaries Modal Hook Auth Tests › 로그인 유저 시나리오 › 로그인 유저는 로그인 요청 모달이 노출되지 않아야 함 (1.3s)
+  ✓  49 [chromium] › src/components/diaries/tests/index.filter.spec.ts:229:7 › 일기 필터 기능 테스트 › 화나요 필터로 화난 일기만 표시되어야 한다 (1.3s)
+  ✓  50 [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:130:7 › Layout Link Routing › 네비게이션 탭에 cursor pointer 스타일이 적용되어야 함 (858ms)
+  ✓  51 [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:148:7 › Layout Link Routing › 헤더 로고에 cursor pointer 스타일이 적용되어야 함 (617ms)
+  ✓  52 [chromium] › src/components/diaries/tests/index.link.routing.hook.spec.ts:110:7 › Diary Card Link Routing › should not navigate when clicking delete button (1.4s)
+  ✓  53 [chromium] › src/components/diaries/tests/index.pagination.hook.spec.ts:198:7 › Diaries Pagination Hook Tests › should display 12 diary cards per page in 3 rows and 4 columns (1.2s)
+  ✓  54 [chromium] › src/components/diaries/tests/index.filter.spec.ts:256:7 › 일기 필터 기능 테스트 › 기타 필터로 기타 감정 일기만 표시되어야 한다 (1.3s)
+  ✓  55 [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:159:7 › Layout Link Routing › 네비게이션 탭 텍스트의 활성 상태 스타일이 정확히 적용되어야 함 (724ms)
+  ✓  56 [chromium] › src/components/auth-signup/tests/index.form.hook.spec.ts:316:7 › 회원가입 폼 기능 테스트 › 3-2. 가입실패 모달에서 확인 클릭 시 모달만 닫히고 페이지는 유지되어야 함 (2.7s)
+  ✓  57 [chromium] › src/components/diaries/tests/index.link.routing.hook.spec.ts:127:7 › Diary Card Link Routing › should have cursor pointer style on diary card (1.0s)
+  ✓  58 [chromium] › src/components/diaries/tests/index.pagination.hook.spec.ts:213:7 › Diaries Pagination Hook Tests › should display pagination with 5 page numbers (1, 2, 3, 4, 5) (1.0s)
+  ✓  59 [chromium] › src/components/diaries/tests/index.filter.spec.ts:287:7 › 일기 필터 기능 테스트 › 검색 결과에 필터를 적용할 수 있어야 한다 (1.2s)
+  ✓  60 [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:181:7 › Layout Link Routing › 브라우저 뒤로가기/앞으로가기 시 네비게이션 상태가 올바르게 업데이트되어야 함 (1.4s)
+  ✓  61 [chromium] › src/components/diaries/tests/index.search.hook.spec.ts:60:7 › Diaries Search Hook Tests › should search by pressing Enter key (1.5s)
+  ✓  62 [chromium] › src/components/diaries/tests/index.pagination.hook.spec.ts:229:7 › Diaries Pagination Hook Tests › should navigate to correct page when clicking page number (1.3s)
+  ✓  63 [chromium] › src/components/diaries/tests/index.link.routing.hook.spec.ts:143:7 › Diary Card Link Routing › should handle empty localStorage gracefully (1.5s)
+  ✓  64 [chromium] › src/components/diaries/tests/index.filter.spec.ts:324:7 › 일기 필터 기능 테스트 › 특정 감정으로 검색 후 필터 변경이 올바르게 작동해야 한다 (1.2s)
+  ✓  65 [chromium] › src/components/diaries/tests/index.search.hook.spec.ts:77:7 › Diaries Search Hook Tests › should search by clicking search button (1.5s)
+  ✓  66 [chromium] › src/components/diaries/tests/index.filter.spec.ts:358:7 › 일기 필터 기능 테스트 › 필터 변경 후 페이지네이션이 올바르게 작동해야 한다 (1.1s)
+  ✓  67 [chromium] › src/components/diaries/tests/index.pagination.hook.spec.ts:246:7 › Diaries Pagination Hook Tests › should update pagination when searching (1.3s)
+  ✓  68 [chromium] › src/components/diaries/tests/index.filter.spec.ts:377:7 › 일기 필터 기능 테스트 › 필터를 전체로 다시 변경하면 모든 일기가 표시되어야 한다 (1.0s)
+  ✓  69 [chromium] › src/components/diaries/tests/index.pagination.hook.spec.ts:260:7 › Diaries Pagination Hook Tests › should show all pages when search is cleared (1.0s)
+  ✓  70 [chromium] › src/components/diaries/tests/index.search.hook.spec.ts:96:7 › Diaries Search Hook Tests › should search case-insensitively (1.2s)
+  ✓  71 [chromium] › src/components/diaries/tests/index.pagination.hook.spec.ts:275:7 › Diaries Pagination Hook Tests › should update pagination when filtering by emotion (1.0s)
+  ✓  72 [chromium] › src/components/diaries/tests/index.filter.spec.ts:417:7 › 일기 필터 기능 테스트 › 빈 로컬스토리지에서 필터 기능이 올바르게 작동해야 한다 (1.1s)
+  ✓  73 [chromium] › src/components/diaries/tests/index.search.hook.spec.ts:113:7 › Diaries Search Hook Tests › should show all diaries when search is empty (1.0s)
+  ✓  74 [chromium] › src/components/diaries/tests/index.pagination.hook.spec.ts:292:7 › Diaries Pagination Hook Tests › should reset pagination when filter is cleared (976ms)
+  ✓  75 [chromium] › src/components/diaries/tests/index.filter.spec.ts:437:7 › 일기 필터 기능 테스트 › 필터 선택박스가 항상 접근 가능해야 한다 (889ms)
+  ✓  76 [chromium] › src/components/diaries/tests/index.search.hook.spec.ts:129:7 › Diaries Search Hook Tests › should show empty state when no results (1.1s)
+  ✓  77 [chromium] › src/components/diaries/tests/index.search.hook.spec.ts:145:7 › Diaries Search Hook Tests › should update results when search term changes (1.5s)
+  ✓  78 [chromium] › src/components/diaries/tests/index.search.hook.spec.ts:171:7 › Diaries Search Hook Tests › should work with filters (1.1s)
+  ✘  79 [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:208:7 › Layout Link Routing › 존재하지 않는 일기 상세 페이지 접근 시에도 네비게이션이 표시되지 않아야 함 (12.1s)
+  ✓  80 [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:246:7 › Layout Link Routing › 키보드 접근성: 네비게이션 요소들이 클릭 가능해야 함 (562ms)
+  ✓  81 [chromium] › src/components/pictures/tests/index.binding.hook.spec.ts:14:7 › Pictures Component - 강아지 사진 목록 조회 기능 › 페이지 로드 시 강아지 사진 목록이 표시되어야 함 (1.7s)
+  ✓  82 [chromium] › src/components/pictures/tests/index.binding.hook.spec.ts:29:7 › Pictures Component - 강아지 사진 목록 조회 기능 › 로딩 중에는 스플래시 스크린이 표시되어야 함 (2.6s)
+  ✓  83 [chromium] › src/components/pictures/tests/index.binding.hook.spec.ts:51:7 › Pictures Component - 강아지 사진 목록 조회 기능 › 무한스크롤로 추가 강아지 사진을 로드해야 함 (1.6s)
+  ✓  84 [chromium] › src/components/pictures/tests/index.binding.hook.spec.ts:76:7 › Pictures Component - 강아지 사진 목록 조회 기능 › API 호출 실패 시 에러 처리가 되어야 함 (2.7s)
+  ✓  85 [chromium] › src/components/pictures/tests/index.binding.hook.spec.ts:96:7 › Pictures Component - 강아지 사진 목록 조회 기능 › 스플래시 스크린 애니메이션이 올바르게 작동해야 함 (677ms)
+  ✓  86 [chromium] › src/components/pictures/tests/index.filter.hook.spec.ts:11:7 › Pictures Component - Filter Feature › should display filter select with correct options (507ms)
+  ✓  87 [chromium] › src/components/pictures/tests/index.filter.hook.spec.ts:26:7 › Pictures Component - Filter Feature › should apply 640x640 size with default filter on initial load (744ms)
+  ✓  88 [chromium] › src/components/pictures/tests/index.filter.hook.spec.ts:35:7 › Pictures Component - Filter Feature › should apply 640x480 size when landscape filter is selected (1.4s)
+  ✓  89 [chromium] › src/components/pictures/tests/index.filter.hook.spec.ts:50:7 › Pictures Component - Filter Feature › should apply 480x640 size when portrait filter is selected (808ms)
+  ✓  90 [chromium] › src/components/pictures/tests/index.filter.hook.spec.ts:65:7 › Pictures Component - Filter Feature › should apply same size to all picture items when filter changes (631ms)
+  ✓  91 [chromium] › src/components/pictures/tests/index.filter.hook.spec.ts:85:7 › Pictures Component - Filter Feature › should work correctly when filter is changed multiple times (1.7s)
+  ✘  92 [chromium] › src/components/diaries-detail/tests/index.binding.hook.spec.ts:39:7 › DiariesDetail Binding Hook › 일기 상세 페이지에서 실제 데이터가 올바르게 바인딩되는지 확인 (30.0s)
+  ✘  93 [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:36:7 › 회고 바인딩 기능 테스트 › 성공 시나리오: 해당 일기의 회고 목록이 올바르게 표시되어야 함 (30.0s)
+  ✘  94 [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:39:7 › DiariesDetail Retrospect Form Hook › 회고 입력이 비어있으면 등록 버튼이 비활성화되어 있는지 확인 (30.0s)
+  ✘  95 [chromium] › src/components/diaries-detail/tests/index.update.hook.spec.ts:42:7 › 일기 수정 기능 테스트 (로그인 유저) › 일기 수정 전체 플로우 테스트 (30.0s)
+  ✘  96 [chromium] › src/components/diaries-detail/tests/index.binding.hook.spec.ts:71:7 › DiariesDetail Binding Hook › 존재하지 않는 ID로 접근 시 적절한 처리 확인 (30.0s)
+  ✘  97 [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:62:7 › 회고 바인딩 기능 테스트 › 실패 시나리오: 해당 일기의 회고가 없을 때 빈 상태 메시지가 표시되어야 함 (30.0s)
+  ✘  98 [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:56:7 › DiariesDetail Retrospect Form Hook › 회고 입력이 있으면 등록 버튼이 활성화되는지 확인 (30.0s)
+  ✘  99 [chromium] › src/components/diaries-detail/tests/index.update.hook.spec.ts:134:7 › 일기 수정 기능 테스트 (로그인 유저) › 수정 취소 시 원래 데이터로 복구되어야 함 (30.0s)
+  ✘  100 [chromium] › src/components/diaries-detail/tests/index.binding.hook.spec.ts:80:7 › DiariesDetail Binding Hook › 로컬스토리지에 데이터가 없는 경우 처리 확인 (30.0s)
+  ✘  101 [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:76:7 › 회고 바인딩 기능 테스트 › 데이터 필터링: 다른 일기의 회고는 표시되지 않아야 함 (30.0s)
+  ✘  102 [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:73:7 › DiariesDetail Retrospect Form Hook › 로컬스토리지에 retrospects가 없을 때 회고를 등록하면 id를 1로 설정하여 저장 (30.0s)
+  ✘  103 [chromium] › src/components/diaries-detail/tests/index.update.hook.spec.ts:158:7 › 일기 수정 기능 테스트 (로그인 유저) › 필수 필드가 비어있으면 제출 버튼이 비활성화되어야 함 (30.0s)
+  ✘  104 [chromium] › src/components/diaries-detail/tests/index.binding.hook.spec.ts:94:7 › DiariesDetail Binding Hook › 다양한 감정 타입의 데이터 바인딩 확인 (30.0s)
+  ✘  105 [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:114:7 › DiariesDetail Retrospect Form Hook › 로컬스토리지에 retrospects가 이미 존재할 때 회고를 등록하면 기존 배열에 추가되고 id는 최대값+1로 설정 (30.0s)
+  ✘  106 [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:97:7 › 회고 바인딩 기능 테스트 › 로컬스토리지 변경 감지: 새 회고 추가 시 목록이 업데이트되어야 함 (30.0s)
+  ✘  107 [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:140:7 › 회고 바인딩 기능 테스트 › 에러 처리: 잘못된 JSON 데이터 시 에러 상태가 표시되어야 함 (30.0s)
+  ✘  108 [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:178:7 › DiariesDetail Retrospect Form Hook › 회고 등록 후 입력 필드가 초기화되는지 확인 (30.0s)
+  ✘  109 [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:172:7 › 회고 바인딩 기능 테스트 › 로딩 상태: 페이지 로드 중 로딩 상태가 표시되어야 함 (30.0s)
+  ✘  110 [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:202:7 › DiariesDetail Retrospect Form Hook › 회고 등록 시 현재 diaryId가 올바르게 저장되는지 확인 (30.0s)
+  ✘  111 [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:180:7 › 회고 바인딩 기능 테스트 › 데이터 타입 검증: 회고 데이터의 타입이 올바르게 처리되어야 함 (30.0s)
+
+
+  1) [chromium] › src/commons/layout/tests/index.auth.hook.spec.ts:36:9 › Layout 인증 기능 테스트 › 로그인 유저 › 로그인 후 유저이름과 로그아웃 버튼이 노출되고 로그아웃 기능이 동작해야 함 
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      56 |
+      57 |       // 일기 목록 페이지로 이동 확인
+    > 58 |       await page.waitForURL('/diaries', { timeout: 10000 });
+         |                  ^
+      59 |       await page.waitForSelector('[data-testid="nav-diaries"]');
+      60 |
+      61 |       // 유저 이름 노출 확인
+
+        at /Users/chorong/Desktop/emotion-diary/src/commons/layout/tests/index.auth.hook.spec.ts:58:18
+
+  2) [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:80:7 › Layout Link Routing › 일기 상세 페이지에서는 네비게이션이 표시되지 않아야 함 
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+       98 |
+       99 |     // 일기 목록 페이지로 이동 대기
+    > 100 |     await page.waitForURL('/diaries', { timeout: 10000 });
+          |                ^
+      101 |
+      102 |     // 테스트 데이터 추가
+      103 |     await page.evaluate(() => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/commons/layout/tests/index.link.routing.hook.spec.ts:100:16
+
+  3) [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:208:7 › Layout Link Routing › 존재하지 않는 일기 상세 페이지 접근 시에도 네비게이션이 표시되지 않아야 함 
+
+    TimeoutError: page.waitForURL: Timeout 10000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      226 |
+      227 |     // 일기 목록 페이지로 이동 대기
+    > 228 |     await page.waitForURL('/diaries', { timeout: 10000 });
+          |                ^
+      229 |
+      230 |     // 존재하지 않는 일기 ID로 접근
+      231 |     await page.goto('/diaries/999999');
+
+        at /Users/chorong/Desktop/emotion-diary/src/commons/layout/tests/index.link.routing.hook.spec.ts:228:16
+
+  4) [chromium] › src/components/auth-login/tests/index.form.hook.spec.ts:42:7 › 로그인 폼 기능 테스트 › 로그인에 성공하면 accessToken과 사용자 정보를 받아와야 한다 
+
+    Error: [31mTimed out 5000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoHaveText[2m([22m[32mexpected[39m[2m)[22m
+
+    Locator: locator('[data-testid="modal-title"]')
+    Expected string: [32m"로그인 [7m완료[27m"[39m
+    Received string: [31m"로그인 [7m실패[27m"[39m
+    Call log:
+      [2m- expect.toHaveText with timeout 5000ms[22m
+    [2m  - waiting for locator('[data-testid="modal-title"]')[22m
+    [2m  -   locator resolved to <h2 id="modal-title" data-testid="modal-title" class="styles_title__v_QVN typography-headline-medium">로그인 실패</h2>[22m
+    [2m  -   unexpected value "로그인 실패"[22m
+    [2m  -   locator resolved to <h2 id="modal-title" data-testid="modal-title" class="styles_title__v_QVN typography-headline-medium">로그인 실패</h2>[22m
+    [2m  -   unexpected value "로그인 실패"[22m
+    [2m  -   locator resolved to <h2 id="modal-title" data-testid="modal-title" class="styles_title__v_QVN typography-headline-medium">로그인 실패</h2>[22m
+    [2m  -   unexpected value "로그인 실패"[22m
+    [2m  -   locator resolved to <h2 id="modal-title" data-testid="modal-title" class="styles_title__v_QVN typography-headline-medium">로그인 실패</h2>[22m
+    [2m  -   unexpected value "로그인 실패"[22m
+    [2m  -   locator resolved to <h2 id="modal-title" data-testid="modal-title" class="styles_title__v_QVN typography-headline-medium">로그인 실패</h2>[22m
+    [2m  -   unexpected value "로그인 실패"[22m
+    [2m  -   locator resolved to <h2 id="modal-title" data-testid="modal-title" class="styles_title__v_QVN typography-headline-medium">로그인 실패</h2>[22m
+    [2m  -   unexpected value "로그인 실패"[22m
+    [2m  -   locator resolved to <h2 id="modal-title" data-testid="modal-title" class="styles_title__v_QVN typography-headline-medium">로그인 실패</h2>[22m
+    [2m  -   unexpected value "로그인 실패"[22m
+    [2m  -   locator resolved to <h2 id="modal-title" data-testid="modal-title" class="styles_title__v_QVN typography-headline-medium">로그인 실패</h2>[22m
+    [2m  -   unexpected value "로그인 실패"[22m
+    [2m  -   locator resolved to <h2 id="modal-title" data-testid="modal-title" class="styles_title__v_QVN typography-headline-medium">로그인 실패</h2>[22m
+    [2m  -   unexpected value "로그인 실패"[22m
+
+
+      62 |     // 모달 내용 검증 (로그인 완료)
+      63 |     const modalTitle = page.locator('[data-testid="modal-title"]');
+    > 64 |     await expect(modalTitle).toHaveText('로그인 완료');
+         |                              ^
+      65 |
+      66 |     const modalContent = page.locator('[data-testid="modal-content"]');
+      67 |     await expect(modalContent).toHaveText('로그인이 완료되었습니다');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/auth-login/tests/index.form.hook.spec.ts:64:30
+
+  5) [chromium] › src/components/diaries-detail/tests/index.binding.hook.spec.ts:39:7 › DiariesDetail Binding Hook › 일기 상세 페이지에서 실제 데이터가 올바르게 바인딩되는지 확인 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      11 |
+      12 | test.describe('DiariesDetail Binding Hook', () => {
+    > 13 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      14 |     // 로그인 페이지로 이동
+      15 |     await page.goto('/auth/login');
+      16 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.binding.hook.spec.ts:13:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      29 |
+      30 |     // 일기 목록 페이지로 이동 대기
+    > 31 |     await page.waitForURL('/diaries');
+         |                ^
+      32 |
+      33 |     // 로컬스토리지에 테스트 데이터 설정
+      34 |     await page.evaluate((data) => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.binding.hook.spec.ts:31:16
+
+  6) [chromium] › src/components/diaries-detail/tests/index.binding.hook.spec.ts:71:7 › DiariesDetail Binding Hook › 존재하지 않는 ID로 접근 시 적절한 처리 확인 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      11 |
+      12 | test.describe('DiariesDetail Binding Hook', () => {
+    > 13 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      14 |     // 로그인 페이지로 이동
+      15 |     await page.goto('/auth/login');
+      16 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.binding.hook.spec.ts:13:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      29 |
+      30 |     // 일기 목록 페이지로 이동 대기
+    > 31 |     await page.waitForURL('/diaries');
+         |                ^
+      32 |
+      33 |     // 로컬스토리지에 테스트 데이터 설정
+      34 |     await page.evaluate((data) => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.binding.hook.spec.ts:31:16
+
+  7) [chromium] › src/components/diaries-detail/tests/index.binding.hook.spec.ts:80:7 › DiariesDetail Binding Hook › 로컬스토리지에 데이터가 없는 경우 처리 확인 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      11 |
+      12 | test.describe('DiariesDetail Binding Hook', () => {
+    > 13 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      14 |     // 로그인 페이지로 이동
+      15 |     await page.goto('/auth/login');
+      16 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.binding.hook.spec.ts:13:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      29 |
+      30 |     // 일기 목록 페이지로 이동 대기
+    > 31 |     await page.waitForURL('/diaries');
+         |                ^
+      32 |
+      33 |     // 로컬스토리지에 테스트 데이터 설정
+      34 |     await page.evaluate((data) => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.binding.hook.spec.ts:31:16
+
+  8) [chromium] › src/components/diaries-detail/tests/index.binding.hook.spec.ts:94:7 › DiariesDetail Binding Hook › 다양한 감정 타입의 데이터 바인딩 확인 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      11 |
+      12 | test.describe('DiariesDetail Binding Hook', () => {
+    > 13 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      14 |     // 로그인 페이지로 이동
+      15 |     await page.goto('/auth/login');
+      16 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.binding.hook.spec.ts:13:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      29 |
+      30 |     // 일기 목록 페이지로 이동 대기
+    > 31 |     await page.waitForURL('/diaries');
+         |                ^
+      32 |
+      33 |     // 로컬스토리지에 테스트 데이터 설정
+      34 |     await page.evaluate((data) => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.binding.hook.spec.ts:31:16
+
+  9) [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:36:7 › 회고 바인딩 기능 테스트 › 성공 시나리오: 해당 일기의 회고 목록이 올바르게 표시되어야 함 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      10 |
+      11 | test.describe('회고 바인딩 기능 테스트', () => {
+    > 12 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      13 |     // 로그인 페이지로 이동
+      14 |     await page.goto('/auth/login');
+      15 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:12:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      28 |
+      29 |     // 일기 목록 페이지로 이동 대기
+    > 30 |     await page.waitForURL('/diaries');
+         |                ^
+      31 |
+      32 |     // 일기 상세 페이지로 이동
+      33 |     await page.goto('/diaries/1');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:30:16
+
+  10) [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:62:7 › 회고 바인딩 기능 테스트 › 실패 시나리오: 해당 일기의 회고가 없을 때 빈 상태 메시지가 표시되어야 함 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      10 |
+      11 | test.describe('회고 바인딩 기능 테스트', () => {
+    > 12 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      13 |     // 로그인 페이지로 이동
+      14 |     await page.goto('/auth/login');
+      15 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:12:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      28 |
+      29 |     // 일기 목록 페이지로 이동 대기
+    > 30 |     await page.waitForURL('/diaries');
+         |                ^
+      31 |
+      32 |     // 일기 상세 페이지로 이동
+      33 |     await page.goto('/diaries/1');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:30:16
+
+  11) [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:76:7 › 회고 바인딩 기능 테스트 › 데이터 필터링: 다른 일기의 회고는 표시되지 않아야 함 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      10 |
+      11 | test.describe('회고 바인딩 기능 테스트', () => {
+    > 12 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      13 |     // 로그인 페이지로 이동
+      14 |     await page.goto('/auth/login');
+      15 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:12:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      28 |
+      29 |     // 일기 목록 페이지로 이동 대기
+    > 30 |     await page.waitForURL('/diaries');
+         |                ^
+      31 |
+      32 |     // 일기 상세 페이지로 이동
+      33 |     await page.goto('/diaries/1');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:30:16
+
+  12) [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:97:7 › 회고 바인딩 기능 테스트 › 로컬스토리지 변경 감지: 새 회고 추가 시 목록이 업데이트되어야 함 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      10 |
+      11 | test.describe('회고 바인딩 기능 테스트', () => {
+    > 12 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      13 |     // 로그인 페이지로 이동
+      14 |     await page.goto('/auth/login');
+      15 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:12:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      28 |
+      29 |     // 일기 목록 페이지로 이동 대기
+    > 30 |     await page.waitForURL('/diaries');
+         |                ^
+      31 |
+      32 |     // 일기 상세 페이지로 이동
+      33 |     await page.goto('/diaries/1');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:30:16
+
+  13) [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:140:7 › 회고 바인딩 기능 테스트 › 에러 처리: 잘못된 JSON 데이터 시 에러 상태가 표시되어야 함 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      10 |
+      11 | test.describe('회고 바인딩 기능 테스트', () => {
+    > 12 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      13 |     // 로그인 페이지로 이동
+      14 |     await page.goto('/auth/login');
+      15 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:12:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      28 |
+      29 |     // 일기 목록 페이지로 이동 대기
+    > 30 |     await page.waitForURL('/diaries');
+         |                ^
+      31 |
+      32 |     // 일기 상세 페이지로 이동
+      33 |     await page.goto('/diaries/1');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:30:16
+
+  14) [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:172:7 › 회고 바인딩 기능 테스트 › 로딩 상태: 페이지 로드 중 로딩 상태가 표시되어야 함 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      10 |
+      11 | test.describe('회고 바인딩 기능 테스트', () => {
+    > 12 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      13 |     // 로그인 페이지로 이동
+      14 |     await page.goto('/auth/login');
+      15 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:12:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      28 |
+      29 |     // 일기 목록 페이지로 이동 대기
+    > 30 |     await page.waitForURL('/diaries');
+         |                ^
+      31 |
+      32 |     // 일기 상세 페이지로 이동
+      33 |     await page.goto('/diaries/1');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:30:16
+
+  15) [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:180:7 › 회고 바인딩 기능 테스트 › 데이터 타입 검증: 회고 데이터의 타입이 올바르게 처리되어야 함 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      10 |
+      11 | test.describe('회고 바인딩 기능 테스트', () => {
+    > 12 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      13 |     // 로그인 페이지로 이동
+      14 |     await page.goto('/auth/login');
+      15 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:12:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      28 |
+      29 |     // 일기 목록 페이지로 이동 대기
+    > 30 |     await page.waitForURL('/diaries');
+         |                ^
+      31 |
+      32 |     // 일기 상세 페이지로 이동
+      33 |     await page.goto('/diaries/1');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:30:16
+
+  16) [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:39:7 › DiariesDetail Retrospect Form Hook › 회고 입력이 비어있으면 등록 버튼이 비활성화되어 있는지 확인 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      11 |
+      12 | test.describe('DiariesDetail Retrospect Form Hook', () => {
+    > 13 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      14 |     // 로그인 페이지로 이동
+      15 |     await page.goto('/auth/login');
+      16 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:13:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      29 |
+      30 |     // 일기 목록 페이지로 이동 대기
+    > 31 |     await page.waitForURL('/diaries');
+         |                ^
+      32 |
+      33 |     // 로컬스토리지에 테스트 데이터 설정
+      34 |     await page.evaluate((data) => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:31:16
+
+  17) [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:56:7 › DiariesDetail Retrospect Form Hook › 회고 입력이 있으면 등록 버튼이 활성화되는지 확인 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      11 |
+      12 | test.describe('DiariesDetail Retrospect Form Hook', () => {
+    > 13 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      14 |     // 로그인 페이지로 이동
+      15 |     await page.goto('/auth/login');
+      16 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:13:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      29 |
+      30 |     // 일기 목록 페이지로 이동 대기
+    > 31 |     await page.waitForURL('/diaries');
+         |                ^
+      32 |
+      33 |     // 로컬스토리지에 테스트 데이터 설정
+      34 |     await page.evaluate((data) => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:31:16
+
+  18) [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:73:7 › DiariesDetail Retrospect Form Hook › 로컬스토리지에 retrospects가 없을 때 회고를 등록하면 id를 1로 설정하여 저장 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      11 |
+      12 | test.describe('DiariesDetail Retrospect Form Hook', () => {
+    > 13 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      14 |     // 로그인 페이지로 이동
+      15 |     await page.goto('/auth/login');
+      16 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:13:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      29 |
+      30 |     // 일기 목록 페이지로 이동 대기
+    > 31 |     await page.waitForURL('/diaries');
+         |                ^
+      32 |
+      33 |     // 로컬스토리지에 테스트 데이터 설정
+      34 |     await page.evaluate((data) => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:31:16
+
+  19) [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:114:7 › DiariesDetail Retrospect Form Hook › 로컬스토리지에 retrospects가 이미 존재할 때 회고를 등록하면 기존 배열에 추가되고 id는 최대값+1로 설정 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      11 |
+      12 | test.describe('DiariesDetail Retrospect Form Hook', () => {
+    > 13 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      14 |     // 로그인 페이지로 이동
+      15 |     await page.goto('/auth/login');
+      16 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:13:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      29 |
+      30 |     // 일기 목록 페이지로 이동 대기
+    > 31 |     await page.waitForURL('/diaries');
+         |                ^
+      32 |
+      33 |     // 로컬스토리지에 테스트 데이터 설정
+      34 |     await page.evaluate((data) => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:31:16
+
+  20) [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:178:7 › DiariesDetail Retrospect Form Hook › 회고 등록 후 입력 필드가 초기화되는지 확인 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      11 |
+      12 | test.describe('DiariesDetail Retrospect Form Hook', () => {
+    > 13 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      14 |     // 로그인 페이지로 이동
+      15 |     await page.goto('/auth/login');
+      16 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:13:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      29 |
+      30 |     // 일기 목록 페이지로 이동 대기
+    > 31 |     await page.waitForURL('/diaries');
+         |                ^
+      32 |
+      33 |     // 로컬스토리지에 테스트 데이터 설정
+      34 |     await page.evaluate((data) => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:31:16
+
+  21) [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:202:7 › DiariesDetail Retrospect Form Hook › 회고 등록 시 현재 diaryId가 올바르게 저장되는지 확인 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+      11 |
+      12 | test.describe('DiariesDetail Retrospect Form Hook', () => {
+    > 13 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      14 |     // 로그인 페이지로 이동
+      15 |     await page.goto('/auth/login');
+      16 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:13:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      29 |
+      30 |     // 일기 목록 페이지로 이동 대기
+    > 31 |     await page.waitForURL('/diaries');
+         |                ^
+      32 |
+      33 |     // 로컬스토리지에 테스트 데이터 설정
+      34 |     await page.evaluate((data) => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:31:16
+
+  22) [chromium] › src/components/diaries-detail/tests/index.update.hook.spec.ts:42:7 › 일기 수정 기능 테스트 (로그인 유저) › 일기 수정 전체 플로우 테스트 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+       7 | test.describe('일기 수정 기능 테스트 (로그인 유저)', () => {
+       8 |   // 테스트 전에 로그인 상태 및 테스트 데이터 설정
+    >  9 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      10 |     // 로그인 페이지로 이동
+      11 |     await page.goto('/auth/login');
+      12 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.update.hook.spec.ts:9:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      25 |
+      26 |     // 일기 목록 페이지로 이동 대기
+    > 27 |     await page.waitForURL('/diaries');
+         |                ^
+      28 |
+      29 |     // 테스트 일기 데이터 추가
+      30 |     await page.evaluate(() => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.update.hook.spec.ts:27:16
+
+  23) [chromium] › src/components/diaries-detail/tests/index.update.hook.spec.ts:134:7 › 일기 수정 기능 테스트 (로그인 유저) › 수정 취소 시 원래 데이터로 복구되어야 함 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+       7 | test.describe('일기 수정 기능 테스트 (로그인 유저)', () => {
+       8 |   // 테스트 전에 로그인 상태 및 테스트 데이터 설정
+    >  9 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      10 |     // 로그인 페이지로 이동
+      11 |     await page.goto('/auth/login');
+      12 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.update.hook.spec.ts:9:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      25 |
+      26 |     // 일기 목록 페이지로 이동 대기
+    > 27 |     await page.waitForURL('/diaries');
+         |                ^
+      28 |
+      29 |     // 테스트 일기 데이터 추가
+      30 |     await page.evaluate(() => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.update.hook.spec.ts:27:16
+
+  24) [chromium] › src/components/diaries-detail/tests/index.update.hook.spec.ts:158:7 › 일기 수정 기능 테스트 (로그인 유저) › 필수 필드가 비어있으면 제출 버튼이 비활성화되어야 함 
+
+    [31mTest timeout of 30000ms exceeded while running "beforeEach" hook.[39m
+
+       7 | test.describe('일기 수정 기능 테스트 (로그인 유저)', () => {
+       8 |   // 테스트 전에 로그인 상태 및 테스트 데이터 설정
+    >  9 |   test.beforeEach(async ({ page }) => {
+         |        ^
+      10 |     // 로그인 페이지로 이동
+      11 |     await page.goto('/auth/login');
+      12 |     await page.waitForSelector('[data-testid="login-form"]');
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.update.hook.spec.ts:9:8
+
+    Error: page.waitForURL: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for navigation to "/diaries" until "load"
+    ============================================================
+
+      25 |
+      26 |     // 일기 목록 페이지로 이동 대기
+    > 27 |     await page.waitForURL('/diaries');
+         |                ^
+      28 |
+      29 |     // 테스트 일기 데이터 추가
+      30 |     await page.evaluate(() => {
+
+        at /Users/chorong/Desktop/emotion-diary/src/components/diaries-detail/tests/index.update.hook.spec.ts:27:16
+
+  Slow test file: [chromium] › src/components/auth-signup/tests/index.form.hook.spec.ts (19.8s)
+  Consider splitting slow test files to speed up parallel execution
+  24 failed
+    [chromium] › src/commons/layout/tests/index.auth.hook.spec.ts:36:9 › Layout 인증 기능 테스트 › 로그인 유저 › 로그인 후 유저이름과 로그아웃 버튼이 노출되고 로그아웃 기능이 동작해야 함 
+    [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:80:7 › Layout Link Routing › 일기 상세 페이지에서는 네비게이션이 표시되지 않아야 함 
+    [chromium] › src/commons/layout/tests/index.link.routing.hook.spec.ts:208:7 › Layout Link Routing › 존재하지 않는 일기 상세 페이지 접근 시에도 네비게이션이 표시되지 않아야 함 
+    [chromium] › src/components/auth-login/tests/index.form.hook.spec.ts:42:7 › 로그인 폼 기능 테스트 › 로그인에 성공하면 accessToken과 사용자 정보를 받아와야 한다 
+    [chromium] › src/components/diaries-detail/tests/index.binding.hook.spec.ts:39:7 › DiariesDetail Binding Hook › 일기 상세 페이지에서 실제 데이터가 올바르게 바인딩되는지 확인 
+    [chromium] › src/components/diaries-detail/tests/index.binding.hook.spec.ts:71:7 › DiariesDetail Binding Hook › 존재하지 않는 ID로 접근 시 적절한 처리 확인 
+    [chromium] › src/components/diaries-detail/tests/index.binding.hook.spec.ts:80:7 › DiariesDetail Binding Hook › 로컬스토리지에 데이터가 없는 경우 처리 확인 
+    [chromium] › src/components/diaries-detail/tests/index.binding.hook.spec.ts:94:7 › DiariesDetail Binding Hook › 다양한 감정 타입의 데이터 바인딩 확인 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:36:7 › 회고 바인딩 기능 테스트 › 성공 시나리오: 해당 일기의 회고 목록이 올바르게 표시되어야 함 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:62:7 › 회고 바인딩 기능 테스트 › 실패 시나리오: 해당 일기의 회고가 없을 때 빈 상태 메시지가 표시되어야 함 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:76:7 › 회고 바인딩 기능 테스트 › 데이터 필터링: 다른 일기의 회고는 표시되지 않아야 함 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:97:7 › 회고 바인딩 기능 테스트 › 로컬스토리지 변경 감지: 새 회고 추가 시 목록이 업데이트되어야 함 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:140:7 › 회고 바인딩 기능 테스트 › 에러 처리: 잘못된 JSON 데이터 시 에러 상태가 표시되어야 함 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:172:7 › 회고 바인딩 기능 테스트 › 로딩 상태: 페이지 로드 중 로딩 상태가 표시되어야 함 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.binding.hook.spec.ts:180:7 › 회고 바인딩 기능 테스트 › 데이터 타입 검증: 회고 데이터의 타입이 올바르게 처리되어야 함 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:39:7 › DiariesDetail Retrospect Form Hook › 회고 입력이 비어있으면 등록 버튼이 비활성화되어 있는지 확인 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:56:7 › DiariesDetail Retrospect Form Hook › 회고 입력이 있으면 등록 버튼이 활성화되는지 확인 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:73:7 › DiariesDetail Retrospect Form Hook › 로컬스토리지에 retrospects가 없을 때 회고를 등록하면 id를 1로 설정하여 저장 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:114:7 › DiariesDetail Retrospect Form Hook › 로컬스토리지에 retrospects가 이미 존재할 때 회고를 등록하면 기존 배열에 추가되고 id는 최대값+1로 설정 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:178:7 › DiariesDetail Retrospect Form Hook › 회고 등록 후 입력 필드가 초기화되는지 확인 
+    [chromium] › src/components/diaries-detail/tests/index.retrospect.form.hook.spec.ts:202:7 › DiariesDetail Retrospect Form Hook › 회고 등록 시 현재 diaryId가 올바르게 저장되는지 확인 
+    [chromium] › src/components/diaries-detail/tests/index.update.hook.spec.ts:42:7 › 일기 수정 기능 테스트 (로그인 유저) › 일기 수정 전체 플로우 테스트 
+    [chromium] › src/components/diaries-detail/tests/index.update.hook.spec.ts:134:7 › 일기 수정 기능 테스트 (로그인 유저) › 수정 취소 시 원래 데이터로 복구되어야 함 
+    [chromium] › src/components/diaries-detail/tests/index.update.hook.spec.ts:158:7 › 일기 수정 기능 테스트 (로그인 유저) › 필수 필드가 비어있으면 제출 버튼이 비활성화되어야 함 
+  1 skipped
+  86 passed (4.0m)

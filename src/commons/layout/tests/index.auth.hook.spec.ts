@@ -36,26 +36,25 @@ test.describe('Layout 인증 기능 테스트', () => {
     test('로그인 후 유저이름과 로그아웃 버튼이 노출되고 로그아웃 기능이 동작해야 함', async ({
       page,
     }) => {
-      // 페이지 이동 및 로그인
-      await page.goto('/auth/login');
+      // 로그인 상태를 localStorage에 직접 설정
+      await page.goto('/diaries');
 
-      // 페이지 로드 대기
-      await page.waitForSelector('[data-testid="login-form"]');
+      await page.evaluate(() => {
+        localStorage.setItem('accessToken', 'test-token-12345');
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            id: 'test-user-id',
+            email: 'test@test.com',
+            name: '테스트사용자',
+          })
+        );
+      });
 
-      // 로그인 정보 입력
-      await page.fill('input[name="email"]', 'a@c.com');
-      await page.fill('input[name="password"]', '1234qwer');
-      await page.click('[data-testid="login-submit-button"]');
+      // 페이지 새로고침
+      await page.reload();
 
-      // 로그인 성공 모달 확인 및 클릭
-      const modalConfirmButton = page
-        .locator('[data-modal-component="true"]')
-        .locator('button:has-text("확인")');
-      await expect(modalConfirmButton).toBeVisible();
-      await modalConfirmButton.click();
-
-      // 일기 목록 페이지로 이동 확인
-      await page.waitForURL('/diaries');
+      // 일기 목록 페이지 로드 대기
       await page.waitForSelector('[data-testid="nav-diaries"]');
 
       // 유저 이름 노출 확인

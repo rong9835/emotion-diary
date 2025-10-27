@@ -286,6 +286,7 @@ export const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
             onBlur={handleBlur}
             disabled={disabled}
             placeholder={placeholder}
+            data-testid="search-input"
             {...props}
           />
 

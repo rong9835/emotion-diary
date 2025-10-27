@@ -64,13 +64,13 @@ test.describe('Diaries Modal Hook Auth Tests', () => {
       // 모달 내용 확인
       const modalContent = page.locator('[data-testid="modal-content"]');
       await expect(modalContent).toContainText(
-        '이 기능을 사용하려면 로그인이 필요합니다'
+        '일기를 쓰려면 로그인이 필요합니다.'
       );
 
       // 확인 버튼 확인
       const confirmButton = page.locator('[data-testid="modal-confirm"]');
       await expect(confirmButton).toBeVisible();
-      await expect(confirmButton).toHaveText('로그인하러가기');
+      await expect(confirmButton).toHaveText('로그인');
 
       // 취소 버튼 확인
       const cancelButton = page.locator('[data-testid="modal-cancel"]');

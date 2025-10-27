@@ -326,6 +326,7 @@ export const SelectBox: React.FC<SelectBoxProps> = ({
                   role="option"
                   aria-selected={option.value === selectedValue}
                   aria-disabled={option.disabled}
+                  data-testid={`filter-option-${option.value}`}
                 >
                   <span className={styles.optionText}>{option.label}</span>
                   <svg

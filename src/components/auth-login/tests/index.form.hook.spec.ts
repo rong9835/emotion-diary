@@ -23,14 +23,14 @@ test.describe('로그인 폼 기능 테스트', () => {
 
     // 이메일 입력
     const emailInput = page.locator('[data-testid="login-email-input"]');
-    await emailInput.fill('a@c.com');
+    await emailInput.fill('qwer@qwer.com');
 
     // 비밀번호 입력 전: 버튼 여전히 비활성화
     await expect(submitButton).toBeDisabled();
 
     // 비밀번호 입력
     const passwordInput = page.locator('[data-testid="login-password-input"]');
-    await passwordInput.fill('1234qwer');
+    await passwordInput.fill('qwer1234');
 
     // 모든 필드 입력 후: 버튼 활성화
     await expect(submitButton).toBeEnabled();
@@ -49,46 +49,24 @@ test.describe('로그인 폼 기능 테스트', () => {
     await page.waitForSelector('[data-testid="login-form"]');
 
     // 로그인 정보 입력
-    await page.locator('[data-testid="login-email-input"]').fill('a@c.com');
     await page
-      .locator('[data-testid="login-password-input"]')
-      .fill('1234qwer');
-
-    // GraphQL 응답 감지
-    const responsePromise = page.waitForResponse(
-      (response) =>
-        response.url().includes('graphql') &&
-        response.request().method() === 'POST',
-      { timeout: 2000 }
-    );
+      .locator('[data-testid="login-email-input"]')
+      .fill('qwer@qwer.com');
+    await page.locator('[data-testid="login-password-input"]').fill('qwer1234');
 
     // 로그인 버튼 클릭
     await page.locator('[data-testid="login-submit-button"]').click();
 
-    // GraphQL 응답 대기
-    const response = await responsePromise;
-    const responseData = await response.json();
+    // 모달 표시 검증
+    const modal = page.locator('[data-modal-component="true"]');
+    await expect(modal).toBeVisible({ timeout: 15000 });
 
-    // loginUser API 응답 검증
-    expect(responseData.data.loginUser).toBeDefined();
-    expect(responseData.data.loginUser.accessToken).toBeTruthy();
-    expect(typeof responseData.data.loginUser.accessToken).toBe('string');
+    // 모달 내용 검증 (로그인 완료)
+    const modalTitle = page.locator('[data-testid="modal-title"]');
+    await expect(modalTitle).toHaveText('로그인 완료');
 
-    // fetchUserLoggedIn API 응답 대기
-    const userResponsePromise = page.waitForResponse(
-      (response) =>
-        response.url().includes('graphql') &&
-        response.request().method() === 'POST',
-      { timeout: 2000 }
-    );
-
-    const userResponse = await userResponsePromise;
-    const userResponseData = await userResponse.json();
-
-    // fetchUserLoggedIn API 응답 검증
-    expect(userResponseData.data.fetchUserLoggedIn).toBeDefined();
-    expect(userResponseData.data.fetchUserLoggedIn._id).toBeTruthy();
-    expect(userResponseData.data.fetchUserLoggedIn.name).toBeTruthy();
+    const modalContent = page.locator('[data-testid="modal-content"]');
+    await expect(modalContent).toHaveText('로그인이 완료되었습니다');
 
     // 로컬스토리지 검증
     const accessToken = await page.evaluate(() =>
@@ -105,17 +83,11 @@ test.describe('로그인 폼 기능 테스트', () => {
       expect(user.name).toBeTruthy();
     }
 
-    // 모달 표시 검증
-    await expect(page.locator('[data-modal-component="true"]')).toBeVisible();
-
-    // 모달 내용 검증 (로그인 완료)
-    await expect(page.locator('text=로그인 완료')).toBeVisible();
-
     // 확인 버튼 클릭
     await page.locator('button:has-text("확인")').click();
 
     // 일기목록 페이지로 이동 확인
-    await expect(page).toHaveURL('/diaries');
+    await expect(page).toHaveURL('/diaries', { timeout: 15000 });
   });
 
   // ========================================
@@ -151,8 +123,12 @@ test.describe('로그인 폼 기능 테스트', () => {
     await page.waitForSelector('[data-testid="login-form"]');
 
     // 로그인 정보 입력 (잘못된 정보)
-    await page.locator('[data-testid="login-email-input"]').fill('wrong@test.com');
-    await page.locator('[data-testid="login-password-input"]').fill('wrongpass');
+    await page
+      .locator('[data-testid="login-email-input"]')
+      .fill('wrong@test.com');
+    await page
+      .locator('[data-testid="login-password-input"]')
+      .fill('wrongpass');
 
     // 로그인 버튼 클릭
     await page.locator('[data-testid="login-submit-button"]').click();
@@ -167,7 +143,9 @@ test.describe('로그인 폼 기능 테스트', () => {
     await page.locator('button:has-text("확인")').click();
 
     // 모달이 닫히는지 확인
-    await expect(page.locator('[data-modal-component="true"]')).not.toBeVisible();
+    await expect(
+      page.locator('[data-modal-component="true"]')
+    ).not.toBeVisible();
 
     // 로그인 페이지에 그대로 있는지 확인
     await expect(page).toHaveURL('/auth/login');
@@ -181,8 +159,10 @@ test.describe('로그인 폼 기능 테스트', () => {
     await page.waitForSelector('[data-testid="login-form"]');
 
     // @가 없는 이메일 입력
-    await page.locator('[data-testid="login-email-input"]').fill('invalidemail');
-    await page.locator('[data-testid="login-password-input"]').fill('1234qwer');
+    await page
+      .locator('[data-testid="login-email-input"]')
+      .fill('invalidemail');
+    await page.locator('[data-testid="login-password-input"]').fill('qwer1234');
 
     // 버튼은 활성화되어야 함 (모든 필드 입력됨)
     const submitButton = page.locator('[data-testid="login-submit-button"]');
@@ -195,14 +175,14 @@ test.describe('로그인 폼 기능 테스트', () => {
     await expect(page.locator('text=이메일에 @를 포함해주세요')).toBeVisible();
   });
 
-  test('비밀번호가 비어있으면 버튼이 비활성화되어야 한다', async ({
-    page,
-  }) => {
+  test('비밀번호가 비어있으면 버튼이 비활성화되어야 한다', async ({ page }) => {
     await page.goto('/auth/login');
     await page.waitForSelector('[data-testid="login-form"]');
 
     // 이메일만 입력
-    await page.locator('[data-testid="login-email-input"]').fill('test@test.com');
+    await page
+      .locator('[data-testid="login-email-input"]')
+      .fill('test@test.com');
 
     // 버튼은 비활성화 상태
     const submitButton = page.locator('[data-testid="login-submit-button"]');

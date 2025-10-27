@@ -7,12 +7,12 @@ import { Input } from '@/commons/components/input';
 import {
   EmotionType,
   getEmotionLabel,
-  getEmotionImagePath,
-  ImageSize,
+  getAllEmotionTypes,
 } from '@/commons/constants/enum';
 import { useDiaryBinding } from './hooks/index.binding.hook';
 import { useRetrospectForm } from './hooks/index.retrospect.form.hook';
 import { useRetrospectBinding } from './hooks/index.retrospect.binding.hook';
+import { useUpdateDiary } from './hooks/index.update.hook';
 import styles from './styles.module.css';
 
 // ========================================
@@ -40,6 +40,7 @@ const formatDateForDisplay = (dateString: string): string => {
     return dateString;
   }
 };
+
 
 // ========================================
 // Types & Interfaces
@@ -80,15 +81,22 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
   // 실제 데이터 바인딩
   const { diaryData, isLoading, error } = useDiaryBinding(diaryId || '');
 
+  // 수정 훅
+  const {
+    isEditMode,
+    register: registerUpdate,
+    handleSubmit: handleSubmitUpdate,
+    handleEdit,
+    handleCancel,
+    onSubmit: onUpdateSubmit,
+    isValid: isUpdateValid,
+  } = useUpdateDiary(diaryData, diaryId || '');
+
   // 회고 폼 훅
   const { register, handleSubmit, isValid } = useRetrospectForm();
 
   // 회고 바인딩 훅 (실제 데이터 사용)
   const { retrospectList } = useRetrospectBinding(diaryId || '');
-
-  const handleEdit = () => {
-    console.log('수정 버튼 클릭');
-  };
 
   const handleDelete = () => {
     console.log('삭제 버튼 클릭');
@@ -137,96 +145,157 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
       {/* Gap 영역: 1168 * 64 */}
       <div className={styles.gap64}></div>
 
-      {/* Detail Title 영역: 1168 * 84 */}
-      <section className={styles.detailTitle}>
-        {/* 타이틀 프레임: 1168 * 36 */}
-        <div className={styles.titleFrame}>
-          <h1 className={styles.title} data-testid="diary-title">
-            {diaryData.title}
-          </h1>
-        </div>
-        {/* 감정&날짜 프레임: 1168 * 32 */}
-        <div className={styles.emotionDateFrame}>
-          {/* 감정 정보 (Frame 84): 109 * 32 */}
-          <div className={styles.emotionFrame}>
-            <div className={styles.emotionIcon} data-testid="emotion-icon">
-              <Image
-                src={getEmotionImagePath(
-                  diaryData.emotion,
-                  ImageSize.SMALL,
-                  'png'
-                )}
-                alt={getEmotionLabel(diaryData.emotion)}
-                width={32}
-                height={32}
-              />
+      {/* Detail Title 영역 또는 수정 모드 영역 */}
+      {isEditMode ? (
+        <>
+          {/* 수정 모드: 기분 선택 영역 */}
+          <section className={styles.editMoodSection}>
+            <h2 className={styles.editMoodTitle}>오늘 기분은 어땟나요?</h2>
+            <div className={styles.emotionRadioGroup}>
+              {getAllEmotionTypes().map((emotionType) => (
+                <label
+                  key={emotionType}
+                  className={styles.emotionRadio}
+                >
+                  <input
+                    type="radio"
+                    value={emotionType}
+                    {...registerUpdate('emotion')}
+                    className={styles.emotionRadioInput}
+                  />
+                  <span className={styles.emotionRadioLabel}>
+                    {getEmotionLabel(emotionType)}
+                  </span>
+                </label>
+              ))}
             </div>
-            <span className={styles.emotionText} data-testid="emotion-text">
-              {getEmotionLabel(diaryData.emotion)}
-            </span>
-          </div>
-          {/* 날짜 정보 (Frame): 107 * 20 */}
-          <div className={styles.dateFrame}>
-            <span className={styles.dateText} data-testid="diary-date">
-              {formatDateForDisplay(diaryData.createdAt)}
-            </span>
-            <span className={styles.createdText}>작성</span>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* Gap 영역: 1168 * 24 */}
-      <div className={styles.gap24}></div>
+          {/* Gap 영역: 1168 * 24 */}
+          <div className={styles.gap24}></div>
 
-      {/* Detail Content 영역: 1168 * 169 */}
-      <section className={styles.detailContent}>
-        <div className={styles.contentArea}>
-          <div className={styles.contentLabel}>내용</div>
-          <p className={styles.contentText} data-testid="diary-content">
-            {diaryData.content}
-          </p>
-        </div>
-        <div className={styles.copySection}>
-          <button className={styles.copyButton} onClick={handleCopyContent}>
-            <Image
-              src="/icons/copy_outline_light_xs.svg"
-              alt="복사"
-              width={24}
-              height={24}
+          {/* 제목 입력 영역 */}
+          <section className={styles.editTitleSection}>
+            <label className={styles.editLabel}>제목</label>
+            <input
+              type="text"
+              {...registerUpdate('title')}
+              className={styles.editInput}
             />
-            <span>내용 복사</span>
-          </button>
-        </div>
-      </section>
+          </section>
+        </>
+      ) : (
+        <section className={styles.detailTitle}>
+          {/* 타이틀 프레임: 1168 * 36 */}
+          <div className={styles.titleFrame}>
+            <h1 className={styles.title} data-testid="diary-title">
+              {diaryData.title}
+            </h1>
+          </div>
+          {/* 감정&날짜 프레임: 1168 * 32 */}
+          <div className={styles.emotionDateFrame}>
+            {/* 감정 정보 (Frame 84): 109 * 32 */}
+            <div className={styles.emotionFrame}>
+              <span className={styles.emotionText} data-testid="emotion-text">
+                {getEmotionLabel(diaryData.emotion)}
+              </span>
+            </div>
+            {/* 날짜 정보 (Frame): 107 * 20 */}
+            <div className={styles.dateFrame}>
+              <span className={styles.dateText} data-testid="diary-date">
+                {formatDateForDisplay(diaryData.createdAt)}
+              </span>
+              <span className={styles.createdText}>작성</span>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Gap 영역: 1168 * 24 */}
       <div className={styles.gap24}></div>
 
-      {/* Detail Footer 영역: 1168 * 56 */}
-      <section className={styles.detailFooter}>
-        <div className={styles.footerContent}>
-          <div className={styles.buttonGroup}>
-            <Button
-              variant="secondary"
-              size="small"
-              theme="light"
-              onClick={handleEdit}
-              className={styles.editButton}
-            >
-              수정
-            </Button>
-            <Button
-              variant="secondary"
-              size="small"
-              theme="light"
-              onClick={handleDelete}
-              className={styles.deleteButton}
-            >
-              삭제
-            </Button>
+      {/* Detail Content 영역 또는 내용 입력 영역 */}
+      {isEditMode ? (
+        <section className={styles.editContentSection}>
+          <label className={styles.editLabel}>내용</label>
+          <textarea
+            {...registerUpdate('content')}
+            className={styles.editTextarea}
+          />
+        </section>
+      ) : (
+        <section className={styles.detailContent}>
+          <div className={styles.contentArea}>
+            <div className={styles.contentLabel}>내용</div>
+            <p className={styles.contentText} data-testid="diary-content">
+              {diaryData.content}
+            </p>
           </div>
-        </div>
-      </section>
+          <div className={styles.copySection}>
+            <button className={styles.copyButton} onClick={handleCopyContent}>
+              <Image
+                src="/icons/copy_outline_light_xs.svg"
+                alt="복사"
+                width={24}
+                height={24}
+              />
+              <span>내용 복사</span>
+            </button>
+          </div>
+        </section>
+      )}
+
+      {/* Gap 영역: 1168 * 24 */}
+      <div className={styles.gap24}></div>
+
+      {/* Detail Footer 영역 또는 수정 버튼 영역 */}
+      {isEditMode ? (
+        <section className={styles.editButtonSection}>
+          <form onSubmit={handleSubmitUpdate(onUpdateSubmit)}>
+            <div className={styles.editButtonGroup}>
+              <button
+                type="button"
+                onClick={handleCancel}
+                className={styles.editCancelButton}
+              >
+                취소
+              </button>
+              <button
+                type="submit"
+                disabled={!isUpdateValid}
+                className={styles.editSubmitButton}
+              >
+                수정 하기
+              </button>
+            </div>
+          </form>
+        </section>
+      ) : (
+        <section className={styles.detailFooter}>
+          <div className={styles.footerContent}>
+            <div className={styles.buttonGroup}>
+              <Button
+                variant="secondary"
+                size="small"
+                theme="light"
+                onClick={handleEdit}
+                className={styles.editButton}
+              >
+                수정
+              </Button>
+              <Button
+                variant="secondary"
+                size="small"
+                theme="light"
+                onClick={handleDelete}
+                className={styles.deleteButton}
+              >
+                삭제
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Gap 영역: 1168 * 24 */}
       <div className={styles.gap24}></div>
@@ -245,17 +314,22 @@ export const DiariesDetail: React.FC<DiariesDetailProps> = ({
             variant="primary"
             size="medium"
             theme="light"
-            placeholder="회고를 남겨보세요."
+            placeholder={
+              isEditMode
+                ? '수정중일땐 회고를 작성할 수 없어요.'
+                : '회고를 남겨보세요.'
+            }
             {...register('content')}
             className={styles.retrospectInputField}
             data-testid="retrospect-input"
+            disabled={isEditMode}
           />
           <Button
             variant="primary"
             size="medium"
             theme="light"
             type="submit"
-            disabled={!isValid}
+            disabled={!isValid || isEditMode}
             className={styles.retrospectSubmitButton}
             data-testid="retrospect-submit"
           >
